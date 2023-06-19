@@ -1,0 +1,13 @@
+{
+    "home": {
+        "title": "Home"
+    },
+    "rsvp": {
+        "stepper": {
+            "invite": {
+                "stepName": "Invite",
+                "stepDescription": "Enter your invite code"
+            }
+        }
+    }
+}
