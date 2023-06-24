@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next-intl/link";
 import { FC, PropsWithChildren } from "react";
 import { useColorModeValue, Text } from "@chakra-ui/react";

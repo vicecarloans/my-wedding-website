@@ -1,10 +1,7 @@
 "use client";
-import { Container, VStack } from "@chakra-ui/react";
 
-export default function Home() {
-  return (
-    <VStack>
-      <Container maxW="full">asdsa</Container>
-    </VStack>
-  );
+import { useTranslations } from "next-intl";
+
+export default function IndexPage() {
+  return <p className="max-w-[590px]">asdsadsa</p>;
 }

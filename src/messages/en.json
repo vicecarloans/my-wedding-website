@@ -9,5 +9,11 @@
                 "stepDescription": "Enter your invite code"
             }
         }
+    },
+    "notFound": {
+        "description": "Ooops! The page you are looking for does not exist."
+    },
+    "locale": {
+        "title": "Huy and Tien Wedding"
     }
 }

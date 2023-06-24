@@ -5,7 +5,7 @@ import {
   IUserInvite,
   IUserInviteSubmission,
 } from "@/models/invite";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import useSWR, { Fetcher, useSWRConfig } from "swr";
 import { useIsomorphicLayoutEffect, useLocalStorage } from "usehooks-ts";
 import {
@@ -24,33 +24,17 @@ import {
   Container,
   Flex,
   HStack,
-  Heading,
-  VStack,
-  PinInput,
-  PinInputField,
   useDisclosure,
   ModalOverlay,
   Modal,
   Center,
   Spinner,
   ModalContent,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  RadioGroup,
-  Radio,
-  Button,
-  Input,
 } from "@chakra-ui/react";
-import {
-  useFormik,
-  Field,
-  FormikProps,
-  FieldProps,
-  FormikProvider,
-} from "formik";
+import { useFormik, FormikProvider } from "formik";
 import axios, { AxiosError } from "axios";
-import { AddIcon } from "@chakra-ui/icons";
+import EnterPinForm from "@/components/EnterPinForm";
+import GuestInfoForm from "@/components/GuestInfoForm";
 
 const STEPS = [
   { title: "Invite", description: "Enter your invite code" },
@@ -86,9 +70,11 @@ export default function RSVP() {
   );
 
   const { activeStep, setActiveStep } = useSteps({
-    index: inviteId ? 1 : 0,
+    index: 0,
     count: STEPS.length,
   });
+
+  console.log("activeStep", activeStep);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const finalRef = useRef(null);
@@ -101,18 +87,18 @@ export default function RSVP() {
     } else {
       onClose();
     }
-  }, [isLoading]);
+  }, [isLoading, onClose, onOpen]);
 
   useIsomorphicLayoutEffect(() => {
-    setCurrentUserInvite(data?.invite);
     if (data?.invite?.id) {
+      setCurrentUserInvite(data?.invite);
       setActiveStep(1);
     }
-  }, [data?.invite]);
+  }, [data?.invite, setActiveStep, setCurrentUserInvite]);
 
   useIsomorphicLayoutEffect(() => {
     setCurrentUserSubmission(data?.inviteSubmission);
-  }, [data?.inviteSubmission]);
+  }, [data?.inviteSubmission, setCurrentUserSubmission]);
 
   useIsomorphicLayoutEffect(() => {
     if (error instanceof AxiosError) {
@@ -122,24 +108,12 @@ export default function RSVP() {
     }
   }, [error]);
 
-  const isRequired = (value: unknown) => {
-    return value !== undefined && value !== null && value !== "";
-  };
-
-  const formik = useFormik({
+  const formik = useFormik<Partial<FormProps>>({
     initialValues: {
       isGoing: currentUserSubmission?.isGoing,
       additionalGuests: currentUserSubmission?.additionalGuests,
-      flight: {
-        flightNumber: currentUserSubmission?.flight?.flightNumber,
-        arrivalDateTime: currentUserSubmission?.flight?.arrivalDateTime,
-        needsPickup: currentUserSubmission?.flight?.needsPickup,
-      },
-      hotel: {
-        stayFrom: currentUserSubmission?.hotel?.stayFrom,
-        stayTo: currentUserSubmission?.hotel?.stayTo,
-        needsTransport: currentUserSubmission?.hotel?.needsTransport,
-      },
+      flight: currentUserSubmission?.flight,
+      hotel: currentUserSubmission?.hotel,
       wishes: currentUserSubmission?.wishes,
     },
     onSubmit: async (values) => {
@@ -160,120 +134,26 @@ export default function RSVP() {
   const renderStep = useCallback(() => {
     if (activeStep === 0) {
       return (
-        <VStack>
-          <Heading as="h3">Hey 👋, thanks for taking the time to rsvp</Heading>
-          <Text>
-            Let&apos;s get started with your invitation code. It contains 6
-            alphanumberic (text + number) values and you can find this in the
-            invite letter
-          </Text>
-          <HStack>
-            <FormControl isInvalid={isCodeInvalid}>
-              <PinInput
-                type="alphanumeric"
-                onComplete={(value) => {
-                  setInviteId(value);
-                }}
-                onChange={() => {
-                  setInviteId("");
-                  setCodeInvalid(false);
-                }}
-              >
-                <PinInputField />
-                <PinInputField />
-                <PinInputField />
-                <PinInputField />
-                <PinInputField />
-                <PinInputField />
-              </PinInput>
-              {isCodeInvalid && (
-                <FormErrorMessage>
-                  Code is invalid. Please try again or reach out to us
-                </FormErrorMessage>
-              )}
-            </FormControl>
-          </HStack>
-        </VStack>
+        <EnterPinForm
+          isCodeInvalid={isCodeInvalid}
+          handleChange={() => {
+            setInviteId("");
+            setCodeInvalid(false);
+          }}
+          handleComplete={(value) => {
+            setInviteId(value);
+          }}
+        />
       );
     }
 
     if (activeStep === 1) {
-      console.log(formik.values.additionalGuests);
       return (
-        <VStack>
-          <Heading as="h3">
-            Hey {currentUserInvite?.name} 👋, let&apos;s start with basic
-            information
-          </Heading>
-          <Text>We promise this will be quick and easy 😉</Text>
-          <FormControl>
-            <Field name="isGoing" validate={isRequired}>
-              {({ form }: FieldProps<FormProps>) => (
-                <FormControl
-                  isInvalid={!!form.errors.isGoing && !!form.touched.isGoing}
-                >
-                  <FormLabel htmlFor="isGoing">
-                    Are you able to join us in Vietnam?
-                  </FormLabel>
-                  <RadioGroup
-                    onChange={(e) => formik.setFieldValue("isGoing", e)}
-                    value={form.values.isGoing}
-                  >
-                    <Radio value={"true"}>Yes 💯</Radio>
-                    <Radio value={"false"}>No...Sorry 😢</Radio>
-                  </RadioGroup>
-                </FormControl>
-              )}
-            </Field>
-            {formik.values.isGoing === "true" && (
-              <FormControl>
-                <FormLabel>Nice! Are you going with a plus one?</FormLabel>
-                <Button
-                  isDisabled={(formik.values.additionalGuests?.length ?? 0) > 0}
-                  leftIcon={<AddIcon />}
-                  onClick={() => {
-                    formik.setFieldValue("additionalGuests", [{ name: "" }]);
-                  }}
-                >
-                  Add Guest
-                </Button>
-                {formik.values.additionalGuests?.map((guest, index) => (
-                  <FormControl
-                    isInvalid={
-                      !!formik.errors.additionalGuests &&
-                      !!formik.touched.additionalGuests
-                    }
-                    key={index}
-                  >
-                    <FormLabel>Plus One Name</FormLabel>
-                    <Input
-                      type="text"
-                      value={guest.name}
-                      onChange={(e) => {
-                        formik.setFieldValue("additionalGuests", [
-                          {
-                            name: e.target.value,
-                          },
-                        ]);
-                      }}
-                    />
-                  </FormControl>
-                ))}
-              </FormControl>
-            )}
-            <Button
-              onClick={() => {
-                if (formik.values.isGoing === "true") {
-                  setActiveStep(2);
-                } else {
-                  setActiveStep(4);
-                }
-              }}
-            >
-              Next
-            </Button>
-          </FormControl>
-        </VStack>
+        <GuestInfoForm
+          currentUserInvite={currentUserInvite}
+          formik={formik}
+          setActiveStep={setActiveStep}
+        />
       );
     }
 
@@ -287,12 +167,7 @@ export default function RSVP() {
 
     // Done
     return <></>;
-  }, [
-    activeStep,
-    isCodeInvalid,
-    formik.values.isGoing,
-    formik.values.additionalGuests,
-  ]);
+  }, [activeStep, isCodeInvalid, formik, currentUserInvite, setActiveStep]);
 
   return (
     <Container maxW="container.xl" h="100vh" pt="14">
