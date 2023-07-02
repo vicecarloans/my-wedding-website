@@ -17,7 +17,7 @@ import {
   HStack,
 } from "@chakra-ui/react";
 import { Field, FieldProps, useFormik } from "formik";
-import { Dispatch, FC, SetStateAction } from "react";
+import { Dispatch, FC, SetStateAction, useMemo } from "react";
 
 export interface IGuestInfoFormProps {
   currentUserInvite?: IUserInvite;
@@ -30,8 +30,24 @@ const GuestInfoForm: FC<IGuestInfoFormProps> = ({
   formik,
   setActiveStep,
 }) => {
+  const enableNextStep = useMemo(() => {
+    if (formik.values.isGoing === "No") {
+      return true;
+    }
+
+    const areAllFieldsFilled = [
+      formik.values.isGoing,
+      formik.values.additionalGuests,
+    ].every(isNotEmpty);
+
+    const guestNameNotEmpty =
+      (formik.values.additionalGuests?.length ?? 0) > 0 &&
+      isNotEmpty(formik.values.additionalGuests?.[0].name);
+
+    return areAllFieldsFilled && guestNameNotEmpty;
+  }, [formik.values.isGoing, formik.values.additionalGuests]);
   return (
-    <VStack gap={10}>
+    <VStack gap={10} maxW="4xl" minW="2xl">
       <Heading as="h3">
         Hey {currentUserInvite?.name} 👋, let&apos;s start with basic
         information
@@ -52,14 +68,14 @@ const GuestInfoForm: FC<IGuestInfoFormProps> = ({
                   value={form.values.isGoing}
                 >
                   <HStack gap={10}>
-                    <Radio value={"true"}>Yes 💯</Radio>
-                    <Radio value={"false"}>No...Sorry 😢</Radio>
+                    <Radio value={"Yes"}>Yes 💯</Radio>
+                    <Radio value={"No"}>No...Sorry 😢</Radio>
                   </HStack>
                 </RadioGroup>
               </FormControl>
             )}
           </Field>
-          {formik.values.isGoing === "true" && (
+          {formik.values.isGoing === "Yes" && (
             <FormControl>
               <VStack align="flex-start" gap={6}>
                 <FormLabel>
@@ -123,13 +139,9 @@ const GuestInfoForm: FC<IGuestInfoFormProps> = ({
 
             <Button
               width="50%"
-              isDisabled={
-                !isNotEmpty(formik.values.isGoing) ||
-                ((formik.values.additionalGuests?.length ?? 0) > 0 &&
-                  !isNotEmpty(formik.values.additionalGuests?.[0].name))
-              }
+              isDisabled={!enableNextStep}
               onClick={() => {
-                if (formik.values.isGoing === "true") {
+                if (formik.values.isGoing === "Yes") {
                   setActiveStep(2);
                 } else {
                   setActiveStep(4);

@@ -1,9 +1,11 @@
+export type TravelInfo = "international" | "domestic";
+
 export interface IUserInvite {
   id: string;
   email: string;
   name: string;
   qrCode: string;
-  travel: "international" | "domestic";
+  travel: TravelInfo;
   language: "en" | "vi";
 }
 
@@ -16,12 +18,19 @@ export interface IUserInviteSubmission {
   flight: {
     flightNumber: string;
     arrivalDateTime: string;
-    needsPickup: boolean;
+    arrivalDateTimeTZ: string;
+    needsPickup: string;
+    // Only for domestic
+    reimburseAccountNumber: string;
+    reimburseAccountHolderName: string;
+    reimburseBankName: string;
+    reimburseAmount: string;
   };
   hotel: {
     stayFrom: string;
     stayTo: string;
-    needsTransport: boolean;
+    needsTransport: string;
+    proposedStayTo?: string;
   };
   wishes: string;
 }

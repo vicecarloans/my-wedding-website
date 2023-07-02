@@ -30,11 +30,20 @@ import {
   Center,
   Spinner,
   ModalContent,
+  VStack,
+  Heading,
+  Button,
 } from "@chakra-ui/react";
 import { useFormik, FormikProvider } from "formik";
 import axios, { AxiosError } from "axios";
 import EnterPinForm from "@/components/EnterPinForm";
 import GuestInfoForm from "@/components/GuestInfoForm";
+import TravelForm from "@/components/TravelForm";
+import AccomodationForm from "@/components/AccomodationForm";
+import MiscForm from "@/components/MiscForm";
+import SummaryForm from "@/components/SummaryForm";
+import { on } from "events";
+import { CheckCircleIcon } from "@chakra-ui/icons";
 
 const STEPS = [
   { title: "Invite", description: "Enter your invite code" },
@@ -45,6 +54,7 @@ const STEPS = [
     description: "Let us know your preference of accomodation",
   },
   { title: "Miscellaneous", description: "We would love to hear from you" },
+  { title: "Review", description: "See if you miss anything" },
   { title: "Done", description: "You're all set!" },
 ];
 
@@ -74,8 +84,6 @@ export default function RSVP() {
     count: STEPS.length,
   });
 
-  console.log("activeStep", activeStep);
-
   const { isOpen, onOpen, onClose } = useDisclosure();
   const finalRef = useRef(null);
 
@@ -92,12 +100,17 @@ export default function RSVP() {
   useIsomorphicLayoutEffect(() => {
     if (data?.invite?.id) {
       setCurrentUserInvite(data?.invite);
-      setActiveStep(1);
+      if (formik.submitCount === 0) {
+        setActiveStep(1);
+      }
+      formik.resetForm();
     }
   }, [data?.invite, setActiveStep, setCurrentUserInvite]);
 
   useIsomorphicLayoutEffect(() => {
     setCurrentUserSubmission(data?.inviteSubmission);
+
+    formik.resetForm();
   }, [data?.inviteSubmission, setCurrentUserSubmission]);
 
   useIsomorphicLayoutEffect(() => {
@@ -119,18 +132,25 @@ export default function RSVP() {
     onSubmit: async (values) => {
       console.log(values);
       try {
+        onOpen();
         await axios.post("/api/invites/rsvp", {
           inviteId: currentUserInvite?.id,
           ...values,
         });
 
+        setActiveStep(6);
+        // Restart the form
         mutate();
       } catch (err) {
         console.error(err);
+      } finally {
+        onClose();
       }
     },
+    enableReinitialize: true,
   });
 
+  console.log(formik.initialValues);
   const renderStep = useCallback(() => {
     if (activeStep === 0) {
       return (
@@ -158,19 +178,64 @@ export default function RSVP() {
     }
 
     if (activeStep === 2) {
-      return <></>;
+      return (
+        <TravelForm
+          currentUserSubmission={currentUserSubmission}
+          travelInfo={currentUserInvite?.travel}
+          formik={formik}
+          setActiveStep={setActiveStep}
+        />
+      );
     }
 
     if (activeStep === 3) {
-      return <></>;
+      return <AccomodationForm formik={formik} setActiveStep={setActiveStep} />;
+    }
+
+    if (activeStep === 4) {
+      return <MiscForm formik={formik} setActiveStep={setActiveStep} />;
+    }
+
+    if (activeStep === 5) {
+      return (
+        <SummaryForm
+          formik={formik}
+          setActiveStep={setActiveStep}
+          travelInfo={currentUserInvite?.travel}
+        />
+      );
     }
 
     // Done
-    return <></>;
-  }, [activeStep, isCodeInvalid, formik, currentUserInvite, setActiveStep]);
+    return (
+      <VStack minH="lg" minW="3xl">
+        <Center minH="2xs">
+          <Heading size="xl">
+            <CheckCircleIcon color="green.400" mr="6" />
+            Thank you for your RSVP!
+          </Heading>
+        </Center>
+        <Button
+          onClick={() => {
+            formik.resetForm();
+            setActiveStep(1);
+          }}
+        >
+          Edit Submission
+        </Button>
+      </VStack>
+    );
+  }, [
+    activeStep,
+    isCodeInvalid,
+    formik,
+    currentUserInvite,
+    setActiveStep,
+    currentUserSubmission,
+  ]);
 
   return (
-    <Container maxW="container.xl" h="100vh" pt="14">
+    <Container maxW="container.xl" minH="100vh" pt="14">
       <Modal
         finalFocusRef={finalRef}
         isOpen={isOpen}
@@ -193,7 +258,7 @@ export default function RSVP() {
           </Center>
         </ModalContent>
       </Modal>
-      <HStack align="flex-start" spacing={16}>
+      <HStack align="flex-start" gap={16}>
         <Stepper index={activeStep} orientation="vertical" minH="lg" gap="0">
           {STEPS.map((step, index) => (
             <Step key={index}>
@@ -204,20 +269,20 @@ export default function RSVP() {
                   active={<StepNumber />}
                 />
               </StepIndicator>
-              <Box flexShrink="0">
+              <VStack align="flex-start">
                 <StepTitle>{step.title}</StepTitle>
                 <StepDescription>{step.description}</StepDescription>
-              </Box>
+              </VStack>
 
               <StepSeparator />
             </Step>
           ))}
         </Stepper>
-        <Flex justify="center" h="full">
+        <VStack justify="center" h="full">
           <FormikProvider value={formik}>
             <form onSubmit={formik.handleSubmit}>{renderStep()}</form>
           </FormikProvider>
-        </Flex>
+        </VStack>
       </HStack>
     </Container>
   );

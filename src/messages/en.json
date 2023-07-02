@@ -15,5 +15,39 @@
     },
     "locale": {
         "title": "Huy and Tien Wedding"
+    },
+    "travelForm": {
+        "international": {},
+        "domestic": {
+            "disclaimer": "Vé để bay ra Huế thì bạn chịu khó đặt giúp mình rồi mình sẽ chuyênr khoản lại cho 😅",
+            "reimbursementDisclaimer": "Bạn cho mình xin một số thông tin để mình chuyển khoản",
+            "reimburseAccountNumber": "Số tài khoản",
+            "reimburseAccountHolderName": "Tên tài khoản",
+            "reimburseBankName": "Tên ngân hàng",
+            "reimburseAmount": "Số tiền (tối đa 2,000,000 VND)"
+        }
+    },
+    "accomodationForm": {
+        "transportLabel": "Do you need transportation from the hotel to wedding venue?",
+        "stayFromLabel": "Your check-in date (Vietnamese time)",
+        "stayFromPlaceholder": "Select a date you want to check into the hotel",
+        "stayToLabel": "Your check-out date (Vietnamese time)",
+        "stayToPlaceholder": "Select a date you want to check out of the hotel",
+        "verdictGood": "Hooray! We can cover all of your stay! 🎉",
+        "verdictOverstay": "We're sorry, but we can only cover your stay for the maximum of 5 days from {stayFrom} to {proposedStayTo}. You'd have to extend your stay at the hotel by yourself. 😢",
+        "needTransportLabel": "Do you need transportation from the hotel to the wedding venue?"
+    },
+    "miscForm": {
+        "wishesLabel": "Any wishes/advices for us?",
+        "wishesPlaceholder": "We'd love to hear from you! 😊",
+        "wishesFeedback1": "Ouuu thank you so much! 🥰",
+        "wishesFeedback2": "We love that you're actually putting the time to write this 😍",
+        "wishesFeedback3": "Are you writing an essay? 🤪",
+        "wishesFeedback4": "Is that you ChatGPT? 🤖",
+        "wishesFeedback5": "We'll definitely read this after the wedding 🤣"
+    },
+    "summaryForm": {
+        "title": "Here is a summary of your RSVP",
+        "guestInformationSectionTitle": "Guests Information"
     }
 }

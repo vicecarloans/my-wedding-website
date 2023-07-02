@@ -9,5 +9,21 @@
                 "stepDescription": "Enter your invite code"
             }
         }
+    },
+    "travelForm": {
+        "international": {},
+        "domestic": {
+            "disclaimer": "Vé để bay ra Huế thì bạn chịu khó đặt giúp mình rồi mình sẽ chuyênr khoản lại cho 😅",
+            "reimbursementDisclaimer": "Bạn cho mình xin một số thông tin để mình chuyển khoản",
+            "reimburseAccountNumber": "Số tài khoản",
+            "reimburseAccountHolderName": "Tên tài khoản",
+            "reimburseBankName": "Tên ngân hàng",
+            "reimburseAmount": "Số tiền (tối đa 2,000,000 VND)"
+        }
+    },
+    "accomodationForm": {
+        "stayFromLabel": "Your check-in date",
+        "stayToLabel": "Your check-out date",
+        "needTransportLabel": "Do you need transportation from the hotel to the wedding venue?"
     }
 }

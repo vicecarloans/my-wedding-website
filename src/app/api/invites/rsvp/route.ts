@@ -1,7 +1,5 @@
-import { environment } from "@/environment";
-import { has } from "@vercel/edge-config";
-import axios from "axios";
 import { NextResponse } from "next/server";
+import { kv } from "@vercel/kv";
 
 export interface RSVPData {
   inviteId: string;
@@ -17,27 +15,9 @@ export async function POST(request: Request) {
   try {
     const res = await request.json();
 
-    const submissionExists = await has(res.inviteId);
+    const data = await kv.set(`${res.inviteId}-rsvp`, res);
 
-    const { data } = await axios.patch(
-      environment.edgeConfig.apiUrl,
-      {
-        items: [
-          {
-            operation: submissionExists ? "update" : "create",
-            key: `${res.inviteId}-rsvp`,
-            value: res.submissionData,
-          },
-        ],
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${environment.edgeConfig.apiToken}`,
-        },
-      }
-    );
-
-    return NextResponse.json({ status: data.status });
+    return NextResponse.json({ data });
   } catch (err) {
     console.error("Unable to update RSVP", { err });
   }

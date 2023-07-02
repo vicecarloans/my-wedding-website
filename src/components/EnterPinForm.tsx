@@ -24,7 +24,7 @@ const EnterPinForm: FC<IEnterPinFormProps> = ({
   handleChange,
 }) => {
   return (
-    <VStack>
+    <VStack gap={10} maxW="4xl" minW="2xl">
       <Heading as="h3">Hey 👋, thanks for taking the time to rsvp</Heading>
       <Text>
         Let&apos;s get started with your invitation code. It contains 6
