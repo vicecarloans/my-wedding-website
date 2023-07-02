@@ -27,12 +27,11 @@ const SummaryForm: FC<ISummaryFormProps> = ({
   const t = useTranslations("summaryForm");
 
   const renderGoingSummary = () => {
-    console.log(formik.values.additionalGuests);
     return (
       <VStack spacing={6} divider={<StackDivider />} w="full">
         <Text as="b">You have confirmed that you are going</Text>
 
-        {formik.values.additionalGuests?.length > 0 && (
+        {(formik.values.additionalGuests?.length ?? 0) > 0 && (
           <HStack justify="space-between" w="full">
             <Text as="b">Your plus one name </Text>
             <Text>{formik.values.additionalGuests?.[0].name}</Text>
