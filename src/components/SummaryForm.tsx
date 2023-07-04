@@ -192,7 +192,7 @@ const SummaryForm: FC<ISummaryFormProps> = ({
   };
 
   return (
-    <VStack gap={10} maxW="4xl" minW="full">
+    <VStack gap={10} maxW="4xl" minW={{ base: "full", lg: "4xl" }}>
       <Heading as="h3">{t("title")}</Heading>
 
       {formik.values.isGoing === "Yes"
