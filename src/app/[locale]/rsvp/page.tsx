@@ -300,7 +300,12 @@ export default function RSVP() {
             </VStack>
           </HStack>
         </Box>
-        <VStack maxW={{ base: "md", lg: "full" }} justify="center" h="full">
+        <VStack
+          maxW={{ base: "md", lg: "full" }}
+          justify="center"
+          h="full"
+          pb="10"
+        >
           <FormikProvider value={formik}>
             <form onSubmit={formik.handleSubmit}>{renderStep()}</form>
           </FormikProvider>
