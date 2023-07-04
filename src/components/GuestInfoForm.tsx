@@ -47,7 +47,7 @@ const GuestInfoForm: FC<IGuestInfoFormProps> = ({
     return areAllFieldsFilled && guestNameNotEmpty;
   }, [formik.values.isGoing, formik.values.additionalGuests]);
   return (
-    <VStack gap={10} maxW="4xl" minW="2xl">
+    <VStack gap={10} maxW="4xl" minW="full">
       <Heading as="h3">
         Hey {currentUserInvite?.name} 👋, let&apos;s start with basic
         information

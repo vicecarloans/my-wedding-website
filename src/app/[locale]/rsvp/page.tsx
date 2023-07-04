@@ -33,6 +33,8 @@ import {
   VStack,
   Heading,
   Button,
+  Icon,
+  Stack,
 } from "@chakra-ui/react";
 import { useFormik, FormikProvider } from "formik";
 import axios, { AxiosError } from "axios";
@@ -43,7 +45,7 @@ import AccomodationForm from "@/components/AccomodationForm";
 import MiscForm from "@/components/MiscForm";
 import SummaryForm from "@/components/SummaryForm";
 import { on } from "events";
-import { CheckCircleIcon } from "@chakra-ui/icons";
+import { CheckCircleIcon, InfoOutlineIcon } from "@chakra-ui/icons";
 
 const STEPS = [
   { title: "Invite", description: "Enter your invite code" },
@@ -150,7 +152,6 @@ export default function RSVP() {
     enableReinitialize: true,
   });
 
-  console.log(formik.initialValues);
   const renderStep = useCallback(() => {
     if (activeStep === 0) {
       return (
@@ -208,7 +209,7 @@ export default function RSVP() {
 
     // Done
     return (
-      <VStack minH="lg" minW="3xl">
+      <VStack maxW="4xl" minW={{ base: "full", lg: "4xl" }}>
         <Center minH="2xs">
           <Heading size="xl">
             <CheckCircleIcon color="green.400" mr="6" />
@@ -258,8 +259,18 @@ export default function RSVP() {
           </Center>
         </ModalContent>
       </Modal>
-      <HStack align="flex-start" gap={16}>
-        <Stepper index={activeStep} orientation="vertical" minH="lg" gap="0">
+      <Stack
+        direction={{ base: "column", lg: "row" }}
+        align="flex-start"
+        gap={16}
+      >
+        <Stepper
+          display={{ base: "none", lg: "flex" }}
+          index={activeStep}
+          orientation="vertical"
+          minH="lg"
+          gap="0"
+        >
           {STEPS.map((step, index) => (
             <Step key={index}>
               <StepIndicator>
@@ -278,12 +289,23 @@ export default function RSVP() {
             </Step>
           ))}
         </Stepper>
-        <VStack justify="center" h="full">
+        <Box display={{ base: "block", lg: "none" }} w="full">
+          <HStack spacing={4} alignItems="center" justifyContent="center">
+            <Icon as={InfoOutlineIcon} w="10" h="10" />
+            <VStack align="flex-start">
+              <Text fontSize="lg" fontWeight="extrabold">
+                {STEPS[activeStep].title}
+              </Text>
+              <Text fontSize="md">{STEPS[activeStep].description}</Text>
+            </VStack>
+          </HStack>
+        </Box>
+        <VStack maxW={{ base: "md", lg: "full" }} justify="center" h="full">
           <FormikProvider value={formik}>
             <form onSubmit={formik.handleSubmit}>{renderStep()}</form>
           </FormikProvider>
         </VStack>
-      </HStack>
+      </Stack>
     </Container>
   );
 }

@@ -91,7 +91,7 @@ const AccomodationForm: FC<IAccomodationFormProps> = ({
 
   console.log(verdict?.proposedCheckoutDate);
   return (
-    <VStack gap={10} maxW="4xl" minW="2xl">
+    <VStack gap={10} maxW="4xl" minW="full">
       <Heading as="h3">Just a few more to go 🤗</Heading>
       <Text>
         As you might have known, we intend to travel your cost hotel cost. Let

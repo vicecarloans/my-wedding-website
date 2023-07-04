@@ -325,7 +325,7 @@ const TravelForm: FC<ITravelFormProps> = ({
     );
   };
   return (
-    <VStack gap={10} maxW="4xl" minW="2xl">
+    <VStack gap={10} maxW="4xl" minW="full">
       <Heading as="h3">Awesome 😊, we are so glad that you can make it</Heading>
       <Text>Can you let us know about your travel plan?</Text>
       {travelInfo === "international" && renderInternationalTravel()}

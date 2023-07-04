@@ -8,6 +8,7 @@ import {
   VStack,
   Text,
   Button,
+  Stack,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import { useTranslations } from "next-intl";
@@ -28,29 +29,49 @@ const SummaryForm: FC<ISummaryFormProps> = ({
 
   const renderGoingSummary = () => {
     return (
-      <VStack spacing={6} divider={<StackDivider />} w="full">
+      <VStack
+        spacing={6}
+        divider={<StackDivider />}
+        w={{ base: "xs", lg: "full" }}
+      >
         <Text as="b">You have confirmed that you are going</Text>
 
         {(formik.values.additionalGuests?.length ?? 0) > 0 && (
-          <HStack justify="space-between" w="full">
+          <Stack
+            direction={{ base: "column", lg: "row" }}
+            justify={{ base: "center", lg: "space-between" }}
+            w="full"
+          >
             <Text as="b">Your plus one name </Text>
             <Text>{formik.values.additionalGuests?.[0].name}</Text>
-          </HStack>
+          </Stack>
         )}
         {travelInfo === "international" ? (
           <VStack spacing={6} divider={<StackDivider />} w="full">
-            <HStack justifyContent="space-between" w="full">
+            <Stack
+              direction={{ base: "column", lg: "row" }}
+              justify={{ base: "center", lg: "space-between" }}
+              w="full"
+            >
               <Text as="b">Pick up at airport </Text>
               <Text>{formik.values.flight?.needsPickup}</Text>
-            </HStack>
+            </Stack>
             {formik.values.flight?.needsPickup && (
-              <HStack justify="space-between" w="full">
+              <Stack
+                direction={{ base: "column", lg: "row" }}
+                justify={{ base: "center", lg: "space-between" }}
+                w="full"
+              >
                 <Text as="b">Flight Number </Text>
                 <Text>{formik.values.flight?.flightNumber}</Text>
-              </HStack>
+              </Stack>
             )}
             {formik.values.flight?.needsPickup && (
-              <HStack justify="space-between" w="full">
+              <Stack
+                direction={{ base: "column", lg: "row" }}
+                justify={{ base: "center", lg: "space-between" }}
+                w="full"
+              >
                 <Text as="b">Arrive At </Text>
                 <Text>
                   {convertToTimezone(
@@ -59,75 +80,119 @@ const SummaryForm: FC<ISummaryFormProps> = ({
                     "EEEE, LLLL do, yyyy 'at' h:mm aaaa OOOO"
                   )}
                 </Text>
-              </HStack>
+              </Stack>
             )}
           </VStack>
         ) : (
           <VStack spacing={6} divider={<StackDivider />} w="full">
-            <HStack justify="space-between" w="full">
+            <Stack
+              direction={{ base: "column", lg: "row" }}
+              justify={{ base: "center", lg: "space-between" }}
+              w="full"
+            >
               <Text as="b">Reimburse Account Number </Text>
               <Text>{formik.values.flight?.reimburseAccountNumber}</Text>
-            </HStack>
-            <HStack justify="space-between" w="full">
+            </Stack>
+            <Stack
+              direction={{ base: "column", lg: "row" }}
+              justify={{ base: "center", lg: "space-between" }}
+              w="full"
+            >
               <Text as="b">Reimburse Account Holder Name </Text>
               <Text>{formik.values.flight?.reimburseAccountHolderName}</Text>
-            </HStack>
-            <HStack justify="space-between" w="full">
+            </Stack>
+            <Stack
+              direction={{ base: "column", lg: "row" }}
+              justify={{ base: "center", lg: "space-between" }}
+              w="full"
+            >
               <Text as="b">Reimburse Bank Name </Text>
               <Text>{formik.values.flight?.reimburseBankName}</Text>
-            </HStack>
-            <HStack justify="space-between" w="full">
+            </Stack>
+            <Stack
+              direction={{ base: "column", lg: "row" }}
+              justify={{ base: "center", lg: "space-between" }}
+              w="full"
+            >
               <Text as="b">Reimburse Amount </Text>
               <Text>{formik.values.flight?.reimburseAmount} VNĐ</Text>
-            </HStack>
+            </Stack>
           </VStack>
         )}
 
-        <HStack justify="space-between" w="full">
+        <Stack
+          direction={{ base: "column", lg: "row" }}
+          justify={{ base: "center", lg: "space-between" }}
+          w="full"
+        >
           <Text as="b">Need a ride to venue </Text>
           <Text>{formik.values.hotel?.needsTransport}</Text>
-        </HStack>
-        <HStack justify="space-between" w="full">
+        </Stack>
+        <Stack
+          direction={{ base: "column", lg: "row" }}
+          justify={{ base: "center", lg: "space-between" }}
+          w="full"
+        >
           <Text as="b">Stay From </Text>
           <Text>{formik.values.hotel?.stayFrom}</Text>
-        </HStack>
-        <HStack justify="space-between" w="full">
+        </Stack>
+        <Stack
+          direction={{ base: "column", lg: "row" }}
+          justify={{ base: "center", lg: "space-between" }}
+          w="full"
+        >
           <Text as="b">Stay To </Text>
           <Text>{formik.values.hotel?.stayTo}</Text>
-        </HStack>
+        </Stack>
         {formik.values.hotel?.proposedStayTo && (
-          <HStack justify="space-between" w="full">
+          <Stack
+            direction={{ base: "column", lg: "row" }}
+            justify={{ base: "center", lg: "space-between" }}
+            w="full"
+          >
             <Text as="b">We will book your stay until </Text>
             <Text>{formik.values.hotel?.proposedStayTo}</Text>
-          </HStack>
+          </Stack>
         )}
 
-        <HStack justify="space-between" w="full">
+        <Stack
+          direction={{ base: "column", lg: "row" }}
+          justify={{ base: "center", lg: "space-between" }}
+          w="full"
+        >
           <Text as="b" minW="xs">
             Wishes / Advices for us
           </Text>
           <Text>{formik.values.wishes ?? ""}</Text>
-        </HStack>
+        </Stack>
       </VStack>
     );
   };
 
   const renderNotGoingSummary = () => {
     return (
-      <VStack spacing={10} divider={<StackDivider />} w="full">
+      <VStack
+        spacing={10}
+        divider={<StackDivider />}
+        w={{ base: "xs", lg: "full" }}
+      >
         <Text as="b">You have confirmed that you are not going</Text>
-        <HStack justify="space-between" w="full">
-          <Text as="b" minW="10">
+        <Stack
+          direction={{ base: "column", lg: "row" }}
+          justify={{ base: "center", lg: "space-between" }}
+          w="full"
+        >
+          <Text as="b" minW="xs">
             Wishes/Advices for us
           </Text>
           <Text>{formik.values.wishes ?? ""}</Text>
-        </HStack>
+        </Stack>
       </VStack>
     );
   };
 
   return (
-    <VStack gap={10} maxW="4xl" minW="2xl">
+    <VStack gap={10} maxW="4xl" minW="full">
       <Heading as="h3">{t("title")}</Heading>
 
       {formik.values.isGoing === "Yes"

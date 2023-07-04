@@ -22,7 +22,7 @@ const MiscForm: FC<IMiscFormProps> = ({ formik, setActiveStep }) => {
   const t = useTranslations("miscForm");
   const length = formik.values.wishes?.length ?? 0;
   return (
-    <VStack gap={10} maxW="4xl" minW="2xl">
+    <VStack gap={10} maxW="4xl" minW={{ base: "full", lg: "4xl" }}>
       <Heading as="h3">Alright! One last step 😬</Heading>
 
       <FormControl w="full">
