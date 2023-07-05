@@ -284,7 +284,7 @@ const Hero: FC = () => {
     ],
     [
       // Center
-      0, 0, 0,
+      0, 0, 0.25,
       // Left
       0.25, 1, 0.25, 0.5, 0.75, 0.25, 1, 1,
       //Right
@@ -295,7 +295,7 @@ const Hero: FC = () => {
   );
 
   return (
-    <header className="flex flex-row text-center pt-15 max-h-screen">
+    <header className="flex flex-row text-center pt-15 max-h-screen min-w-fit">
       <div className="top-0 left-10 w-1/2 h-full">
         <animated.div
           style={rotateAnimationProps}
@@ -608,7 +608,7 @@ const Hero: FC = () => {
         </animated.div>
       </div>
 
-      <div className="absolute z-10 w-full flex flex-col justify-center align-center h-full">
+      <div className="absolute z-10 w-full flex flex-col justify-center align-center h-full bottom-10">
         <animated.div className="h-5 overflow-hidden">
           <animated.div style={dateAnimProps} className="block">
             <Heading as="h5" fontSize="20">
@@ -618,21 +618,21 @@ const Hero: FC = () => {
         </animated.div>
         <animated.div className="h-24 md:h-32 overflow-hidden ">
           <animated.div style={nameAnimProps} className="block">
-            <Heading as="h3" className="" fontWeight="light" fontSize="100">
+            <Heading as="h3" className="" fontWeight="medium" fontSize="100">
               Tien
             </Heading>
           </animated.div>
         </animated.div>
         <animated.div className="h-24 md:h-32 overflow-hidden">
           <animated.div style={nameAnimProps} className="block">
-            <Heading as="h3" className="" fontWeight="light" fontSize="100">
+            <Heading as="h3" className="" fontWeight="medium" fontSize="100">
               Huy
             </Heading>
           </animated.div>
         </animated.div>
         <animated.div
           style={crossAnimProps}
-          className="absolute top-[54%] left-[50%] -translate-x-[50%] rotate-45 -z-10"
+          className="absolute top-[50%] left-[50%] -translate-x-[50%] rotate-45 -z-10"
         >
           <div className="absolute w-4 h-4 bg-red-300 scale-x-[12] scale-y-[0.2]"></div>
           <div className="absolute w-4 h-4 bg-red-300 scale-x-[0.2] scale-y-[12] rotate-180"></div>
