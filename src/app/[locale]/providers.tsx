@@ -64,7 +64,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
           <Box
             position="relative"
             zIndex={20}
-            bg={useColorModeValue("red.200", "gray.900")}
+            bg={useColorModeValue("red.100", "gray.900")}
             px={4}
           >
             <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
@@ -112,7 +112,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
               </Flex>
             </Flex>
           </Box>
-          <Box minH="100vh" bg={useColorModeValue("red.100", "red.900")}>
+          <Box minH="100vh" bg={useColorModeValue("red.50", "red.900")}>
             {children}
           </Box>
         </SWRConfig>

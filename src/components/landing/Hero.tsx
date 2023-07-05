@@ -1,7 +1,13 @@
 import { FC } from "react";
 import { Heading, Text } from "@chakra-ui/react";
 import styles from "./styles.module.scss";
-import { animated, useChain, useSpring, useSpringRef } from "@react-spring/web";
+import {
+  animated,
+  useChain,
+  useSpring,
+  useSpringRef,
+  easings,
+} from "@react-spring/web";
 
 const Hero: FC = () => {
   const rotateAnimationRef = useSpringRef();
@@ -80,14 +86,213 @@ const Hero: FC = () => {
     },
   });
 
-  useChain([
-    crossAnimRef,
-    rotateAnimationRef,
-    yellowFlowerAnimRef,
-    cactusAnimRef,
-    leftMossOutAnimRef,
-    redFlowerAnimRef,
-  ]);
+  const leftPinkLeafAnimRef = useSpringRef();
+  const leftPinkLeafAnimProps = useSpring({
+    ref: leftPinkLeafAnimRef,
+    from: {
+      opacity: 0,
+      rotate: "20deg",
+    },
+    to: {
+      opacity: 1,
+      rotate: "0deg",
+    },
+  });
+
+  const leftYellowGrassAnimRef = useSpringRef();
+  const leftYellowGrassAnimProps = useSpring({
+    ref: leftYellowGrassAnimRef,
+    from: {
+      opacity: 0,
+      scale: 0.8,
+    },
+    to: {
+      opacity: 1,
+      scale: 1,
+    },
+  });
+
+  const greenDotsAnimRef = useSpringRef();
+  const greenDotsAnimProps = useSpring({
+    ref: greenDotsAnimRef,
+    from: {
+      opacity: 0,
+      scale: 0.5,
+    },
+    to: {
+      opacity: 1,
+      scale: 1,
+    },
+  });
+
+  const nameAnimRef = useSpringRef();
+  const nameAnimProps = useSpring({
+    ref: nameAnimRef,
+    from: {
+      transform: "translateY(100%)",
+    },
+    to: {
+      transform: "translateY(0%)",
+    },
+  });
+
+  const dateAnimRef = useSpringRef();
+  const dateAnimProps = useSpring({
+    ref: dateAnimRef,
+    from: {
+      transform: "translateY(-100%)",
+    },
+    to: {
+      transform: "translateY(0%)",
+    },
+  });
+
+  // Right Animation
+  const rightPinkLeafAnimRef = useSpringRef();
+  const rightPinkLeafAnimProps = useSpring({
+    ref: rightPinkLeafAnimRef,
+    from: {
+      opacity: 0,
+      rotate: "-20deg",
+    },
+    to: {
+      opacity: 1,
+      rotate: "0deg",
+    },
+  });
+
+  const rightRedDotsAnimRef = useSpringRef();
+  const rightRedDotsAnimProps = useSpring({
+    ref: rightRedDotsAnimRef,
+    from: {
+      opacity: 0,
+      transform: "scale(0.8)",
+    },
+    to: {
+      opacity: 1,
+      transform: "scale(1)",
+    },
+  });
+
+  const rightGreenOutlineAnimRef = useSpringRef();
+  const rightGreenOutlineAnimProps = useSpring({
+    ref: rightGreenOutlineAnimRef,
+    from: {
+      opacity: 0,
+      rotate: "-10deg",
+    },
+    to: {
+      opacity: 1,
+      rotate: "0deg",
+    },
+  });
+
+  const rightGreenBigLeafAnimRef = useSpringRef();
+  const rightGreenBigLeafAnimProps = useSpring({
+    ref: rightGreenBigLeafAnimRef,
+    from: {
+      opacity: 0,
+      rotate: "-20deg",
+    },
+    to: {
+      opacity: 1,
+      rotate: "0deg",
+    },
+  });
+
+  const rightRedLeafAnimRef = useSpringRef();
+  const rightRedLeafAnimProps = useSpring({
+    ref: rightRedLeafAnimRef,
+    from: {
+      opacity: 0,
+      scale: 0.9,
+      rotate: "20deg",
+    },
+    to: {
+      opacity: 1,
+      scale: 1,
+      rotate: "0deg",
+    },
+  });
+
+  const rightDarkOutlineAnimRef = useSpringRef();
+  const rightDarkOutlineAnimProps = useSpring({
+    ref: rightDarkOutlineAnimRef,
+    from: {
+      opacity: 0,
+      scale: 0.8,
+      rotate: "10deg",
+    },
+    to: {
+      opacity: 1,
+      scale: 1,
+      rotate: "0deg",
+    },
+  });
+
+  const rightGreenLeafAnimRef = useSpringRef();
+  const rightGreenLeafAnimProps = useSpring({
+    ref: rightGreenLeafAnimRef,
+    from: {
+      opacity: 0,
+      scale: 0.8,
+      rotate: "10deg",
+    },
+    to: {
+      opacity: 1,
+      scale: 1,
+      rotate: "0deg",
+    },
+  });
+
+  const rightGreenDotsAnimRef = useSpringRef();
+  const rightGreenDotsAnimProps = useSpring({
+    ref: rightGreenDotsAnimRef,
+    from: {
+      opacity: 0,
+      scale: 0.8,
+    },
+    to: {
+      opacity: 1,
+      scale: 1,
+    },
+  });
+
+  useChain(
+    [
+      nameAnimRef,
+      dateAnimRef,
+      crossAnimRef,
+      //Left
+      rotateAnimationRef,
+      yellowFlowerAnimRef,
+      cactusAnimRef,
+      leftMossOutAnimRef,
+      leftPinkLeafAnimRef,
+      leftYellowGrassAnimRef,
+      greenDotsAnimRef,
+      redFlowerAnimRef,
+      // Right
+      rightPinkLeafAnimRef,
+      rightRedDotsAnimRef,
+      rightGreenOutlineAnimRef,
+      rightGreenBigLeafAnimRef,
+      rightRedLeafAnimRef,
+      rightDarkOutlineAnimRef,
+      rightGreenLeafAnimRef,
+      rightGreenDotsAnimRef,
+    ],
+    [
+      // Center
+      0, 0, 0,
+      // Left
+      0.25, 1, 0.25, 0.5, 0.75, 0.25, 1, 1,
+      //Right
+      0.5, 1, 0.25, 0.5, 0.75, 0.25, 0.75, 1,
+    ],
+    // 2 seconds
+    2000
+  );
 
   return (
     <header className="flex flex-row text-center pt-15 max-h-screen">
@@ -132,7 +337,7 @@ const Hero: FC = () => {
 
         <animated.div
           style={cactusAnimProps}
-          className="absolute top-[15%] -left-[74%] md:-left-[4%] origin-bottom-right z-10"
+          className="absolute bottom-[5%] -left-[74%] md:-left-[4%] origin-bottom-right z-10"
         >
           <svg
             width="307"
@@ -168,7 +373,7 @@ const Hero: FC = () => {
 
         <animated.div
           style={leftMossOutAnimProps}
-          className="absolute -bottom-[2%] -left-[12%] origin-bottom-right z-10"
+          className="absolute -bottom-[2%] -left-[8%] origin-bottom-right z-10"
         >
           <svg
             width="813"
@@ -191,7 +396,10 @@ const Hero: FC = () => {
           </svg>
         </animated.div>
 
-        <div className={styles["index-bl-pink-md"]}>
+        <animated.div
+          style={leftPinkLeafAnimProps}
+          className="absolute bottom-[2%] md:left-[5%] -left-[33%] z-10 origin-[30%_100%]"
+        >
           <svg
             width="232"
             height="287"
@@ -203,9 +411,12 @@ const Hero: FC = () => {
               <path d="M76.4 245c6.7-16.3 15.1-28.1 18.7-45.3.9-4.4 13.2-28.9 14.9-32.2 5.3-10.4 10.7-20.8 16-31.2 3.1-6.1 6.3-12.2 10.4-17.6 2.7-3.6 5.8-6.9 8.6-10.5 10.8-14.2 16-32.5 29-44.7 1.7 2.4 3.4 4.8 4 7.6.6 2.8-.9 5.5-2.8 7.6-1.5 1.7-3 3.1-4.1 5.1-2.5 4.4-4.3 9-7.5 13-12 15.2-21.8 32.1-31.5 48.8-6.7 11.5-13.3 23-20 34.5-4.2 7.2-8.4 14.5-11.7 22.1-5.4 12.5-8.6 25.9-15 37.9-2.1 4-4.6 7.8-6.4 11.8-5.2 11.6-5.8 26.1-15.5 34.3-.4-2.1-3-3.5-5-2.7.9-.4 3.5-7.4 4.3-8.7 1.7-2.6 3.1-4.5 4.4-7.5 3-7.2 6.1-14.8 9.2-22.3z" />
             </g>
           </svg>
-        </div>
+        </animated.div>
 
-        <div className={styles["index-bl-yellow-md"]}>
+        <animated.div
+          style={leftYellowGrassAnimProps}
+          className="absolute bottom-[0%] left-[25%] md:bottom-[10%] md:left-[28%] z-0 origin-[50%_90%]"
+        >
           <svg
             width="207"
             height="326"
@@ -225,9 +436,12 @@ const Hero: FC = () => {
               />
             </g>
           </svg>
-        </div>
+        </animated.div>
 
-        <div className={styles["index-bl-green-dots"]}>
+        <animated.div
+          style={greenDotsAnimProps}
+          className="absolute bottom-[5%] left-[5%] z-10 md:bottom-[13.5%] md:left-[28%]"
+        >
           <svg
             width="145"
             height="96"
@@ -238,11 +452,14 @@ const Hero: FC = () => {
               <path d="M122.2 23.7c1.5.4 3.1.1 4.6-.2 1.6-.3 3.1-.6 4.7-.9 1.5-.3 3.1-.7 4.1-1.8 1.2-1.4 1-3.5.1-5.1-.9-1.6-2.3-2.7-3.8-3.8-2.3-1.7-4.6-3.5-7.3-4.4-13.7-4.7-13.3 13.5-2.4 16.2zM127.4 61c1 .9 1.8 2.1 3.1 2.5 1.4.5 2.8 0 4.2-.4 1.9-.6 3.7-1.2 5.6-1.8 1.7-.6 3.6-1.3 4.4-2.9 1-2.1-.5-4.6-2.2-6.2-3.8-3.6-14.2-9.1-18.9-4.9-.3.3-3.4 6.6-3.4 7.4.1 4 4.6 3.8 7.2 6.3zM.3 76.1C.1 80 1.1 84 2.6 87.6c.6 1.5 1.3 2.9 2.5 4 1.7 1.6 4 2.2 6.2 2.7 4.1 1 9 1.8 12.1-1.2 2.3-2.2 2.6-5.8 1.6-8.8-.9-3-2.9-5.6-4.7-8.2-2-2.9-3.8-5.9-6.6-8-7.4-5.9-13-.2-13.4 8zM94.7 76.9c.8 1.4 2.1 2.4 3.6 3.2.6.3 1.3.6 2 .6.8.1 1.5-.1 2.2-.3 1.6-.4 3.4-1 4.5-2.3.5-.7.9-1.5 1-2.3.4-1.7.1-3.6-.5-5.3-.2-.5-.4-1-.8-1.4-.4-.3-.8-.5-1.2-.6-1.3-.4-2.5-.9-3.8-1.3-1.5-.5-3-1-4.5-.5-3.7 1.4-4.2 7.3-2.5 10.2zM100.7 50.2c2.3-.5 4.1-2.4 5.1-4.6 1-2.2 1.1-5-.7-6.7-1.1-1-2.6-1.3-4.1-1.6-1.5-.3-2.9-.6-4.4-.8-.4-.1-.9-.2-1.3-.1s-.7.3-1.1.6c-1.1.8-2.3 1.7-2.6 3-.1.5-.1 1 0 1.4.6 3.9 4.6 9.8 9.1 8.8zM86.7 16.5c.6.1 1.3.3 1.9.1 1.1-.2 2-1.1 2.7-2 1.2-1.6 2.3-3.5 2-5.5-.2-1.3-1-2.5-1.8-3.5-.4-.6-.9-1.2-1.3-1.8-.4-.5-.8-1.1-1.3-1.5-.8-.7-1.9-1-2.9-1.2-1.4-.3-2.9-.5-4.3-.7-1-.1-1.9-.1-2.9.1-1.6.4-2.8 1.7-3.4 3.2-.6 1.5-.7 3.2-.3 4.8.5 2.2 1.8 5.1 3.9 6.3 2 1.2 5.3 1.2 7.7 1.7zM68.8 46.2c2 1.2 4.7.6 6.4-.9 1.8-1.5 2.7-3.8 3.2-6 .4-1.9.5-3.9-.6-5.5-1-1.4-2.8-2.1-4.5-2.6-2-.6-4.2-1.2-6.1-.2-1.3.7-2.1 2-2.5 3.4-.9 3.6.6 9.8 4.1 11.8zM47.5 22.6c.7.2 1.3.4 2 .3.8-.1 1.5-.4 2.3-.8 1.6-.8 3.1-1.7 4.3-3 1.2-1.3 1.8-3.2 1.2-4.9-.3-.9-.8-1.6-1.5-2.2-3.4-3.7-9-5.2-13.8-3.9-.9.2-1.9.7-2.4 1.5-.3.5-.4 1.2-.4 1.8-.1 1.5-.3 2.9 0 4.4.5 3.7 4.9 5.7 8.3 6.8zM40.5 53.6c.7.4 1.5.6 2.2.5.8-.1 1.5-.6 2.2-1.1.9-.7 1.9-1.5 2.7-2.4 1.1-1.1 2.1-2.4 2.2-3.9 0-1.1-.4-2.1-.9-3-.2-.5-.5-1-.8-1.4-.4-.5-1-.7-1.6-1-1.1-.5-2.2-1-3.4-.9-.6 0-1.1.2-1.6.4-2.6.9-6.4 2.1-6 5.4.3 3.1 2.3 6 5 7.4zM30.7 77.8c.2.4.5.9.9 1.1.4.2.9.1 1.4 0 2.4-.6 5.1-1.4 6.2-3.7.3-.7.5-1.5.6-2.3.2-1.2.4-2.5.1-3.7-.4-1.7-1.8-3.1-3.5-3.6s-3.6 0-4.9 1.2c-.3.3-.5.6-.8.9-1.2 1.5-2.9 2.7-2.5 4.6.4 1.8 1.6 3.8 2.5 5.5zM62 78.6c1 1.3 2.4 2.3 4 2.8 2.9.9 6.5.2 8-2.3.6-1 .9-2.2 1.1-3.4.2-.9.4-1.7.2-2.6-.1-.5-.3-1-.6-1.5-.8-1.5-1.9-2.8-3.4-3.6-1.5-.8-3.3-1-4.8-.4-.8.4-1.5 1-2.2 1.5-.8.6-1.6 1.2-2.2 1.9-1.7 2.1-1.5 5.6-.1 7.6zM12.6 48.8c.4.6.8 1.3 1.4 1.7.5.3 1 .4 1.6.4 2.1.2 4.3-.1 6.2-.9.8-.3 1.6-.7 2.2-1.3.8-.9 1.1-2.1 1.3-3.3.2-.9.3-2-.3-2.7-.3-.3-.7-.5-1.1-.7-1.2-.6-2.3-1.1-3.5-1.7-1.9-.9-4.1-1.9-6.2-1.2-1.7.6-3.6 2.7-4 4.4-.4 1.8 1.5 3.8 2.4 5.3z" />
             </g>
           </svg>
-        </div>
+        </animated.div>
       </div>
 
       <div className="top-0 right-10 w-1/2 h-full">
-        <div className={styles["index-br-pink"]}>
+        <animated.div
+          style={rightPinkLeafAnimProps}
+          className="absolute top-[3%] right-[12%] z-10 origin-[50%_10%] md:top-[2%] md:right-[5%]"
+        >
           <svg
             width="524"
             height="298"
@@ -255,9 +472,12 @@ const Hero: FC = () => {
               <path d="M300.8 96.4c16.7 48.1 34.1 97.5 66.9 136.5 2.1 2.5 5.9 5 8.1 2.7 5.3-10.5 1.4-23.1-2.5-34.1-8.4-23.7-16.9-47.4-25.3-71.1-8.9-24.9-18.2-50.5-36-70 44.4 52.2 105.9 86.4 166.2 119.1 8.2 4.5 20.6 7.9 25.2-.2 4.3-7.4-3.1-16-9.7-21.4l-98.1-79.8c-11.3-9.2-22.8-18.5-36.2-24.4-12-5.3-25.3-7.6-38.3-6.8 10.6-9 26.3-2 39.9 1.3 24.5 5.9 49.9-2.7 74.9-5.4 15.5-1.7 31.2-1.2 46.7-3.6C498 36.8 513.7 31 523.8 19c-44.1-24.4-98-19.1-148-12.6-14.8 1.9-29.7 3.9-43.4 9.6-35.2 14.5-43.2 47-31.6 80.4z" />
             </g>
           </svg>
-        </div>
+        </animated.div>
 
-        <div className={styles["index-br-red-dots"]}>
+        <animated.div
+          style={rightRedDotsAnimProps}
+          className="absolute top-[5%] -right-[20%] z-10 md:top-[8%] md:right-[20%]"
+        >
           <svg
             width="173"
             height="113"
@@ -269,9 +489,12 @@ const Hero: FC = () => {
               <path d="M135.7 66.3c-.4.5-.6 1.2-.8 1.8-.7 2.5-1.3 5-2 7.5-.3 1-.5 2-.3 3 .2 1.1.9 2 1.7 2.8 2.6 2.6 6.2 4.1 9.9 4.1.4 0 .8 0 1.1-.2.5-.3.7-.8 1-1.3.8-1.7 1.5-3.4 2.3-5.1.7-1.6 1.4-3.3 1-5-.2-.7-.5-1.4-.9-2-2.4-3.8-8.8-10.6-13-5.6z" />
             </g>
           </svg>
-        </div>
+        </animated.div>
 
-        <div className={styles["index-br-green-outline"]}>
+        <animated.div
+          style={rightGreenOutlineAnimProps}
+          className="absolute top-[4%] -right-[60%] md:top-[4%] md:-right-[1%]"
+        >
           <svg
             width="312"
             height="375"
@@ -286,9 +509,11 @@ const Hero: FC = () => {
               fillRule="evenodd"
             />
           </svg>
-        </div>
-
-        <div className={styles["index-br-green-big"]}>
+        </animated.div>
+        <animated.div
+          style={rightGreenBigLeafAnimProps}
+          className="absolute top-[30%] -right-[53%] z-10 origin-[120%_50%] md:top-[22%] md:-right-[6%]"
+        >
           <svg
             width="358"
             height="460"
@@ -301,9 +526,12 @@ const Hero: FC = () => {
               fillRule="nonzero"
             />
           </svg>
-        </div>
+        </animated.div>
 
-        <div className={styles["index-br-red-outline"]}>
+        <animated.div
+          style={rightRedLeafAnimProps}
+          className="absolute top-[43%] -right-[48%] z-20 origin-[120%_50%] md:top-[39%] md:-right-[6%]"
+        >
           <svg
             width="299"
             height="243"
@@ -318,9 +546,12 @@ const Hero: FC = () => {
               fillRule="evenodd"
             />
           </svg>
-        </div>
+        </animated.div>
 
-        <div className={styles["index-br-dark-outline"]}>
+        <animated.div
+          style={rightDarkOutlineAnimProps}
+          className="absolute -bottom-[3%] -right-[13%] origin-[50%_90%] md:bottom-[10%] md:right-[10%]"
+        >
           <svg
             width="418"
             height="355"
@@ -340,9 +571,12 @@ const Hero: FC = () => {
               />
             </g>
           </svg>
-        </div>
+        </animated.div>
 
-        <div className={styles["index-br-green-leaf"]}>
+        <animated.div
+          style={rightGreenLeafAnimProps}
+          className="absolute -bottom-[1%] -right-[23%] z-10 origin-[150%_50%] md:bottom-[8%] md:-right-[5%]"
+        >
           <svg
             width="492"
             height="313"
@@ -355,9 +589,12 @@ const Hero: FC = () => {
               fillRule="nonzero"
             />
           </svg>
-        </div>
+        </animated.div>
 
-        <div className={styles["index-br-green-dots"]}>
+        <animated.div
+          style={rightGreenDotsAnimProps}
+          className="absolute bottom-[13%] -right-[15%] z-10 md:bottom-[25%] md:right-[19%]"
+        >
           <svg
             width="134"
             height="108"
@@ -368,21 +605,31 @@ const Hero: FC = () => {
               <path d="M118.4 36c.5-1.3 1.5-2.3 2.6-3.2 1.1-1 2.2-2 3.2-2.9 1-.9 2.2-1.9 3.7-2 1.7-.1 3.4 1.2 4.2 2.7.8 1.5 1 3.2 1.1 4.8.2 2.6.4 5.3-.2 7.8-3.3 12.5-18.1 2.2-14.6-7.2zM90.7 11.7c-.3-1.2-.7-2.5-.4-3.6.3-1.2 1.5-2.1 2.6-2.8 1.5-1 3-2.1 4.4-3.1 1.4-1 2.9-2 4.7-1.6 2.3.4 3.5 2.9 3.9 5 1 4.8-.1 15.4-6 16.6-.4.1-7.2-1.1-7.8-1.5-3.4-2.5-.8-5.7-1.4-9zM11 96.7c-3.3-2-6-4.9-8.2-8-.9-1.2-1.7-2.6-2-4-.4-2.1.3-4.1 1.1-6.1C3.3 75 5.2 71 9.3 70.4c3-.5 6.1 1.3 8.1 3.6s3.1 5.2 4.3 7.9c1.3 3 2.8 6 3.1 9.2.7 8.9-6.9 9.8-13.8 5.6zM60.3 27c-.7-1.4-.9-2.9-.7-4.4.1-.6.2-1.3.5-1.8.4-.6.9-1 1.5-1.4 1.2-1 2.6-2 4.2-2 .8 0 1.7.2 2.4.5 1.6.7 3 1.9 4.1 3.2.3.4.6.9.7 1.4.1.4 0 .8-.2 1.2-.3 1.2-.6 2.3-1 3.5-.4 1.3-.8 2.8-2 3.5-2.9 2.1-8.1-.8-9.5-3.7zM85.4 37.2c1.6-1.4 4.1-1.7 6.4-1.2 2.3.5 4.7 2 5.1 4.1.3 1.4-.3 2.7-.8 3.9-.5 1.2-1.1 2.5-1.6 3.7-.2.4-.3.7-.6 1-.3.2-.7.4-1 .5-1.2.4-2.6.8-3.8.3-.4-.2-.8-.5-1.2-.8-3-2.6-5.8-8.7-2.5-11.5zM105.6 65.9c.2-.5.5-1.1.9-1.5.8-.7 2-.8 3.1-.8 2 0 4.1.2 5.6 1.5 1 .9 1.5 2.1 2 3.2.3.6.5 1.3.8 1.9.2.6.5 1.1.6 1.7.1 1-.2 1.9-.6 2.8-.5 1.2-1.1 2.4-1.8 3.5-.4.7-.9 1.5-1.6 2-1.2.9-2.9 1.1-4.4.8-1.6-.4-3-1.3-4.1-2.4-1.6-1.5-3.2-4.1-3.1-6.3 0-1.9 1.7-4.4 2.6-6.4zM71.8 62.8c.1-2.1 2-3.7 4.2-4.2s4.5.1 6.6 1c1.7.7 3.5 1.8 4.2 3.5.6 1.5.2 3.2-.2 4.7-.5 1.8-1.3 3.7-3.1 4.5-1.2.6-2.8.4-4.1 0-3.6-1.3-7.8-5.8-7.6-9.5zM79.8 91.4c.2-.6.4-1.2.8-1.7.5-.6 1.2-.9 1.8-1.2 1.5-.7 3-1.4 4.7-1.5 1.7-.1 3.6.4 4.7 1.8.6.7.9 1.5 1.1 2.3 1.2 4.5-.5 9.4-4.1 12.3-.7.5-1.5 1-2.5.9-.6-.1-1.1-.4-1.7-.6-1.3-.7-2.6-1.4-3.6-2.4-2.7-2.6-2-6.9-1.2-9.9zM50.7 79.5c.1-.7.2-1.4.7-1.9.5-.5 1.3-.8 2.1-1 1.1-.3 2.2-.5 3.4-.7 1.5-.2 3.1-.3 4.3.6.9.6 1.5 1.5 2 2.3.3.4.5.9.7 1.4.1.6.1 1.2 0 1.7-.2 1.1-.3 2.2-1 3-.3.4-.8.7-1.2 1-2.1 1.4-5.1 3.6-7.6 1.5-2.4-2.1-3.7-5.1-3.4-7.9zM25.7 73.5c-.2-.4-.5-.8-.4-1.3.1-.4.4-.7.8-1 1.8-1.4 3.9-3 6.3-2.5.8.1 1.5.5 2.2.8 1.1.5 2.3 1.1 3.1 2 1.2 1.2 1.6 3 1.1 4.5s-1.9 2.6-3.6 2.9c-.4.1-.8.1-1.2.1-1.8.1-3.8.6-5.1-.7-1.3-1.3-2.3-3.2-3.2-4.8zM41.5 50.1c-.6-1.4-.6-3-.2-4.4.7-2.6 3.2-4.9 6.2-4.6 1.2.1 2.3.6 3.4 1 .8.3 1.6.7 2.2 1.3.4.4.6.8.9 1.3.8 1.4 1.3 2.9 1.1 4.5-.1 1.5-.9 3-2.3 3.7-.7.4-1.6.6-2.4.8-.9.2-1.8.5-2.7.6-2.5 0-5.3-2-6.2-4.2zM39.9 102.7c-.3-.6-.7-1.3-.6-2 0-.5.3-1 .5-1.4 1-1.6 2.4-3.1 4-4.1.7-.4 1.4-.8 2.2-.9 1.2-.1 2.3.4 3.4.9.9.4 1.8.9 2.1 1.7.1.4.1.8 0 1.2-.2 1.2-.3 2.3-.5 3.5-.3 1.9-.7 4-2.3 5.2-1.3.9-4.1 1.2-5.8.5-1.6-.7-2.3-3.2-3-4.6z" />
             </g>
           </svg>
-        </div>
+        </animated.div>
       </div>
 
       <div className="absolute z-10 w-full flex flex-col justify-center align-center h-full">
-        <Heading as="h5">December 9th 2023</Heading>
-        <div className={styles["index-header__title-text"]}>
-          <Heading as="h3" className="" fontWeight="light" fontSize="120">
-            Tien
-          </Heading>
-        </div>
-        <div className={styles["index-header__title-text"]}>
-          <Heading as="h3" className="" fontWeight="light" fontSize="120">
-            Huy
-          </Heading>
-        </div>
+        <animated.div className="h-5 overflow-hidden">
+          <animated.div style={dateAnimProps} className="block">
+            <Heading as="h5" fontSize="20">
+              December 9th 2023
+            </Heading>
+          </animated.div>
+        </animated.div>
+        <animated.div className="h-24 md:h-32 overflow-hidden ">
+          <animated.div style={nameAnimProps} className="block">
+            <Heading as="h3" className="" fontWeight="light" fontSize="100">
+              Tien
+            </Heading>
+          </animated.div>
+        </animated.div>
+        <animated.div className="h-24 md:h-32 overflow-hidden">
+          <animated.div style={nameAnimProps} className="block">
+            <Heading as="h3" className="" fontWeight="light" fontSize="100">
+              Huy
+            </Heading>
+          </animated.div>
+        </animated.div>
         <animated.div
           style={crossAnimProps}
           className="absolute top-[54%] left-[50%] -translate-x-[50%] rotate-45 -z-10"
