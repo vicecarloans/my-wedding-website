@@ -1,7 +1,7 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import Hero from "@/components/landing/Hero";
 
 export default function IndexPage() {
-  return <p className="max-w-[590px]">asdsadsa</p>;
+  return <Hero />;
 }

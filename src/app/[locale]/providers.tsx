@@ -1,7 +1,8 @@
 // app/providers.tsx
 "use client";
-
-import "@fontsource/indie-flower";
+import "./globals.css";
+// Supports weights 100-900
+import "@fontsource-variable/jost";
 import { CacheProvider } from "@chakra-ui/next-js";
 import {
   Button,
@@ -60,7 +61,12 @@ export function Providers({ children }: { children: React.ReactNode }) {
             },
           }}
         >
-          <Box bg={useColorModeValue("red.100", "gray.900")} px={4}>
+          <Box
+            position="relative"
+            zIndex={20}
+            bg={useColorModeValue("red.200", "gray.900")}
+            px={4}
+          >
             <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
               <HStack spacing={8} alignItems={"center"}>
                 <Box>
@@ -106,7 +112,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
               </Flex>
             </Flex>
           </Box>
-          <Box minH="100vh" bg={useColorModeValue("red.200", "red.900")}>
+          <Box minH="100vh" bg={useColorModeValue("red.100", "red.900")}>
             {children}
           </Box>
         </SWRConfig>

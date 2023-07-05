@@ -2,8 +2,11 @@ import { extendTheme } from "@chakra-ui/react";
 
 const theme = extendTheme({
   fonts: {
-    heading: `'Indie Flower', sans-serif`,
-    body: `'Indie Flower', sans-serif`,
+    heading: `'Jost Variable', sans-serif`,
+    body: `'Jost Variable', sans-serif`,
+  },
+  config: {
+    initialColorMode: "light",
   },
 });
 
