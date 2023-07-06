@@ -318,7 +318,7 @@ const Hero: FC = () => {
         </animated.div>
 
         <animated.div
-          className="absolute left-[9%] top-[4%] md:left-[20%] lg:top-[10%] lg:left-[31%] z-20"
+          className="absolute left-[9%] top-[0%] md:left-[20%] lg:top-[10%] lg:left-[31%] z-20"
           style={yellowFlowerAnimProps}
         >
           <svg
@@ -458,7 +458,7 @@ const Hero: FC = () => {
       <div className="top-0 right-10 w-1/2 h-full">
         <animated.div
           style={rightPinkLeafAnimProps}
-          className="absolute -top-[15%] -right-[40%] z-10 origin-[50%_10%] md:-top-[2%] md:-right-[20%] lg:-top-[5%] lg:right-[0%]"
+          className="absolute -top-[20%] -right-[40%] z-10 origin-[50%_10%] md:-top-[2%] md:-right-[20%] lg:-top-[5%] lg:right-[0%]"
         >
           <svg
             width="524"

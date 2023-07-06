@@ -70,13 +70,13 @@ export default function IndexPage() {
           <Hero />
         </ParallaxLayer>
         <ParallaxLayer sticky={{ start: 1, end: 2 }}>
-          <div className="absolute bg-red-50/25 w-full h-full">
+          <div className="absolute bg-red-100/25 w-full h-full">
             <Center h="full">
               <VStack>
                 <Heading
                   fontFamily="'Handlee', sans-serif"
                   as="h3"
-                  className="text-2xl md:text-6xl mb-8"
+                  className="text-2xl lg:text-5xl uppercase mb-8"
                 >
                   Explore our Gallery
                 </Heading>
@@ -144,7 +144,7 @@ export default function IndexPage() {
                 <Heading
                   fontFamily="'Handlee', sans-serif"
                   as="h3"
-                  className="text-xl uppercase md:text-3xl mb-8"
+                  className="text-xl uppercase lg:text-5xl mb-8"
                 >
                   Join us in Vietnam
                 </Heading>
