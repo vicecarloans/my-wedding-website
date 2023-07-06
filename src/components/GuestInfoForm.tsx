@@ -35,14 +35,12 @@ const GuestInfoForm: FC<IGuestInfoFormProps> = ({
       return true;
     }
 
-    const areAllFieldsFilled = [
-      formik.values.isGoing,
-      formik.values.additionalGuests,
-    ].every(isNotEmpty);
+    const areAllFieldsFilled = [formik.values.isGoing].every(isNotEmpty);
 
     const guestNameNotEmpty =
-      (formik.values.additionalGuests?.length ?? 0) > 0 &&
-      isNotEmpty(formik.values.additionalGuests?.[0].name);
+      (formik.values.additionalGuests?.length ?? 0) > 0
+        ? isNotEmpty(formik.values.additionalGuests?.[0].name)
+        : true;
 
     return areAllFieldsFilled && guestNameNotEmpty;
   }, [formik.values.isGoing, formik.values.additionalGuests]);
