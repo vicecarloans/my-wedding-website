@@ -53,6 +53,10 @@ const MiscForm: FC<IMiscFormProps> = ({ formik, setActiveStep }) => {
               setActiveStep(3);
             }
           }}
+          border="2px"
+          borderColor="red.500"
+          colorScheme="red"
+          color="gray.900"
         >
           Back
         </Button>
@@ -62,6 +66,10 @@ const MiscForm: FC<IMiscFormProps> = ({ formik, setActiveStep }) => {
           onClick={() => {
             setActiveStep(5);
           }}
+          border="2px"
+          borderColor="red.500"
+          colorScheme="red"
+          color="gray.900"
         >
           Next
         </Button>

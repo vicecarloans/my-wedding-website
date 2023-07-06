@@ -2,6 +2,7 @@
 "use client";
 import "./globals.css";
 // Supports weights 100-900
+import "@fontsource/handlee";
 import "@fontsource-variable/jost";
 import { CacheProvider } from "@chakra-ui/next-js";
 import {
@@ -32,8 +33,8 @@ import { HamburgerIcon } from "@chakra-ui/icons";
 
 const Links = [
   {
-    text: "About",
-    href: "/about",
+    text: "Gallery",
+    href: "/gallery",
   },
   {
     text: "RSVP",
@@ -112,9 +113,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
               </Flex>
             </Flex>
           </Box>
-          <Box minH="100vh" bg={useColorModeValue("red.50", "red.900")}>
-            {children}
-          </Box>
+          <Box bg={useColorModeValue("red.50", "red.900")}>{children}</Box>
         </SWRConfig>
       </ChakraProvider>
     </CacheProvider>

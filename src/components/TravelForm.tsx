@@ -143,6 +143,10 @@ const TravelForm: FC<ITravelFormProps> = ({
             onClick={() => {
               setActiveStep(1);
             }}
+            border="2px"
+            borderColor="red.500"
+            colorScheme="red"
+            color="gray.900"
           >
             Back
           </Button>
@@ -153,6 +157,10 @@ const TravelForm: FC<ITravelFormProps> = ({
             onClick={() => {
               setActiveStep(3);
             }}
+            border="2px"
+            borderColor="red.500"
+            colorScheme="red"
+            color="gray.900"
           >
             Next
           </Button>
@@ -195,7 +203,7 @@ const TravelForm: FC<ITravelFormProps> = ({
 
         {formik.values.flight?.needsPickup === "Yes" && (
           <VStack gap={5} w="full">
-            <Text>
+            <Text fontSize="xl">
               Great! Let us ask you a few things before we can arrange your
               pickup 🚕
             </Text>
@@ -221,7 +229,7 @@ const TravelForm: FC<ITravelFormProps> = ({
                 )
               }
             >
-              <Text>What is your exact arrival date time?</Text>
+              <FormLabel>What is your exact arrival date time?</FormLabel>
               <VStack gap={5}>
                 <Select
                   value={formik.values.flight?.arrivalDateTimeTZ}
@@ -307,16 +315,24 @@ const TravelForm: FC<ITravelFormProps> = ({
             onClick={() => {
               setActiveStep(1);
             }}
+            border="2px"
+            borderColor="red.500"
+            colorScheme="red"
+            color="gray.900"
           >
             Back
           </Button>
 
           <Button
-            width="50%"
             isDisabled={!enableNextStep}
             onClick={() => {
               setActiveStep(3);
             }}
+            width="50%"
+            border="2px"
+            borderColor="red.500"
+            colorScheme="red"
+            color="gray.900"
           >
             Next
           </Button>
@@ -327,7 +343,7 @@ const TravelForm: FC<ITravelFormProps> = ({
   return (
     <VStack gap={10} maxW="4xl" minW="full">
       <Heading as="h3">Awesome 😊, we are so glad that you can make it</Heading>
-      <Text>Can you let us know about your travel plan?</Text>
+      <Text fontSize="2xl">Can you let us know about your travel plan?</Text>
       {travelInfo === "international" && renderInternationalTravel()}
       {travelInfo === "domestic" && renderDomesticTravel()}
     </VStack>

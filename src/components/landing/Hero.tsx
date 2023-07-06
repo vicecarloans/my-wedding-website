@@ -295,11 +295,11 @@ const Hero: FC = () => {
   );
 
   return (
-    <header className="flex flex-row text-center pt-15 max-h-screen min-w-fit">
+    <header className="flex flex-row text-center pt-15 h-[calc(100vh-4rem)] max-h-screen min-w-fit relative">
       <div className="top-0 left-10 w-1/2 h-full">
         <animated.div
           style={rotateAnimationProps}
-          className="absolute top-0 -left-[4%]"
+          className="absolute -top-[10%] -left-[90%] md:-top-[8%] md:-left-[4%]"
         >
           <svg
             width="591"
@@ -318,7 +318,7 @@ const Hero: FC = () => {
         </animated.div>
 
         <animated.div
-          className="absolute top-[10%] left-[31%] z-10"
+          className="absolute left-[10%] top-[5%] md:top-[10%] md:left-[31%] z-20"
           style={yellowFlowerAnimProps}
         >
           <svg
@@ -337,7 +337,7 @@ const Hero: FC = () => {
 
         <animated.div
           style={cactusAnimProps}
-          className="absolute bottom-[5%] -left-[74%] md:-left-[4%] origin-bottom-right z-10"
+          className="absolute bottom-0 md:bottom-[5%] -left-[60%] md:-left-[4%] origin-bottom-right z-10"
         >
           <svg
             width="307"
@@ -355,7 +355,7 @@ const Hero: FC = () => {
 
         <animated.div
           style={redFlowerAnimProps}
-          className="absolute md:top-[55%] md:left-[8%] top-[29%] -left-[33%] z-10"
+          className="absolute md:top-[55%] md:left-[8%] top-[29%] left-0 z-10"
         >
           <svg
             width="97"
@@ -373,7 +373,7 @@ const Hero: FC = () => {
 
         <animated.div
           style={leftMossOutAnimProps}
-          className="absolute -bottom-[2%] -left-[8%] origin-bottom-right z-10"
+          className="absolute md:-bottom-[2%] md:-left-[8%] -bottom-[20%] -left-[120%] origin-bottom-right z-10"
         >
           <svg
             width="813"
@@ -398,7 +398,7 @@ const Hero: FC = () => {
 
         <animated.div
           style={leftPinkLeafAnimProps}
-          className="absolute bottom-[2%] md:left-[5%] -left-[33%] z-10 origin-[30%_100%]"
+          className="absolute bottom-0 md:bottom-[2%] md:left-[5%] -left-[20%] z-10 origin-[30%_100%]"
         >
           <svg
             width="232"
@@ -415,7 +415,7 @@ const Hero: FC = () => {
 
         <animated.div
           style={leftYellowGrassAnimProps}
-          className="absolute bottom-[0%] left-[25%] md:bottom-[10%] md:left-[28%] z-0 origin-[50%_90%]"
+          className="absolute -bottom-[20%] left-[10%] md:bottom-[10%] md:left-[28%] z-0 origin-[50%_90%]"
         >
           <svg
             width="207"
@@ -440,7 +440,7 @@ const Hero: FC = () => {
 
         <animated.div
           style={greenDotsAnimProps}
-          className="absolute bottom-[5%] left-[5%] z-10 md:bottom-[13.5%] md:left-[28%]"
+          className="absolute -bottom-[10%] left-[15%] z-10 md:bottom-[13.5%] md:left-[28%]"
         >
           <svg
             width="145"
@@ -458,7 +458,7 @@ const Hero: FC = () => {
       <div className="top-0 right-10 w-1/2 h-full">
         <animated.div
           style={rightPinkLeafAnimProps}
-          className="absolute top-[3%] right-[12%] z-10 origin-[50%_10%] md:top-[2%] md:right-[5%]"
+          className="absolute -top-[10%] -right-[40%] z-10 origin-[50%_10%] md:top-[2%] md:right-[5%]"
         >
           <svg
             width="524"
@@ -512,7 +512,7 @@ const Hero: FC = () => {
         </animated.div>
         <animated.div
           style={rightGreenBigLeafAnimProps}
-          className="absolute top-[30%] -right-[53%] z-10 origin-[120%_50%] md:top-[22%] md:-right-[6%]"
+          className="absolute top-[30%] -right-[65%] z-10 origin-[120%_50%] md:top-[22%] md:-right-[6%]"
         >
           <svg
             width="358"
@@ -550,7 +550,7 @@ const Hero: FC = () => {
 
         <animated.div
           style={rightDarkOutlineAnimProps}
-          className="absolute -bottom-[3%] -right-[13%] origin-[50%_90%] md:bottom-[10%] md:right-[10%]"
+          className="absolute -bottom-[15%] -right-[60%] origin-[50%_90%] md:bottom-[10%] md:right-[10%]"
         >
           <svg
             width="418"
@@ -575,7 +575,7 @@ const Hero: FC = () => {
 
         <animated.div
           style={rightGreenLeafAnimProps}
-          className="absolute -bottom-[1%] -right-[23%] z-10 origin-[150%_50%] md:bottom-[8%] md:-right-[5%]"
+          className="absolute -bottom-[20%] -right-[60%] z-10 origin-[150%_50%] md:bottom-[8%] md:-right-[5%]"
         >
           <svg
             width="492"
@@ -608,24 +608,36 @@ const Hero: FC = () => {
         </animated.div>
       </div>
 
-      <div className="absolute z-10 w-full flex flex-col justify-center align-center h-full bottom-10">
-        <animated.div className="h-5 overflow-hidden">
+      <div className="absolute z-40 w-full flex flex-col justify-center align-center h-full bottom-10">
+        <animated.div className="h-10 overflow-hidden">
           <animated.div style={dateAnimProps} className="block">
-            <Heading as="h5" fontSize="20">
+            <Heading fontFamily="'Handlee', sans-serif" as="h5" fontSize="30">
               December 9th 2023
             </Heading>
           </animated.div>
         </animated.div>
-        <animated.div className="h-24 md:h-32 overflow-hidden ">
+        <animated.div className="h-30 md:h-32 overflow-hidden ">
           <animated.div style={nameAnimProps} className="block">
-            <Heading as="h3" className="" fontWeight="medium" fontSize="100">
+            <Heading
+              fontFamily="'Handlee', sans-serif"
+              as="h3"
+              className=""
+              fontWeight="medium"
+              fontSize="100"
+            >
               Tien
             </Heading>
           </animated.div>
         </animated.div>
-        <animated.div className="h-24 md:h-32 overflow-hidden">
+        <animated.div className="h-30 md:h-32 overflow-hidden">
           <animated.div style={nameAnimProps} className="block">
-            <Heading as="h3" className="" fontWeight="medium" fontSize="100">
+            <Heading
+              fontFamily="'Handlee', sans-serif"
+              as="h3"
+              className=""
+              fontWeight="medium"
+              fontSize="100"
+            >
               Huy
             </Heading>
           </animated.div>

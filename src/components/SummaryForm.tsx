@@ -34,16 +34,22 @@ const SummaryForm: FC<ISummaryFormProps> = ({
         divider={<StackDivider />}
         w={{ base: "xs", lg: "full" }}
       >
-        <Text as="b">You have confirmed that you are going</Text>
+        <Text fontSize="xl" as="b">
+          You have confirmed that you are going
+        </Text>
 
         {(formik.values.additionalGuests?.length ?? 0) > 0 && (
           <Stack
-            direction={{ base: "column", lg: "row" }}
+            direction={{ base: "column", xl: "row" }}
             justify={{ base: "center", lg: "space-between" }}
             w="full"
           >
-            <Text as="b">Your plus one name </Text>
-            <Text>{formik.values.additionalGuests?.[0].name}</Text>
+            <Text fontSize="xl" as="b">
+              Your plus one name{" "}
+            </Text>
+            <Text fontSize="xl">
+              {formik.values.additionalGuests?.[0].name}
+            </Text>
           </Stack>
         )}
         {travelInfo === "international" ? (
@@ -53,8 +59,10 @@ const SummaryForm: FC<ISummaryFormProps> = ({
               justify={{ base: "center", lg: "space-between" }}
               w="full"
             >
-              <Text as="b">Pick up at airport </Text>
-              <Text>{formik.values.flight?.needsPickup}</Text>
+              <Text fontSize="xl" as="b">
+                Pick up at airport{" "}
+              </Text>
+              <Text fontSize="xl">{formik.values.flight?.needsPickup}</Text>
             </Stack>
             {formik.values.flight?.needsPickup && (
               <Stack
@@ -62,8 +70,10 @@ const SummaryForm: FC<ISummaryFormProps> = ({
                 justify={{ base: "center", lg: "space-between" }}
                 w="full"
               >
-                <Text as="b">Flight Number </Text>
-                <Text>{formik.values.flight?.flightNumber}</Text>
+                <Text fontSize="xl" as="b">
+                  Flight Number{" "}
+                </Text>
+                <Text fontSize="xl">{formik.values.flight?.flightNumber}</Text>
               </Stack>
             )}
             {formik.values.flight?.needsPickup && (
@@ -72,8 +82,10 @@ const SummaryForm: FC<ISummaryFormProps> = ({
                 justify={{ base: "center", lg: "space-between" }}
                 w="full"
               >
-                <Text as="b">Arrive At </Text>
-                <Text>
+                <Text fontSize="xl" as="b">
+                  Arrive At{" "}
+                </Text>
+                <Text fontSize="xl">
                   {convertToTimezone(
                     formik.values.flight?.arrivalDateTime,
                     "Asia/Ho_Chi_Minh",
@@ -90,32 +102,48 @@ const SummaryForm: FC<ISummaryFormProps> = ({
               justify={{ base: "center", lg: "space-between" }}
               w="full"
             >
-              <Text as="b">Reimburse Account Number </Text>
-              <Text>{formik.values.flight?.reimburseAccountNumber}</Text>
+              <Text fontSize="xl" as="b">
+                Reimburse Account Number{" "}
+              </Text>
+              <Text fontSize="xl">
+                {formik.values.flight?.reimburseAccountNumber}
+              </Text>
             </Stack>
             <Stack
               direction={{ base: "column", lg: "row" }}
               justify={{ base: "center", lg: "space-between" }}
               w="full"
             >
-              <Text as="b">Reimburse Account Holder Name </Text>
-              <Text>{formik.values.flight?.reimburseAccountHolderName}</Text>
+              <Text fontSize="xl" as="b">
+                Reimburse Account Holder Name{" "}
+              </Text>
+              <Text fontSize="xl">
+                {formik.values.flight?.reimburseAccountHolderName}
+              </Text>
             </Stack>
             <Stack
               direction={{ base: "column", lg: "row" }}
               justify={{ base: "center", lg: "space-between" }}
               w="full"
             >
-              <Text as="b">Reimburse Bank Name </Text>
-              <Text>{formik.values.flight?.reimburseBankName}</Text>
+              <Text fontSize="xl" as="b">
+                Reimburse Bank Name{" "}
+              </Text>
+              <Text fontSize="xl">
+                {formik.values.flight?.reimburseBankName}
+              </Text>
             </Stack>
             <Stack
               direction={{ base: "column", lg: "row" }}
               justify={{ base: "center", lg: "space-between" }}
               w="full"
             >
-              <Text as="b">Reimburse Amount </Text>
-              <Text>{formik.values.flight?.reimburseAmount} VNĐ</Text>
+              <Text fontSize="xl" as="b">
+                Reimburse Amount{" "}
+              </Text>
+              <Text fontSize="xl">
+                {formik.values.flight?.reimburseAmount} VNĐ
+              </Text>
             </Stack>
           </VStack>
         )}
@@ -125,24 +153,30 @@ const SummaryForm: FC<ISummaryFormProps> = ({
           justify={{ base: "center", lg: "space-between" }}
           w="full"
         >
-          <Text as="b">Need a ride to venue </Text>
-          <Text>{formik.values.hotel?.needsTransport}</Text>
+          <Text fontSize="xl" as="b">
+            Need a ride to venue{" "}
+          </Text>
+          <Text fontSize="xl">{formik.values.hotel?.needsTransport}</Text>
         </Stack>
         <Stack
           direction={{ base: "column", lg: "row" }}
           justify={{ base: "center", lg: "space-between" }}
           w="full"
         >
-          <Text as="b">Stay From </Text>
-          <Text>{formik.values.hotel?.stayFrom}</Text>
+          <Text fontSize="xl" as="b">
+            Stay From{" "}
+          </Text>
+          <Text fontSize="xl">{formik.values.hotel?.stayFrom}</Text>
         </Stack>
         <Stack
           direction={{ base: "column", lg: "row" }}
           justify={{ base: "center", lg: "space-between" }}
           w="full"
         >
-          <Text as="b">Stay To </Text>
-          <Text>{formik.values.hotel?.stayTo}</Text>
+          <Text fontSize="xl" as="b">
+            Stay To{" "}
+          </Text>
+          <Text fontSize="xl">{formik.values.hotel?.stayTo}</Text>
         </Stack>
         {formik.values.hotel?.proposedStayTo && (
           <Stack
@@ -150,8 +184,10 @@ const SummaryForm: FC<ISummaryFormProps> = ({
             justify={{ base: "center", lg: "space-between" }}
             w="full"
           >
-            <Text as="b">We will book your stay until </Text>
-            <Text>{formik.values.hotel?.proposedStayTo}</Text>
+            <Text fontSize="xl" as="b">
+              We will book your stay until{" "}
+            </Text>
+            <Text fontSize="xl">{formik.values.hotel?.proposedStayTo}</Text>
           </Stack>
         )}
 
@@ -160,10 +196,10 @@ const SummaryForm: FC<ISummaryFormProps> = ({
           justify={{ base: "center", lg: "space-between" }}
           w="full"
         >
-          <Text as="b" minW="xs">
+          <Text fontSize="xl" as="b" minW="xs">
             Wishes / Advices for us
           </Text>
-          <Text>{formik.values.wishes ?? ""}</Text>
+          <Text fontSize="xl">{formik.values.wishes ?? ""}</Text>
         </Stack>
       </VStack>
     );
@@ -176,16 +212,18 @@ const SummaryForm: FC<ISummaryFormProps> = ({
         divider={<StackDivider />}
         w={{ base: "xs", lg: "full" }}
       >
-        <Text as="b">You have confirmed that you are not going</Text>
+        <Text fontSize="xl" as="b">
+          You have confirmed that you are not going
+        </Text>
         <Stack
           direction={{ base: "column", lg: "row" }}
           justify={{ base: "center", lg: "space-between" }}
           w="full"
         >
-          <Text as="b" minW="xs">
+          <Text fontSize="xl" as="b" minW="xs">
             Wishes/Advices for us
           </Text>
-          <Text>{formik.values.wishes ?? ""}</Text>
+          <Text fontSize="xl">{formik.values.wishes ?? ""}</Text>
         </Stack>
       </VStack>
     );
@@ -205,6 +243,10 @@ const SummaryForm: FC<ISummaryFormProps> = ({
           onClick={() => {
             setActiveStep(4);
           }}
+          border="2px"
+          borderColor="red.500"
+          colorScheme="red"
+          color="gray.900"
         >
           Back
         </Button>
@@ -214,6 +256,10 @@ const SummaryForm: FC<ISummaryFormProps> = ({
           onClick={() => {
             formik.submitForm();
           }}
+          border="2px"
+          borderColor="red.500"
+          colorScheme="red"
+          color="gray.900"
         >
           Submit
         </Button>

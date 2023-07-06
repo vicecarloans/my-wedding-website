@@ -5,7 +5,13 @@ import {
   IUserInvite,
   IUserInviteSubmission,
 } from "@/models/invite";
-import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import useSWR, { Fetcher, useSWRConfig } from "swr";
 import { useIsomorphicLayoutEffect, useLocalStorage } from "usehooks-ts";
 import {
@@ -44,7 +50,6 @@ import TravelForm from "@/components/TravelForm";
 import AccomodationForm from "@/components/AccomodationForm";
 import MiscForm from "@/components/MiscForm";
 import SummaryForm from "@/components/SummaryForm";
-import { on } from "events";
 import { CheckCircleIcon, InfoOutlineIcon } from "@chakra-ui/icons";
 
 const STEPS = [
@@ -86,7 +91,9 @@ export default function RSVP() {
     count: STEPS.length,
   });
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure({
+    defaultIsOpen: true,
+  });
   const finalRef = useRef(null);
 
   const [isCodeInvalid, setCodeInvalid] = useState<boolean>(false);
@@ -97,7 +104,7 @@ export default function RSVP() {
     } else {
       onClose();
     }
-  }, [isLoading, onClose, onOpen]);
+  }, [isLoading, onClose, onOpen, currentUserInvite]);
 
   useIsomorphicLayoutEffect(() => {
     if (data?.invite?.id) {
@@ -221,6 +228,10 @@ export default function RSVP() {
             formik.resetForm();
             setActiveStep(1);
           }}
+          border="2px"
+          borderColor="red.500"
+          colorScheme="red"
+          color="gray.900"
         >
           Edit Submission
         </Button>

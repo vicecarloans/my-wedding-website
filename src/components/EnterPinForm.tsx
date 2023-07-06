@@ -26,7 +26,7 @@ const EnterPinForm: FC<IEnterPinFormProps> = ({
   return (
     <VStack gap={10} maxW="4xl" minW="full">
       <Heading as="h3">Hey 👋, thanks for taking the time to rsvp</Heading>
-      <Text>
+      <Text fontSize="2xl">
         Let&apos;s get started with your invitation code. It contains 6
         alphanumberic (text + number) values and you can find this in the invite
         letter

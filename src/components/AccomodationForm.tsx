@@ -93,7 +93,7 @@ const AccomodationForm: FC<IAccomodationFormProps> = ({
   return (
     <VStack gap={10} maxW="4xl" minW="full">
       <Heading as="h3">Just a few more to go 🤗</Heading>
-      <Text>
+      <Text fontSize="2xl">
         As you might have known, we intend to travel your cost hotel cost. Let
         us know how long you would intend to stay
       </Text>
@@ -159,7 +159,11 @@ const AccomodationForm: FC<IAccomodationFormProps> = ({
         />
       </FormControl>
       {verdict && (
-        <Alert maxW="3xl" status={verdict.overStay ? "warning" : "info"}>
+        <Alert
+          fontSize="lg"
+          maxW="3xl"
+          status={verdict.overStay ? "warning" : "info"}
+        >
           <AlertIcon />
           {verdict?.overStay
             ? t("verdictOverstay", {
@@ -182,6 +186,10 @@ const AccomodationForm: FC<IAccomodationFormProps> = ({
           onClick={() => {
             setActiveStep(2);
           }}
+          border="2px"
+          borderColor="red.500"
+          colorScheme="red"
+          color="gray.900"
         >
           Back
         </Button>
@@ -192,6 +200,10 @@ const AccomodationForm: FC<IAccomodationFormProps> = ({
           onClick={() => {
             setActiveStep(4);
           }}
+          border="2px"
+          borderColor="red.500"
+          colorScheme="red"
+          color="gray.900"
         >
           Next
         </Button>

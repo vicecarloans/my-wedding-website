@@ -5,8 +5,14 @@ const theme = extendTheme({
     heading: `'Jost Variable', sans-serif`,
     body: `'Jost Variable', sans-serif`,
   },
+  fontSizes: {
+    xs: "16px",
+    sm: "18px",
+    md: "20px",
+  },
   config: {
-    initialColorMode: "light",
+    initialColorMode: "dark",
+    useSystemColorMode: false,
   },
 });
 

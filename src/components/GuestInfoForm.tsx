@@ -52,7 +52,7 @@ const GuestInfoForm: FC<IGuestInfoFormProps> = ({
         Hey {currentUserInvite?.name} 👋, let&apos;s start with basic
         information
       </Heading>
-      <Text>We promise this will be quick and easy 😉</Text>
+      <Text fontSize="2xl">We promise this will be quick and easy 😉</Text>
       <FormControl>
         <VStack gap={10}>
           <Field name="isGoing" validate={isNotEmpty}>
@@ -133,6 +133,10 @@ const GuestInfoForm: FC<IGuestInfoFormProps> = ({
               onClick={() => {
                 setActiveStep(0);
               }}
+              border="2px"
+              borderColor="red.500"
+              colorScheme="red"
+              color="gray.900"
             >
               Back
             </Button>
@@ -147,6 +151,10 @@ const GuestInfoForm: FC<IGuestInfoFormProps> = ({
                   setActiveStep(4);
                 }
               }}
+              border="2px"
+              borderColor="red.500"
+              colorScheme="red"
+              color="gray.900"
             >
               Next
             </Button>
