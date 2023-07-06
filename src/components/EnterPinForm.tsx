@@ -9,19 +9,24 @@ import {
   PinInput,
   PinInputField,
   FormErrorMessage,
+  Button,
 } from "@chakra-ui/react";
-import { FC } from "react";
+import { Dispatch, FC, SetStateAction } from "react";
 
 export interface IEnterPinFormProps {
   isCodeInvalid: boolean;
   handleComplete: (value: string) => void;
   handleChange: () => void;
+  showEditPinForm: boolean;
+  setActiveStep: Dispatch<SetStateAction<number>>;
 }
 
 const EnterPinForm: FC<IEnterPinFormProps> = ({
   isCodeInvalid,
   handleComplete,
   handleChange,
+  setActiveStep,
+  showEditPinForm,
 }) => {
   return (
     <VStack gap={10} maxW="4xl" minW="full">
@@ -31,27 +36,44 @@ const EnterPinForm: FC<IEnterPinFormProps> = ({
         alphanumberic (text + number) values and you can find this in the invite
         letter
       </Text>
-      <HStack>
-        <FormControl isInvalid={isCodeInvalid}>
-          <PinInput
-            type="alphanumeric"
-            onComplete={handleComplete}
-            onChange={handleChange}
-          >
-            <PinInputField />
-            <PinInputField />
-            <PinInputField />
-            <PinInputField />
-            <PinInputField />
-            <PinInputField />
-          </PinInput>
+      <FormControl isInvalid={isCodeInvalid}>
+        <VStack>
+          <HStack spacing={2}>
+            <PinInput
+              type="alphanumeric"
+              onComplete={handleComplete}
+              onChange={handleChange}
+            >
+              <PinInputField borderColor="blue.300" />
+              <PinInputField borderColor="blue.300" />
+              <PinInputField borderColor="blue.300" />
+              <PinInputField borderColor="blue.300" />
+              <PinInputField borderColor="blue.300" />
+              <PinInputField borderColor="blue.300" />
+            </PinInput>
+          </HStack>
           {isCodeInvalid && (
             <FormErrorMessage>
               Code is invalid. Please try again or reach out to us
             </FormErrorMessage>
           )}
-        </FormControl>
-      </HStack>
+        </VStack>
+      </FormControl>
+
+      {showEditPinForm && (
+        <VStack>
+          <Text fontSize="xl">It looks like you have already RSVP-ed</Text>
+          <Button
+            border="2px"
+            borderColor="red.500"
+            colorScheme="red"
+            color="gray.900"
+            onClick={() => setActiveStep(1)}
+          >
+            I want to edit my RSVP information
+          </Button>
+        </VStack>
+      )}
     </VStack>
   );
 };

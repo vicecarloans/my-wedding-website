@@ -78,6 +78,8 @@ export default function RSVP() {
 
   const [inviteId, setInviteId] = useState(currentUserInvite?.id);
 
+  const [showEditPinForm, setShowEditPinForm] = useState<boolean>(false);
+
   const { fetcher } = useSWRConfig();
 
   const { data, mutate, isLoading, error } = useSWR<IGetInviteResponse>(
@@ -107,14 +109,17 @@ export default function RSVP() {
   }, [isLoading, onClose, onOpen, currentUserInvite]);
 
   useIsomorphicLayoutEffect(() => {
+    if (error) {
+      setShowEditPinForm(false);
+    }
     if (data?.invite?.id) {
       setCurrentUserInvite(data?.invite);
-      if (formik.submitCount === 0) {
-        setActiveStep(1);
+      if (data?.inviteSubmission) {
+        setShowEditPinForm(true);
       }
       formik.resetForm();
     }
-  }, [data?.invite, setActiveStep, setCurrentUserInvite]);
+  }, [data?.invite, setActiveStep, setCurrentUserInvite, error]);
 
   useIsomorphicLayoutEffect(() => {
     setCurrentUserSubmission(data?.inviteSubmission);
@@ -139,7 +144,6 @@ export default function RSVP() {
       wishes: currentUserSubmission?.wishes,
     },
     onSubmit: async (values) => {
-      console.log(values);
       try {
         onOpen();
         await axios.post("/api/invites/rsvp", {
@@ -171,6 +175,8 @@ export default function RSVP() {
           handleComplete={(value) => {
             setInviteId(value);
           }}
+          showEditPinForm={showEditPinForm}
+          setActiveStep={setActiveStep}
         />
       );
     }
@@ -244,6 +250,7 @@ export default function RSVP() {
     currentUserInvite,
     setActiveStep,
     currentUserSubmission,
+    showEditPinForm,
   ]);
 
   return (
