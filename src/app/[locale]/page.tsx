@@ -112,7 +112,7 @@ export default function IndexPage() {
         ))}
         <ParallaxLayer offset={3}>
           <HStack w="full" h="full" position="relative" overflow="hidden">
-            <div className="absolute -left-[80%] top-[0%] lg:-left-[10%] lg:top-0">
+            <div className="absolute -left-[90%] top-[0%] lg:-left-[10%] lg:top-0">
               <svg
                 width="498"
                 height="614"
@@ -162,7 +162,7 @@ export default function IndexPage() {
               </VStack>
             </Center>
 
-            <div className="absolute -right-[70%] -bottom-[10%] lg:-right-[10%] lg:bottom-[0%]">
+            <div className="absolute -right-[80%] -bottom-[10%] lg:-right-[10%] lg:bottom-[0%]">
               <svg
                 width="400"
                 height="494"
