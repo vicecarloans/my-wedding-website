@@ -11,7 +11,7 @@ const theme = extendTheme({
     md: "20px",
   },
   config: {
-    initialColorMode: "dark",
+    initialColorMode: "theme",
     useSystemColorMode: false,
   },
 });
