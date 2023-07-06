@@ -114,9 +114,7 @@ export default function RSVP() {
     }
     if (data?.invite?.id) {
       setCurrentUserInvite(data?.invite);
-      if (data?.inviteSubmission) {
-        setShowEditPinForm(true);
-      }
+
       formik.resetForm();
     }
   }, [data?.invite, setActiveStep, setCurrentUserInvite, error]);
@@ -125,6 +123,12 @@ export default function RSVP() {
     setCurrentUserSubmission(data?.inviteSubmission);
 
     formik.resetForm();
+
+    if (data?.inviteSubmission) {
+      setShowEditPinForm(true);
+    } else {
+      setActiveStep(1);
+    }
   }, [data?.inviteSubmission, setCurrentUserSubmission]);
 
   useIsomorphicLayoutEffect(() => {
