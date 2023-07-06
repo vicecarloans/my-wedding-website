@@ -295,11 +295,11 @@ const Hero: FC = () => {
   );
 
   return (
-    <header className="flex flex-row text-center top-16 pt-15 h-[calc(100vh-4rem)] max-h-screen min-w-fit relative">
+    <header className="flex flex-row text-center top-16 pt-15 h-[calc(100vh-4rem)] max-h-screen min-w-fit relative overflow-hidden">
       <div className="top-0 left-10 w-1/2 h-full">
         <animated.div
           style={rotateAnimationProps}
-          className="absolute -top-[10%] -left-[90%] md:-top-[8%] md:-left-[4%]"
+          className="absolute -top-[10%] -left-[100%] md:-top-[8%] md:-left-[30%] lg:-top-[8%] lg:-left-[4%]"
         >
           <svg
             width="591"
@@ -318,7 +318,7 @@ const Hero: FC = () => {
         </animated.div>
 
         <animated.div
-          className="absolute left-[9%] top-[7%] md:top-[10%] md:left-[31%] z-20"
+          className="absolute left-[9%] top-[4%] md:left-[20%] lg:top-[10%] lg:left-[31%] z-20"
           style={yellowFlowerAnimProps}
         >
           <svg
@@ -337,7 +337,7 @@ const Hero: FC = () => {
 
         <animated.div
           style={cactusAnimProps}
-          className="absolute bottom-0 md:bottom-[5%] -left-[65%] md:-left-[4%] origin-bottom-right z-10"
+          className="absolute bottom-0 md:bottom-0 lg:bottom-[5%] -left-[70%] md:-left-[20%] lg:-left-[4%] origin-bottom-right z-10"
         >
           <svg
             width="307"
@@ -355,7 +355,7 @@ const Hero: FC = () => {
 
         <animated.div
           style={redFlowerAnimProps}
-          className="absolute md:top-[55%] md:left-[8%] top-[29%] left-0 z-10"
+          className="absolute lg:top-[55%] lg:left-[8%] top-[29%] -left-[10%] md:left-[5%] md:top-[40%] z-10"
         >
           <svg
             width="97"
@@ -373,7 +373,7 @@ const Hero: FC = () => {
 
         <animated.div
           style={leftMossOutAnimProps}
-          className="absolute md:-bottom-[2%] md:-left-[8%] -bottom-[20%] -left-[120%] origin-bottom-right z-10"
+          className="absolute lg:-bottom-[2%] lg:-left-[8%] -bottom-[20%] -left-[140%] md:-bottom-[20%] md:-left-[60%] origin-bottom-right z-10"
         >
           <svg
             width="813"
@@ -398,7 +398,7 @@ const Hero: FC = () => {
 
         <animated.div
           style={leftPinkLeafAnimProps}
-          className="absolute bottom-0 md:bottom-[2%] md:left-[5%] -left-[20%] z-10 origin-[30%_100%]"
+          className="absolute bottom-0 md:-bottom-[5%] lg:bottom-[2%] lg:left-[5%] md:left-[10%] -left-[30%] z-10 origin-[30%_100%]"
         >
           <svg
             width="232"
@@ -415,7 +415,7 @@ const Hero: FC = () => {
 
         <animated.div
           style={leftYellowGrassAnimProps}
-          className="absolute -bottom-[20%] left-[10%] md:bottom-[10%] md:left-[28%] z-0 origin-[50%_90%]"
+          className="absolute -bottom-[30%] -left-[10%] md:-bottom-[20%] md:left-[20%] lg:bottom-[10%] lg:left-[28%] z-0 origin-[50%_90%]"
         >
           <svg
             width="207"
@@ -440,7 +440,7 @@ const Hero: FC = () => {
 
         <animated.div
           style={greenDotsAnimProps}
-          className="absolute -bottom-[10%] left-[15%] z-10 md:bottom-[13.5%] md:left-[28%]"
+          className="absolute -bottom-[10%] left-[15%] md:bottom-[10%] md:left-[40%] lg:bottom-[13.5%] lg:left-[28%] z-10 "
         >
           <svg
             width="145"
@@ -458,7 +458,7 @@ const Hero: FC = () => {
       <div className="top-0 right-10 w-1/2 h-full">
         <animated.div
           style={rightPinkLeafAnimProps}
-          className="absolute -top-[10%] -right-[40%] z-10 origin-[50%_10%] md:-top-[5%] md:right-[0%]"
+          className="absolute -top-[15%] -right-[40%] z-10 origin-[50%_10%] md:-top-[2%] md:-right-[20%] lg:-top-[5%] lg:right-[0%]"
         >
           <svg
             width="524"
@@ -476,7 +476,7 @@ const Hero: FC = () => {
 
         <animated.div
           style={rightRedDotsAnimProps}
-          className="absolute top-[5%] -right-[20%] z-10 md:top-[8%] md:right-[20%]"
+          className="absolute top-[5%] -right-[20%] z-10 md:top-[5%] md:right-[10%] lg:top-[8%] lg:right-[20%]"
         >
           <svg
             width="173"
@@ -493,7 +493,7 @@ const Hero: FC = () => {
 
         <animated.div
           style={rightGreenOutlineAnimProps}
-          className="absolute top-[4%] -right-[60%] md:top-[4%] md:-right-[1%]"
+          className="absolute top-[4%] -right-[60%] md:top-[4%] md:-right-[30%] lg:top-[4%] lg:-right-[1%]"
         >
           <svg
             width="312"
@@ -512,7 +512,7 @@ const Hero: FC = () => {
         </animated.div>
         <animated.div
           style={rightGreenBigLeafAnimProps}
-          className="absolute top-[30%] -right-[65%] z-10 origin-[120%_50%] md:top-[22%] md:-right-[6%]"
+          className="absolute top-[30%] -right-[65%] z-10 origin-[120%_50%] md:top-[32%] md:-right-[30%] lg:top-[22%] lg:-right-[6%]"
         >
           <svg
             width="358"
@@ -530,7 +530,7 @@ const Hero: FC = () => {
 
         <animated.div
           style={rightRedLeafAnimProps}
-          className="absolute top-[43%] -right-[48%] z-20 origin-[120%_50%] md:top-[39%] md:-right-[6%]"
+          className="absolute top-[43%] -right-[48%] z-20 origin-[120%_50%] md:top-[37%] md:-right-[20%] lg:top-[39%] lg:-right-[6%]"
         >
           <svg
             width="299"
@@ -550,7 +550,7 @@ const Hero: FC = () => {
 
         <animated.div
           style={rightDarkOutlineAnimProps}
-          className="absolute -bottom-[15%] -right-[60%] origin-[50%_90%] md:bottom-[10%] md:right-[10%]"
+          className="absolute -bottom-[15%] -right-[60%] origin-[50%_90%] md:-bottom-[5%] md:-right-[40%] lg:bottom-[10%] lg:right-[10%]"
         >
           <svg
             width="418"
@@ -575,7 +575,7 @@ const Hero: FC = () => {
 
         <animated.div
           style={rightGreenLeafAnimProps}
-          className="absolute -bottom-[20%] -right-[60%] z-10 origin-[150%_50%] md:bottom-[8%] md:-right-[5%]"
+          className="absolute -bottom-[20%] -right-[85%] z-10 origin-[150%_50%] md:-bottom-[15%] md:-right-[30%] lg:bottom-[8%] lg:-right-[5%]"
         >
           <svg
             width="492"
@@ -593,7 +593,7 @@ const Hero: FC = () => {
 
         <animated.div
           style={rightGreenDotsAnimProps}
-          className="absolute bottom-[13%] -right-[15%] z-10 md:bottom-[25%] md:right-[19%]"
+          className="absolute bottom-[13%] -right-[15%] z-10 md:bottom-0 md:right-[18%] lg:bottom-[25%] lg:right-[19%]"
         >
           <svg
             width="134"
@@ -616,7 +616,7 @@ const Hero: FC = () => {
             </Heading>
           </animated.div>
         </animated.div>
-        <animated.div className="h-30 md:h-32 overflow-hidden ">
+        <animated.div className="h-30 lg:h-32 overflow-hidden ">
           <animated.div style={nameAnimProps} className="block">
             <Heading
               fontFamily="'Handlee', sans-serif"
@@ -629,7 +629,7 @@ const Hero: FC = () => {
             </Heading>
           </animated.div>
         </animated.div>
-        <animated.div className="h-30 md:h-32 overflow-hidden">
+        <animated.div className="h-30 lg:h-32 overflow-hidden">
           <animated.div style={nameAnimProps} className="block">
             <Heading
               fontFamily="'Handlee', sans-serif"
