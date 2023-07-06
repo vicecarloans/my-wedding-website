@@ -115,21 +115,25 @@ export default function RSVP() {
     if (data?.invite?.id) {
       setCurrentUserInvite(data?.invite);
 
+      setShowEditPinForm(false);
+      if (data?.inviteSubmission) {
+        setShowEditPinForm(true);
+
+        setCurrentUserSubmission(data?.inviteSubmission);
+        formik.resetForm();
+      } else {
+        setActiveStep(1);
+      }
       formik.resetForm();
     }
-  }, [data?.invite, setActiveStep, setCurrentUserInvite, error]);
-
-  useIsomorphicLayoutEffect(() => {
-    setCurrentUserSubmission(data?.inviteSubmission);
-
-    formik.resetForm();
-
-    if (data?.inviteSubmission) {
-      setShowEditPinForm(true);
-    } else {
-      setActiveStep(1);
-    }
-  }, [data?.inviteSubmission, setCurrentUserSubmission]);
+  }, [
+    data?.invite,
+    setActiveStep,
+    setCurrentUserInvite,
+    error,
+    data?.inviteSubmission,
+    setCurrentUserSubmission,
+  ]);
 
   useIsomorphicLayoutEffect(() => {
     if (error instanceof AxiosError) {
