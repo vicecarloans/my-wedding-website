@@ -458,7 +458,7 @@ const Hero: FC = () => {
       <div className="top-0 right-10 w-1/2 h-full">
         <animated.div
           style={rightPinkLeafAnimProps}
-          className="absolute -top-[10%] -right-[40%] z-10 origin-[50%_10%] md:top-[2%] md:right-[5%]"
+          className="absolute -top-[10%] -right-[40%] z-10 origin-[50%_10%] md:-top-[5%] md:right-[0%]"
         >
           <svg
             width="524"
