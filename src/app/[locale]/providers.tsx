@@ -63,7 +63,8 @@ export function Providers({ children }: { children: React.ReactNode }) {
           }}
         >
           <Box
-            position="relative"
+            position="absolute"
+            w="full"
             zIndex={20}
             bg={useColorModeValue("red.100", "gray.900")}
             px={4}

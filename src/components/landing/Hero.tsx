@@ -295,7 +295,7 @@ const Hero: FC = () => {
   );
 
   return (
-    <header className="flex flex-row text-center pt-15 h-[calc(100vh-4rem)] max-h-screen min-w-fit relative">
+    <header className="flex flex-row text-center top-16 pt-15 h-[calc(100vh-4rem)] max-h-screen min-w-fit relative">
       <div className="top-0 left-10 w-1/2 h-full">
         <animated.div
           style={rotateAnimationProps}

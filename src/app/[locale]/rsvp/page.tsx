@@ -262,7 +262,11 @@ export default function RSVP() {
   ]);
 
   return (
-    <Container maxW="container.xl" minH="100vh" pt="14">
+    <Container
+      maxW="container.xl"
+      className="min-h-[calc(100vh-4rem)] top-16 relative"
+      pt="14"
+    >
       <Modal
         finalFocusRef={finalRef}
         isOpen={isOpen}

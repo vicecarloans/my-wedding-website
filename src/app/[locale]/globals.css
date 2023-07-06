@@ -3,11 +3,12 @@
 @tailwind utilities;
 
 body {
-    max-height: 100vh;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
 
 body::-webkit-scrollbar {
-    display: none;
+    /* display: none; */
 }
 
 .parallax-landing::-webkit-scrollbar {
@@ -18,5 +19,5 @@ body::-webkit-scrollbar {
 .parallax-landing {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
-
+    overscroll-behavior-y: contain;
 }
