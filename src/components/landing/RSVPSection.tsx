@@ -15,7 +15,7 @@ const RSVPSection: FC = () => {
       rotate: "0deg",
     },
     config: {
-      duration: 1000,
+      duration: 500,
     },
   }));
 
@@ -29,7 +29,7 @@ const RSVPSection: FC = () => {
       rotate: "0deg",
     },
     config: {
-      duration: 1000,
+      duration: 500,
     },
   }));
 
