@@ -262,11 +262,7 @@ export default function RSVP() {
   ]);
 
   return (
-    <Container
-      maxW="container.xl"
-      className="min-h-[calc(100vh-4rem)] top-16 relative"
-      pt="14"
-    >
+    <Container maxW="container.xl" className="min-h-[100vh]" pt="14">
       <Modal
         finalFocusRef={finalRef}
         isOpen={isOpen}
@@ -293,6 +289,7 @@ export default function RSVP() {
         direction={{ base: "column", lg: "row" }}
         align="flex-start"
         gap={16}
+        className="top-16 relative"
       >
         <Stepper
           display={{ base: "none", lg: "flex" }}

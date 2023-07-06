@@ -616,7 +616,7 @@ const Hero: FC = () => {
             </Heading>
           </animated.div>
         </animated.div>
-        <animated.div className="h-30 lg:h-32 overflow-hidden ">
+        <animated.div className="h-30 lg:h-32 overflow-hidden">
           <animated.div style={nameAnimProps} className="block">
             <Heading
               fontFamily="'Handlee', sans-serif"
@@ -644,10 +644,10 @@ const Hero: FC = () => {
         </animated.div>
         <animated.div
           style={crossAnimProps}
-          className="absolute top-[50%] left-[50%] -translate-x-[50%] rotate-45 -z-10"
+          className="absolute top-[51%] left-[50%] -translate-x-[50%] rotate-45 -z-10"
         >
-          <div className="absolute w-4 h-4 bg-red-300 scale-x-[12] scale-y-[0.2]"></div>
-          <div className="absolute w-4 h-4 bg-red-300 scale-x-[0.2] scale-y-[12] rotate-180"></div>
+          <div className="absolute w-1 h-1 bg-red-900 scale-x-[12] scale-y-[2]"></div>
+          <div className="absolute w-1 h-1 bg-red-900 scale-x-[2] scale-y-[12] rotate-180"></div>
         </animated.div>
       </div>
     </header>

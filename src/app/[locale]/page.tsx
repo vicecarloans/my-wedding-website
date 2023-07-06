@@ -25,9 +25,37 @@ type GalleryImageType = {
   parallaxSpeed: number;
 };
 const GALLERY_IMAGES: GalleryImageType[] = [
+  // Parallax Page 1
+  // Left
   {
     src: "https://bit.ly/dan-abramov",
-    className: "absolute top-[40%] left-[10%]",
+    className: "absolute top-[0%] left-[10%] w-60 h-72",
+    alt: "Dan Abramov",
+    size: "200px",
+    parallaxOffset: 1,
+    parallaxSpeed: 0.7,
+  },
+
+  {
+    src: "https://bit.ly/dan-abramov",
+    className: "absolute top-[50%] left-[0%] w-40 h-48",
+    alt: "Dan Abramov",
+    size: "200px",
+    parallaxOffset: 1,
+    parallaxSpeed: 0.5,
+  },
+
+  {
+    src: "https://bit.ly/dan-abramov",
+    className: "absolute bottom-[0%] left-[35%] w-32 h-40",
+    alt: "Dan Abramov",
+    size: "200px",
+    parallaxOffset: 1,
+    parallaxSpeed: 0.2,
+  },
+  {
+    src: "https://bit.ly/dan-abramov",
+    className: "absolute bottom-[25%] left-[40%] w-60 h-72 ",
     alt: "Dan Abramov",
     size: "200px",
     parallaxOffset: 1,
@@ -35,12 +63,13 @@ const GALLERY_IMAGES: GalleryImageType[] = [
   },
   {
     src: "https://bit.ly/dan-abramov",
-    className: "absolute top-[0%] left-[5%] w-[150px] h-[200px]",
+    className: "absolute bottom-[0%] left-[15%] w-72 h-96",
     alt: "Dan Abramov",
     size: "200px",
     parallaxOffset: 1,
-    parallaxSpeed: 0.2,
+    parallaxSpeed: 0.5,
   },
+  // Right
   {
     src: "https://bit.ly/dan-abramov",
     className: "absolute top-[25%] right-[20%] w-[150px] h-[200px]",
@@ -57,12 +86,13 @@ const GALLERY_IMAGES: GalleryImageType[] = [
     parallaxOffset: 1,
     parallaxSpeed: 0.2,
   },
+
+  // Parallax Page 2
 ];
 
 export default function IndexPage() {
   const router = useRouter();
 
-  const alignCenter = { display: "flex", alignItems: "center" };
   return (
     <div className="min-h-[100vh]">
       <Parallax pages={4} className="parallax-landing">
@@ -70,7 +100,7 @@ export default function IndexPage() {
           <Hero />
         </ParallaxLayer>
         <ParallaxLayer sticky={{ start: 1, end: 2 }}>
-          <div className="absolute bg-red-100/25 w-full h-full">
+          <div className="absolute bg-red-100/60 w-full h-full">
             <Center h="full">
               <VStack>
                 <Heading
@@ -83,11 +113,18 @@ export default function IndexPage() {
                 <Button
                   onClick={() => router.push("/gallery")}
                   w="full"
+                  h="14"
                   fontFamily="'Handlee', sans-serif"
+                  fontSize="3xl"
                   border="2px"
                   borderColor="red.500"
+                  bgColor={useColorModeValue("red.500", "red.200")}
                   colorScheme="red"
-                  color="gray.900"
+                  color="red.900"
+                  _hover={{
+                    color: "gray.200",
+                    bgColor: "red.500",
+                  }}
                 >
                   View Gallery
                 </Button>
@@ -151,11 +188,17 @@ export default function IndexPage() {
                 <Button
                   onClick={() => router.push("/rsvp")}
                   w="full"
+                  h="14"
                   fontFamily="'Handlee', sans-serif"
+                  fontSize="3xl"
                   border="2px"
                   borderColor="red.500"
                   colorScheme="red"
-                  color="gray.900"
+                  color="red.900"
+                  _hover={{
+                    color: "gray.200",
+                    bgColor: "red.500",
+                  }}
                 >
                   RSVP Now
                 </Button>
