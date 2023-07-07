@@ -8,6 +8,7 @@ import { headers } from "next/headers";
 
 export async function GET(request: NextRequest) {
   try {
+    console.log(headers());
     const authorizationHeader = headers().get("Authorization");
 
     if (authorizationHeader !== `Bearer ${environment.adminToken}`) {
