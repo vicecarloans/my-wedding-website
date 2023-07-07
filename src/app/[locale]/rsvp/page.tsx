@@ -114,8 +114,12 @@ export default function RSVP() {
   }, [isLoading, onClose, onOpen, currentUserInvite]);
 
   useIsomorphicLayoutEffect(() => {
-    if (error) {
+    if (error instanceof AxiosError) {
       setShowEditPinForm(false);
+      if (error.response?.status === 404) {
+        setCodeInvalid(true);
+      }
+      return;
     }
     setCurrentUserInvite(data?.invite);
     setCurrentUserSubmission(data?.inviteSubmission);
@@ -123,11 +127,9 @@ export default function RSVP() {
     setShowEditPinForm(false);
     if (data?.inviteSubmission) {
       setShowEditPinForm(true);
-      formik.resetForm();
     } else {
       setActiveStep(1);
     }
-    formik.resetForm();
   }, [
     data?.invite,
     setActiveStep,
@@ -136,14 +138,6 @@ export default function RSVP() {
     data?.inviteSubmission,
     setCurrentUserSubmission,
   ]);
-
-  useIsomorphicLayoutEffect(() => {
-    if (error instanceof AxiosError) {
-      if (error.response?.status === 404) {
-        setCodeInvalid(true);
-      }
-    }
-  }, [error]);
 
   const formik = useFormik<Partial<FormProps>>({
     initialValues: {
