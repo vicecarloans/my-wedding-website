@@ -9,7 +9,9 @@ import { headers } from "next/headers";
 export async function GET(request: NextRequest) {
   try {
     console.log(headers());
-    const authorizationHeader = headers().get("Authorization");
+    const authorizationHeader = JSON.parse(
+      headers().get("x-vercel-sc-headers") ?? "{}"
+    ).Authorization;
 
     if (authorizationHeader !== `Bearer ${environment.adminToken}`) {
       console.log(environment.adminToken);
