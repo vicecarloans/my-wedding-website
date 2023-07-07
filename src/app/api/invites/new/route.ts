@@ -54,7 +54,7 @@ export async function POST(request: Request) {
       }
     );
 
-    return NextResponse.json({ invite: data });
+    return NextResponse.json({ invite: userInvite });
   } catch (err) {
     console.error("Unable to create invite", { err });
   }
