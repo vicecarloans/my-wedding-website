@@ -117,20 +117,17 @@ export default function RSVP() {
     if (error) {
       setShowEditPinForm(false);
     }
-    if (data?.invite?.id) {
-      setCurrentUserInvite(data?.invite);
+    setCurrentUserInvite(data?.invite);
+    setCurrentUserSubmission(data?.inviteSubmission);
 
-      setShowEditPinForm(false);
-      if (data?.inviteSubmission) {
-        setShowEditPinForm(true);
-
-        setCurrentUserSubmission(data?.inviteSubmission);
-        formik.resetForm();
-      } else {
-        setActiveStep(1);
-      }
+    setShowEditPinForm(false);
+    if (data?.inviteSubmission) {
+      setShowEditPinForm(true);
       formik.resetForm();
+    } else {
+      setActiveStep(1);
     }
+    formik.resetForm();
   }, [
     data?.invite,
     setActiveStep,
