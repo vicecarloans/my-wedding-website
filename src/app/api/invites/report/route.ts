@@ -10,6 +10,8 @@ export async function GET(request: NextRequest) {
     const authorizationHeader = request.headers.get("Authorization");
 
     if (authorizationHeader !== `Bearer ${environment.adminToken}`) {
+      console.log(environment.adminToken);
+      console.log(authorizationHeader);
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -93,5 +95,3 @@ export async function GET(request: NextRequest) {
     console.error("Unable to build report", { err });
   }
 }
-
-export const dynamic = "force-dynamic";
