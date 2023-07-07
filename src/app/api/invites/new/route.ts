@@ -17,7 +17,7 @@ export async function POST(request: Request) {
     const newInvite = await request.json();
 
     // The first 6 digit
-    const inviteId = v4().substring(0, 5);
+    const inviteId = v4().substring(0, 6);
 
     if (await has(inviteId)) {
       return NextResponse.json(
