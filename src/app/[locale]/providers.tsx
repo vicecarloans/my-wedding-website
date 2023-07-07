@@ -52,13 +52,8 @@ export function Providers({ children }: { children: React.ReactNode }) {
           value={{
             revalidateIfStale: true,
             fetcher: async (resource) => {
-              try {
-                const { data } = await axios.get(resource);
-                return data;
-              } catch (err) {
-                console.error(err);
-                throw err;
-              }
+              const { data } = await axios.get(resource);
+              return data;
             },
           }}
         >

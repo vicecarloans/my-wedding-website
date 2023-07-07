@@ -114,9 +114,11 @@ export default function RSVP() {
   }, [isLoading, onClose, onOpen, currentUserInvite]);
 
   useIsomorphicLayoutEffect(() => {
-    if (error instanceof AxiosError) {
+    console.log(error);
+    console.log(data);
+    if (error || !data) {
       setShowEditPinForm(false);
-      if (error.response?.status === 404) {
+      if (error?.response?.status === 404) {
         setCodeInvalid(true);
       }
       return;
