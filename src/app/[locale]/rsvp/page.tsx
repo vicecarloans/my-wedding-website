@@ -51,6 +51,7 @@ import AccomodationForm from "@/components/AccomodationForm";
 import MiscForm from "@/components/MiscForm";
 import SummaryForm from "@/components/SummaryForm";
 import { CheckCircleIcon, InfoOutlineIcon } from "@chakra-ui/icons";
+import { useSearchParams } from "next/navigation";
 
 const STEPS = [
   { title: "Invite", description: "Enter your invite code" },
@@ -68,6 +69,10 @@ const STEPS = [
 export type FormProps = Omit<IUserInviteSubmission, "inviteId">;
 
 export default function RSVP() {
+  const searchParams = useSearchParams();
+
+  const code = searchParams.get("code");
+
   const [currentUserInvite, setCurrentUserInvite] = useLocalStorage<
     IUserInvite | undefined
   >("current-user-invite", undefined);
@@ -76,7 +81,7 @@ export default function RSVP() {
     IUserInviteSubmission | undefined
   >("current-user-submission", undefined);
 
-  const [inviteId, setInviteId] = useState(currentUserInvite?.id);
+  const [inviteId, setInviteId] = useState(code ?? currentUserInvite?.id);
 
   const [showEditPinForm, setShowEditPinForm] = useState<boolean>(false);
 
