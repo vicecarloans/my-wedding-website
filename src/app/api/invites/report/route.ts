@@ -4,10 +4,11 @@ import { Parser } from "@json2csv/plainjs";
 import { get } from "@vercel/edge-config";
 import { kv } from "@vercel/kv";
 import { NextRequest, NextResponse } from "next/server";
+import { headers } from "next/headers";
 
 export async function GET(request: NextRequest) {
   try {
-    const authorizationHeader = request.headers.get("Authorization");
+    const authorizationHeader = headers().get("Authorization");
 
     if (authorizationHeader !== `Bearer ${environment.adminToken}`) {
       console.log(environment.adminToken);

@@ -4,12 +4,15 @@ import axios from "axios";
 import { has } from "@vercel/edge-config";
 import { NextResponse } from "next/server";
 import { IUserInvite } from "@/models/invite";
+import { headers } from "next/headers";
 
 export async function POST(request: Request) {
   try {
-    const authorizationHeader = request.headers.get("Authorization");
+    const authorizationHeader = headers().get("Authorization");
 
     if (authorizationHeader !== `Bearer ${environment.adminToken}`) {
+      console.log(environment.adminToken);
+      console.log(authorizationHeader);
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
