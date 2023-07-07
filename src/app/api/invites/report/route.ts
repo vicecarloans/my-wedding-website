@@ -8,14 +8,9 @@ import { headers } from "next/headers";
 
 export async function GET(request: NextRequest) {
   try {
-    console.log(headers());
-    const authorizationHeader = JSON.parse(
-      headers().get("x-vercel-sc-headers") ?? "{}"
-    ).Authorization;
+    const adminTokenHeader = headers().get("x-admin-token");
 
-    if (authorizationHeader !== `Bearer ${environment.adminToken}`) {
-      console.log(environment.adminToken);
-      console.log(authorizationHeader);
+    if (adminTokenHeader !== environment.adminToken) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 

@@ -8,11 +8,9 @@ import { headers } from "next/headers";
 
 export async function POST(request: Request) {
   try {
-    const authorizationHeader = headers().get("Authorization");
+    const adminTokenHeader = headers().get("x-admin-token");
 
-    if (authorizationHeader !== `Bearer ${environment.adminToken}`) {
-      console.log(environment.adminToken);
-      console.log(authorizationHeader);
+    if (adminTokenHeader !== environment.adminToken) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
