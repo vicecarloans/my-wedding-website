@@ -101,3 +101,5 @@ export async function GET(request: NextRequest) {
     console.error("Unable to build report", { err });
   }
 }
+
+export const dynamic = "force-dynamic";
