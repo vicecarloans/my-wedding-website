@@ -89,8 +89,13 @@ export async function GET(request: NextRequest) {
       })
     );
 
-    const response = new NextResponse(csv);
-    response?.headers.set("Content-Type", "text/csv");
+    const response = new NextResponse(csv, {
+      status: 200,
+      headers: {
+        "Content-Type": "text/csv",
+      },
+    });
+
     return response;
   } catch (err) {
     console.error("Unable to build report", { err });
