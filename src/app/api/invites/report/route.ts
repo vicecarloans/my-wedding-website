@@ -87,9 +87,11 @@ export async function GET(request: NextRequest) {
     );
 
     const response = new NextResponse(csv);
-    response.headers.set("Content-Type", "text/csv");
+    response?.headers.set("Content-Type", "text/csv");
     return response;
   } catch (err) {
     console.error("Unable to build report", { err });
   }
 }
+
+export const dynamic = "force-dynamic";

@@ -73,3 +73,5 @@ export default function GalleryPage() {
     </Container>
   );
 }
+
+export const dynamic = "force-dynamic";
