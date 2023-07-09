@@ -9,6 +9,7 @@ import {
   useCallback,
   useEffect,
   useLayoutEffect,
+  useMemo,
   useRef,
   useState,
 } from "react";
@@ -53,19 +54,6 @@ import SummaryForm from "@/components/SummaryForm";
 import { CheckCircleIcon, InfoOutlineIcon } from "@chakra-ui/icons";
 import { useSearchParams } from "next/navigation";
 
-const STEPS = [
-  { title: "Invite", description: "Enter your invite code" },
-  { title: "Guests Information", description: "Let us know who's coming" },
-  { title: "Travel Information", description: "Let us know your travel plans" },
-  {
-    title: "Accomodation",
-    description: "Let us know your preference of accomodation",
-  },
-  { title: "Miscellaneous", description: "We would love to hear from you" },
-  { title: "Review", description: "See if you miss anything" },
-  { title: "Done", description: "You're all set!" },
-];
-
 export type FormProps = Omit<IUserInviteSubmission, "inviteId">;
 
 export default function RSVP() {
@@ -93,6 +81,47 @@ export default function RSVP() {
       (fetcher as Fetcher<IGetInviteResponse, string>)?.(`${url}/${id}`)
   );
 
+  const STEPS = useMemo(
+    () =>
+      currentUserInvite?.eligibleForReimburse
+        ? [
+            { title: "Invite", description: "Enter your invite code" },
+            {
+              title: "Guests Information",
+              description: "Let us know who's coming",
+            },
+            {
+              title: "Travel Information",
+              description: "Let us know your travel plans",
+            },
+            {
+              title: "Accomodation",
+              description: "Let us know your preference of accomodation",
+            },
+            {
+              title: "Miscellaneous",
+              description: "We would love to hear from you",
+            },
+            { title: "Review", description: "See if you miss anything" },
+            { title: "Done", description: "You're all set!" },
+          ]
+        : [
+            { title: "Invite", description: "Enter your invite code" },
+            {
+              title: "Guests Information",
+              description: "Let us know who's coming",
+            },
+
+            {
+              title: "Miscellaneous",
+              description: "We would love to hear from you",
+            },
+            { title: "Review", description: "See if you miss anything" },
+            { title: "Done", description: "You're all set!" },
+          ],
+    [currentUserInvite?.eligibleForReimburse]
+  );
+
   const { activeStep, setActiveStep } = useSteps({
     index: 0,
     count: STEPS.length,
@@ -114,8 +143,6 @@ export default function RSVP() {
   }, [isLoading, onClose, onOpen, currentUserInvite]);
 
   useIsomorphicLayoutEffect(() => {
-    console.log(error);
-    console.log(data);
     if (error || !data) {
       setShowEditPinForm(false);
       if (error?.response?.status === 404) {
