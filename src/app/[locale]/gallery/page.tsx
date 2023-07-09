@@ -70,7 +70,7 @@ export default function GalleryPage() {
           </WrapItem>
         ))}
       </Wrap> */}
-      <Center px="1rem" justify="center" className="top-16 relative">
+      <Center px="1rem" className="top-16 relative">
         This is under construction 🚧 Please come back later for contents
       </Center>
     </Container>
