@@ -49,7 +49,7 @@ export default function GalleryPage() {
           </Center>
         </ModalContent>
       </Modal>
-      <Wrap px="1rem" spacing={4} justify="center" className="top-16 relative">
+      {/* <Wrap px="1rem" spacing={4} justify="center" className="top-16 relative">
         {data?.images.map((url) => (
           <WrapItem
             key={url}
@@ -63,13 +63,16 @@ export default function GalleryPage() {
               src={`/gallery/${url}`}
               key={url}
               alt="image"
-              className="w-80 h-80"
+              className="w-96 h-96"
               objectFit="cover"
-              objectPosition="top left"
+              objectPosition="center center"
             />
           </WrapItem>
         ))}
-      </Wrap>
+      </Wrap> */}
+      <Center px="1rem" justify="center" className="top-16 relative">
+        This is under construction 🚧 Please come back later for contents
+      </Center>
     </Container>
   );
 }

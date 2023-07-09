@@ -24,7 +24,7 @@ const GALLERY_IMAGES: GalleryImageType[] = [
   // Parallax Page 1
   // Left
   {
-    src: "https://bit.ly/dan-abramov",
+    src: "/gallery/IMG_0630.JPEG",
     className: "absolute top-[20%] left-[10%] w-60 h-72",
     alt: "Dan Abramov",
     parallaxOffset: 1,
@@ -32,7 +32,7 @@ const GALLERY_IMAGES: GalleryImageType[] = [
   },
 
   {
-    src: "https://bit.ly/dan-abramov",
+    src: "/gallery/GOPR0107.JPG",
     className: "absolute top-[50%] left-[0%] w-40 h-48",
     alt: "Dan Abramov",
     parallaxOffset: 1,
@@ -40,21 +40,21 @@ const GALLERY_IMAGES: GalleryImageType[] = [
   },
 
   {
-    src: "https://bit.ly/dan-abramov",
+    src: "/gallery/IMG_4214.JPEG",
     className: "absolute bottom-[0%] left-[35%] w-32 h-40",
     alt: "Dan Abramov",
     parallaxOffset: 1,
     parallaxSpeed: 0.8,
   },
   {
-    src: "https://bit.ly/dan-abramov",
+    src: "/gallery/IMG_6288.JPEG",
     className: "absolute top-[25%] left-[40%] w-60 h-72",
     alt: "Dan Abramov",
     parallaxOffset: 1,
     parallaxSpeed: 0.5,
   },
   {
-    src: "https://bit.ly/dan-abramov",
+    src: "/gallery/IMG_2226.JPEG",
     className: "absolute bottom-[0%] left-[15%] w-72 h-96",
     alt: "Dan Abramov",
     parallaxOffset: 1,
@@ -62,35 +62,35 @@ const GALLERY_IMAGES: GalleryImageType[] = [
   },
   // Right
   {
-    src: "https://bit.ly/dan-abramov",
-    className: "absolute top-[10%] right-[30%] w-32 h-40",
+    src: "/gallery/IMG_6548.JPEG",
+    className: "absolute top-[10%] right-[30%] w-72 h-96",
     alt: "Dan Abramov",
     parallaxOffset: 1,
     parallaxSpeed: 0.6,
   },
   {
-    src: "https://bit.ly/dan-abramov",
+    src: "/gallery/IMG_3636.JPEG",
     className: "absolute bottom-[10%] right-[5%] w-40 h-48",
     alt: "Dan Abramov",
     parallaxOffset: 1,
     parallaxSpeed: 0.7,
   },
   {
-    src: "https://bit.ly/dan-abramov",
+    src: "/gallery/IMG_4078.JPEG",
     className: "absolute top-[50%] right-[20%] w-72 h-96",
     alt: "Dan Abramov",
     parallaxOffset: 1,
     parallaxSpeed: 0.6,
   },
   {
-    src: "https://bit.ly/dan-abramov",
+    src: "/gallery/IMG_6552.JPEG",
     className: "absolute top-[20%] right-[0%] w-72 h-96",
     alt: "Dan Abramov",
     parallaxOffset: 1,
     parallaxSpeed: 0.7,
   },
   {
-    src: "https://bit.ly/dan-abramov",
+    src: "/gallery/IMG_5106.JPG",
     className: "absolute bottom-[0%] right-[40%] w-60 h-72",
     alt: "Dan Abramov",
     parallaxOffset: 1,
@@ -99,35 +99,35 @@ const GALLERY_IMAGES: GalleryImageType[] = [
   // Parallax Page 2
   // Left
   {
-    src: "https://bit.ly/dan-abramov",
+    src: "/gallery/IMG_5600.JPEG",
     className: "absolute -top-[30%] left-[10%] w-60 h-72",
     alt: "Dan Abramov",
     parallaxOffset: 2,
     parallaxSpeed: 0.5,
   },
   {
-    src: "https://bit.ly/dan-abramov",
-    className: "absolute -top-[40%] left-[35%] w-40 h-48",
+    src: "/gallery/IMG_6037.JPEG",
+    className: "absolute -top-[40%] left-[35%] w-96 h-72",
     alt: "Dan Abramov",
     parallaxOffset: 2,
     parallaxSpeed: 0.6,
   },
   {
-    src: "https://bit.ly/dan-abramov",
+    src: "/gallery/IMG_5359.JPEG",
     className: "absolute bottom-[30%] left-[30%] w-32 h-40",
     alt: "Dan Abramov",
     parallaxOffset: 2,
     parallaxSpeed: 0.7,
   },
   {
-    src: "https://bit.ly/dan-abramov",
+    src: "/gallery/IMG_6288.JPEG",
     className: "absolute top-[10%] left-[30%] w-60 h-72",
     alt: "Dan Abramov",
     parallaxOffset: 2,
     parallaxSpeed: 0.7,
   },
   {
-    src: "https://bit.ly/dan-abramov",
+    src: "/gallery/IMG_6548.JPEG",
     className: "absolute bottom-[20%] left-[5%] w-72 h-96",
     alt: "Dan Abramov",
     parallaxOffset: 2,
@@ -135,35 +135,35 @@ const GALLERY_IMAGES: GalleryImageType[] = [
   },
   //Right
   {
-    src: "https://bit.ly/dan-abramov",
+    src: "/gallery/IMG_6562.JPEG",
     className: "absolute -top-[40%] right-[5%] w-72 h-96",
     alt: "Dan Abramov",
     parallaxOffset: 2,
     parallaxSpeed: 0.4,
   },
   {
-    src: "https://bit.ly/dan-abramov",
+    src: "/gallery/IMG_6746.JPEG",
     className: "absolute -top-[50%] right-[30%] w-40 h-48",
     alt: "Dan Abramov",
     parallaxOffset: 2,
     parallaxSpeed: 0.5,
   },
   {
-    src: "https://bit.ly/dan-abramov",
+    src: "/gallery/IMG_6997.JPG",
     className: "absolute top-[35%] right-[10%] w-72 h-96",
     alt: "Dan Abramov",
     parallaxOffset: 2,
     parallaxSpeed: 0.2,
   },
   {
-    src: "https://bit.ly/dan-abramov",
+    src: "/gallery/IMG_7012.JPEG",
     className: "absolute -top-[20%] right-[35%] w-72 h-96",
     alt: "Dan Abramov",
     parallaxOffset: 2,
     parallaxSpeed: 0.6,
   },
   {
-    src: "https://bit.ly/dan-abramov",
+    src: "/gallery/IMG_7022.JPG",
     className: "absolute bottom-[20%] right-[40%] w-60 h-72",
     alt: "Dan Abramov",
     parallaxOffset: 2,
