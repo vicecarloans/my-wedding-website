@@ -6,7 +6,6 @@ export interface IUserInvite {
   name: string;
   qrCode: string;
   travel: TravelInfo;
-  language: "en" | "vi";
   eligibleForReimburse: boolean;
 }
 

@@ -32,7 +32,7 @@ export async function POST(request: Request) {
       name: newInvite.name,
       qrCode: `${environment.websiteUrl}/rsvp?code=${inviteId}`,
       travel: newInvite.travel,
-      language: newInvite.language,
+      eligibleForReimburse: newInvite.eligibleForReimburse,
     };
 
     const { data } = await axios.patch(
