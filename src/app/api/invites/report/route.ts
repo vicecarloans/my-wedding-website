@@ -34,7 +34,6 @@ export async function GET(request: NextRequest) {
       fields: [
         { label: "Invite ID", value: "inviteId" },
         { label: "Name", value: "name" },
-        { label: "Email", value: "email" },
         { label: "Travel Info", value: "travelInfo" },
         { label: "Is Going", value: "isGoing" },
         { label: "Additional Guest Name", value: "additionalGuestName" },
@@ -64,7 +63,6 @@ export async function GET(request: NextRequest) {
         return {
           inviteId: submission?.inviteId,
           name: invite?.name,
-          email: invite?.email,
           travelInfo: invite?.travel,
           isGoing: submission?.isGoing ?? "N/A",
           additionalGuestName: submission?.additionalGuests?.[0]?.name ?? "N/A",

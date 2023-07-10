@@ -2,7 +2,6 @@ export type TravelInfo = "international" | "domestic";
 
 export interface IUserInvite {
   id: string;
-  email: string;
   name: string;
   qrCode: string;
   travel: TravelInfo;

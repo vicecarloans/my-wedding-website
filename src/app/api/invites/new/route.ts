@@ -28,7 +28,6 @@ export async function POST(request: Request) {
 
     const userInvite: IUserInvite = {
       id: inviteId,
-      email: newInvite.email,
       name: newInvite.name,
       qrCode: `${environment.websiteUrl}/rsvp?code=${inviteId}`,
       travel: newInvite.travel,

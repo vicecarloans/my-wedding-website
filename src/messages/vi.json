@@ -55,7 +55,7 @@
     },
     "pinForm": {
         "title": "Chào bạn 👋, cảm ơn bạn đã bỏ chút thời gian ra để đăng ký",
-        "description": "Vui lòng nhập mã mời để tiếp tục. Đây là 6 chữ số được gửi đến bạn qua email chung với thư mời",
+        "description": "Vui lòng nhập mã mời để tiếp tục. Đây là 6 chữ số được gửi đến bạn qua thư mời",
         "error": "Mã không hợp lệ. Vui lòng thử lại hoặc nhắn qua cho bọn mình",
         "rsvpDoneTitle": "Có vẻ như bạn đã đăng ký rồi",
         "rsvpEditButton": "Tôi muốn sửa thông tin trên đơn đăng ký"
