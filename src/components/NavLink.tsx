@@ -16,7 +16,7 @@ const NavLink: FC<PropsWithChildren<NavLinkProps>> = ({
   onClick,
 }) => (
   <Link href={href} onClick={onClick}>
-    <Text>{text}</Text>
+    <Text fontSize="xl">{text}</Text>
   </Link>
 );
 

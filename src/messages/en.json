@@ -7,8 +7,45 @@
             "invite": {
                 "stepName": "Invite",
                 "stepDescription": "Enter your invite code"
+            },
+            "guestInformation": {
+                "stepName": "Guest Information",
+                "stepDescription": "Let us know who's coming"
+            },
+            "travel": {
+                "stepName": "Travel Information",
+                "stepDescription": "Let us know your travel plans"
+            },
+            "accomodation": {
+                "stepName": "Accomodation",
+                "stepDescription": "Let us know your preference of accomodation"
+            },
+            "miscellaneous": {
+                "stepName": "Miscellaneous",
+                "stepDescription": "We would love to hear from you"
+            },
+            "review": {
+                "stepName": "Review",
+                "stepDescription": "See if you miss anything"
+            },
+            "done": {
+                "stepName": "Done",
+                "stepDescription": "Thank you for your RSVP"
             }
         }
+    },
+    "backBtn": "Back",
+    "nextBtn": "Next",
+    "guestInfoForm": {
+        "title": "Hey {name} 👋, let's start with basic information",
+        "description": "We promise this will be quick and easy 😉",
+        "isGoingLabel": "Are you able to join us in Hue - Vietnam?",
+        "isGoingYesAnswer": "Yes 💯",
+        "isGoingNoAnswer": "No...Sorry 😢",
+        "plusOneLabel": "Nice! Are you going with a plus one? (Ignore if you are going by yourself)",
+        "plusOneAdd": "Add Guest",
+        "plusOneName": "Your ➕ 1 Name",
+        "plusOneRemove": "Remove"
     },
     "notFound": {
         "description": "Ooops! The page you are looking for does not exist."
@@ -16,25 +53,50 @@
     "locale": {
         "title": "Huy and Tien Wedding"
     },
+    "pinForm": {
+        "title": "Hey 👋, thanks for taking the time to rsvp",
+        "description": "Let's get started with your invitation code. It contains 6 alphanumberic (text + number) values and you can find this in the invitation email",
+        "error": "Code is invalid. Please try again or reach out to us",
+        "rsvpDoneTitle": "It looks like you have already RSVP-ed",
+        "rsvpEditButton": "I want to edit my RSVP information"
+    },
     "travelForm": {
-        "international": {},
+        "title": "Awesome 😊, we are so glad that you can make it",
+        "description": "Can you let us know about your travel plan to Hue (Vietnam)?",
+        "international": {
+            "airportPickupLabel": "Do you need pickup at the airport?",
+            "airportPickupYesAnswer": "Yes",
+            "airportPickupNoAnswer": " No I will not need you to pick us up (Are you sure? 🤔)",
+            "pickupFollowupLabel": "Great! Let us ask you a few things before we can arrange your pickup 🚕",
+            "pickupFlightNumberLabel": "What is your flight number?",
+            "pickupFlightArrivalLabel": "What is your exact arrival date time?",
+            "timezonePlaceholder": "Select timezone shown in your ticket",
+            "vietnameseTimezoneAnswer": "Vietnamese Timezone",
+            "easternTimezoneAnswer": "Eastern Timezone (PDT/PST)",
+            "arrivalDateTimePlaceholder": "Select datetime shown in your ticket",
+            "arrivalDateTimeConfirmation": "We will see you: "
+        },
         "domestic": {
-            "disclaimer": "Vé để bay ra Huế thì bạn chịu khó đặt giúp mình rồi mình sẽ chuyênr khoản lại cho 😅",
-            "reimbursementDisclaimer": "Bạn cho mình xin một số thông tin để mình chuyển khoản",
-            "reimburseAccountNumber": "Số tài khoản",
-            "reimburseAccountHolderName": "Tên tài khoản",
-            "reimburseBankName": "Tên ngân hàng",
-            "reimburseAmount": "Số tiền (tối đa 2,000,000 VND)"
+            "disclaimer": "Since it's domestic flight, we'd reimburse your ticket instead of booking on your behalf (due to legals etc) 😅",
+            "reimbursementDisclaimer": "Please let us know your bank account information so that we can reimburse you",
+            "reimburseAccountNumber": "Account Number",
+            "reimburseAccountHolderName": "Account Holder Name",
+            "reimburseBankName": "Bank Name",
+            "reimburseAmount": "Flight Ticket Amount (maximum 2,000,000 VND)"
         }
     },
     "accomodationForm": {
+        "title": "Just a few more to go 🤗",
+        "description": "As you might have known, we intend to cover your hotel cost. Let us know how long you would intend to stay",
         "transportLabel": "Do you need transportation from the hotel to wedding venue?",
+        "transportYesAnswer": "Yes",
+        "transportNoAnswer": " No I have drivers license and I can ride motorbike (Are you sure? 🤔)",
         "stayFromLabel": "Your check-in date (Vietnamese time)",
         "stayFromPlaceholder": "Select a date you want to check into the hotel",
         "stayToLabel": "Your check-out date (Vietnamese time)",
         "stayToPlaceholder": "Select a date you want to check out of the hotel",
         "verdictGood": "Hooray! We can cover all of your stay! 🎉",
-        "verdictOverstay": "We're sorry, but we can only cover your stay for the maximum of 5 days from {stayFrom} to {proposedStayTo}. You'd have to extend your stay at the hotel by yourself. 😢",
+        "verdictOverstay": "We're sorry, but we can only cover your stay for the maximum of 3 days from {stayFrom} to {proposedStayTo}. You'd have to extend your stay at the hotel by yourself. 😢",
         "needTransportLabel": "Do you need transportation from the hotel to the wedding venue?"
     },
     "miscForm": {
@@ -48,6 +110,28 @@
     },
     "summaryForm": {
         "title": "Here is a summary of your RSVP",
-        "guestInformationSectionTitle": "Guests Information"
+        "going": {
+            "title": "You have confirmed that you are going to Hue",
+            "plusOneLabel": "Your plus one name",
+            "pickUpAtAirportLabel": "Pick up at airport",
+            "flightNumberLabel": "Flight number",
+            "arrivalDateLabel": "Arrival date",
+            "reimburseAccountNumberLabel": "Reimburse Account Number",
+            "reimburseAccountHolderNameLabel": "Reimburse Account Holder Name",
+            "reimburseBankNameLabel": "Reimburse Bank Name",
+            "reimburseAmountLabel": "Reimburse Amount",
+            "needsTransportLabel": "Needs transport to wedding venue",
+            "stayFromLabel": "Stay from",
+            "stayToLabel": "Stay to",
+            "proposedStay": "We will book your stay until",
+            "wishesLabel": "Wishes / Advices for us"
+        },
+        "notGoing": {
+            "title": "You have confirmed that you are not going to Hue"
+        }
+    },
+    "doneForm": {
+        "title": "Thank you for your RSVP!",
+        "editButton": "Edit RSVP"
     }
 }

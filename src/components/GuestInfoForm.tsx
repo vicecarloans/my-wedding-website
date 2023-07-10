@@ -17,19 +17,25 @@ import {
   HStack,
 } from "@chakra-ui/react";
 import { Field, FieldProps, useFormik } from "formik";
+import { useTranslations } from "next-intl";
 import { Dispatch, FC, SetStateAction, useMemo } from "react";
 
 export interface IGuestInfoFormProps {
   currentUserInvite?: IUserInvite;
   formik: ReturnType<typeof useFormik<Partial<FormProps>>>;
   setActiveStep: Dispatch<SetStateAction<number>>;
+  currentStep: number;
+  miscStep: number;
 }
 
 const GuestInfoForm: FC<IGuestInfoFormProps> = ({
   currentUserInvite,
   formik,
   setActiveStep,
+  currentStep,
+  miscStep,
 }) => {
+  const t = useTranslations();
   const enableNextStep = useMemo(() => {
     if (formik.values.isGoing === "No") {
       return true;
@@ -47,10 +53,9 @@ const GuestInfoForm: FC<IGuestInfoFormProps> = ({
   return (
     <VStack gap={10} maxW="4xl" minW="full">
       <Heading as="h3">
-        Hey {currentUserInvite?.name} 👋, let&apos;s start with basic
-        information
+        {t("guestInfoForm.title", { name: currentUserInvite?.name })}
       </Heading>
-      <Text fontSize="2xl">We promise this will be quick and easy 😉</Text>
+      <Text fontSize="2xl">{t("guestInfoForm.description")}</Text>
       <FormControl>
         <VStack gap={10}>
           <Field name="isGoing" validate={isNotEmpty}>
@@ -59,15 +64,19 @@ const GuestInfoForm: FC<IGuestInfoFormProps> = ({
                 isInvalid={!!form.errors.isGoing && !!form.touched.isGoing}
               >
                 <FormLabel htmlFor="isGoing">
-                  Are you able to join us in Vietnam?
+                  {t("guestInfoForm.isGoingLabel")}
                 </FormLabel>
                 <RadioGroup
                   onChange={(e) => formik.setFieldValue("isGoing", e)}
                   value={form.values.isGoing}
                 >
                   <HStack gap={10}>
-                    <Radio value={"Yes"}>Yes 💯</Radio>
-                    <Radio value={"No"}>No...Sorry 😢</Radio>
+                    <Radio value={"Yes"}>
+                      {t("guestInfoForm.isGoingYesAnswer")}
+                    </Radio>
+                    <Radio value={"No"}>
+                      {t("guestInfoForm.isGoingNoAnswer")}
+                    </Radio>
                   </HStack>
                 </RadioGroup>
               </FormControl>
@@ -76,10 +85,7 @@ const GuestInfoForm: FC<IGuestInfoFormProps> = ({
           {formik.values.isGoing === "Yes" && (
             <FormControl>
               <VStack align="flex-start" gap={6}>
-                <FormLabel>
-                  Nice! Are you going with a plus one? (Ignore if you are going
-                  by yourself)
-                </FormLabel>
+                <FormLabel>{t("guestInfoForm.plusOneLabel")}</FormLabel>
                 <Button
                   isDisabled={(formik.values.additionalGuests?.length ?? 0) > 0}
                   leftIcon={<AddIcon />}
@@ -87,7 +93,7 @@ const GuestInfoForm: FC<IGuestInfoFormProps> = ({
                     formik.setFieldValue("additionalGuests", [{ name: "" }]);
                   }}
                 >
-                  Add Guest
+                  {t("guestInfoForm.plusOneAdd")}
                 </Button>
                 {formik.values.additionalGuests?.map((guest, index) => (
                   <HStack width="full" align="flex-end" key={index}>
@@ -98,7 +104,7 @@ const GuestInfoForm: FC<IGuestInfoFormProps> = ({
                         )
                       }
                     >
-                      <FormLabel>Your ➕ 1 Name</FormLabel>
+                      <FormLabel>{t("guestInfoForm.plusOneName")}</FormLabel>
                       <Input
                         type="text"
                         value={guest.name}
@@ -118,7 +124,7 @@ const GuestInfoForm: FC<IGuestInfoFormProps> = ({
                         formik.setFieldValue("additionalGuests", []);
                       }}
                     >
-                      Remove
+                      {t("guestInfoForm.plusOneRemove")}
                     </Button>
                   </HStack>
                 ))}
@@ -129,14 +135,14 @@ const GuestInfoForm: FC<IGuestInfoFormProps> = ({
             <Button
               width="50%"
               onClick={() => {
-                setActiveStep(0);
+                setActiveStep(currentStep - 1);
               }}
               border="2px"
               borderColor="red.500"
               colorScheme="red"
               color="gray.900"
             >
-              Back
+              {t("backBtn")}
             </Button>
 
             <Button
@@ -144,9 +150,9 @@ const GuestInfoForm: FC<IGuestInfoFormProps> = ({
               isDisabled={!enableNextStep}
               onClick={() => {
                 if (formik.values.isGoing === "Yes") {
-                  setActiveStep(2);
+                  setActiveStep(currentStep + 1);
                 } else {
-                  setActiveStep(4);
+                  setActiveStep(miscStep);
                 }
               }}
               border="2px"
@@ -154,7 +160,7 @@ const GuestInfoForm: FC<IGuestInfoFormProps> = ({
               colorScheme="red"
               color="gray.900"
             >
-              Next
+              {t("nextBtn")}
             </Button>
           </HStack>
         </VStack>

@@ -16,9 +16,16 @@ import { Dispatch, FC, SetStateAction } from "react";
 export interface IMiscFormProps {
   formik: ReturnType<typeof useFormik<Partial<FormProps>>>;
   setActiveStep: Dispatch<SetStateAction<number>>;
+  currentStep: number;
+  guestInfoStep: number;
 }
 
-const MiscForm: FC<IMiscFormProps> = ({ formik, setActiveStep }) => {
+const MiscForm: FC<IMiscFormProps> = ({
+  formik,
+  setActiveStep,
+  currentStep,
+  guestInfoStep,
+}) => {
   const t = useTranslations("miscForm");
   const length = formik.values.wishes?.length ?? 0;
   return (
@@ -48,9 +55,9 @@ const MiscForm: FC<IMiscFormProps> = ({ formik, setActiveStep }) => {
           width="50%"
           onClick={() => {
             if (formik.values.isGoing === "No") {
-              setActiveStep(1);
+              setActiveStep(guestInfoStep);
             } else {
-              setActiveStep(3);
+              setActiveStep(currentStep - 1);
             }
           }}
           border="2px"
@@ -64,7 +71,7 @@ const MiscForm: FC<IMiscFormProps> = ({ formik, setActiveStep }) => {
         <Button
           width="50%"
           onClick={() => {
-            setActiveStep(5);
+            setActiveStep(currentStep + 1);
           }}
           border="2px"
           borderColor="red.500"

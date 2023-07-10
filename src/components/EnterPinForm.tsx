@@ -11,6 +11,7 @@ import {
   FormErrorMessage,
   Button,
 } from "@chakra-ui/react";
+import { useTranslations } from "next-intl";
 import { Dispatch, FC, SetStateAction } from "react";
 
 export interface IEnterPinFormProps {
@@ -19,6 +20,7 @@ export interface IEnterPinFormProps {
   handleChange: () => void;
   showEditPinForm: boolean;
   setActiveStep: Dispatch<SetStateAction<number>>;
+  currentStep: number;
 }
 
 const EnterPinForm: FC<IEnterPinFormProps> = ({
@@ -27,15 +29,13 @@ const EnterPinForm: FC<IEnterPinFormProps> = ({
   handleChange,
   setActiveStep,
   showEditPinForm,
+  currentStep,
 }) => {
+  const t = useTranslations("pinForm");
   return (
     <VStack gap={10} maxW="4xl" minW="full">
-      <Heading as="h3">Hey 👋, thanks for taking the time to rsvp</Heading>
-      <Text fontSize="2xl">
-        Let&apos;s get started with your invitation code. It contains 6
-        alphanumberic (text + number) values and you can find this in the invite
-        letter
-      </Text>
+      <Heading as="h3">{t("title")}</Heading>
+      <Text fontSize="2xl">{t("description")}</Text>
       <FormControl isInvalid={isCodeInvalid}>
         <VStack>
           <HStack spacing={2}>
@@ -52,25 +52,21 @@ const EnterPinForm: FC<IEnterPinFormProps> = ({
               <PinInputField borderColor="blue.300" />
             </PinInput>
           </HStack>
-          {isCodeInvalid && (
-            <FormErrorMessage>
-              Code is invalid. Please try again or reach out to us
-            </FormErrorMessage>
-          )}
+          {isCodeInvalid && <FormErrorMessage>{t("error")}</FormErrorMessage>}
         </VStack>
       </FormControl>
 
       {showEditPinForm && (
         <VStack>
-          <Text fontSize="xl">It looks like you have already RSVP-ed</Text>
+          <Text fontSize="xl">{t("rsvpDoneTitle")}</Text>
           <Button
             border="2px"
             borderColor="red.500"
             colorScheme="red"
             color="gray.900"
-            onClick={() => setActiveStep(1)}
+            onClick={() => setActiveStep(currentStep + 1)}
           >
-            I want to edit my RSVP information
+            {t("rsvpEditButton")}
           </Button>
         </VStack>
       )}

@@ -24,7 +24,6 @@ import {
   InputLeftAddon,
   InputGroup,
 } from "@chakra-ui/react";
-import { format, toDate } from "date-fns";
 import { useFormik } from "formik";
 import { useTranslations } from "next-intl";
 import { Dispatch, FC, SetStateAction, useState } from "react";
@@ -34,6 +33,7 @@ export interface ITravelFormProps {
   formik: ReturnType<typeof useFormik<Partial<FormProps>>>;
   currentUserSubmission: IUserInviteSubmission | undefined;
   setActiveStep: Dispatch<SetStateAction<number>>;
+  currentStep: number;
 }
 
 const TravelForm: FC<ITravelFormProps> = ({
@@ -41,9 +41,10 @@ const TravelForm: FC<ITravelFormProps> = ({
   formik,
   currentUserSubmission,
   setActiveStep,
+  currentStep,
 }) => {
   const t = useTranslations("travelForm");
-
+  const tBasic = useTranslations();
   const [ogTime, setOGTime] = useState<string | undefined>(
     currentUserSubmission?.flight.arrivalDateTime
   );
@@ -141,28 +142,28 @@ const TravelForm: FC<ITravelFormProps> = ({
           <Button
             width="50%"
             onClick={() => {
-              setActiveStep(1);
+              setActiveStep(currentStep - 1);
             }}
             border="2px"
             borderColor="red.500"
             colorScheme="red"
             color="gray.900"
           >
-            Back
+            {tBasic("backBtn")}
           </Button>
 
           <Button
             width="50%"
             isDisabled={!enableNextStep}
             onClick={() => {
-              setActiveStep(3);
+              setActiveStep(currentStep + 1);
             }}
             border="2px"
             borderColor="red.500"
             colorScheme="red"
             color="gray.900"
           >
-            Next
+            {tBasic("nextBtn")}
           </Button>
         </HStack>
       </VStack>
@@ -185,7 +186,7 @@ const TravelForm: FC<ITravelFormProps> = ({
       <VStack gap={10} w="full">
         <FormControl isInvalid={!isNotEmpty(formik.values.flight?.needsPickup)}>
           <FormLabel htmlFor="flight.needsPickup">
-            Do you need pickup at the airport?
+            {t("international.airportPickupLabel")}
           </FormLabel>
           <RadioGroup
             name="flight.needsPickup"
@@ -193,9 +194,11 @@ const TravelForm: FC<ITravelFormProps> = ({
             value={formik.values.flight?.needsPickup}
           >
             <HStack gap={10}>
-              <Radio value={"Yes"}>Yes</Radio>
+              <Radio value={"Yes"}>
+                {t("international.airportPickupYesAnswer")}
+              </Radio>
               <Radio value={"No"}>
-                No I will not need you to pick us up (Are you sure? 🤔)
+                {t("international.airportPickupNoAnswer")}
               </Radio>
             </HStack>
           </RadioGroup>
@@ -203,15 +206,12 @@ const TravelForm: FC<ITravelFormProps> = ({
 
         {formik.values.flight?.needsPickup === "Yes" && (
           <VStack gap={5} w="full">
-            <Text fontSize="xl">
-              Great! Let us ask you a few things before we can arrange your
-              pickup 🚕
-            </Text>
+            <Text fontSize="xl">{t("international.pickupFollowupLabel")}</Text>
             <FormControl
               isInvalid={!isNotEmpty(formik.values.flight?.flightNumber)}
             >
               <FormLabel htmlFor="flight.flightNumber">
-                What is your flight number?
+                {t("international.pickupFlightNumberLabel")}
               </FormLabel>
               <Input
                 onChange={(e) =>
@@ -229,7 +229,9 @@ const TravelForm: FC<ITravelFormProps> = ({
                 )
               }
             >
-              <FormLabel>What is your exact arrival date time?</FormLabel>
+              <FormLabel>
+                {t("international.pickupFlightArrivalLabel")}
+              </FormLabel>
               <VStack gap={5}>
                 <Select
                   value={formik.values.flight?.arrivalDateTimeTZ}
@@ -248,16 +250,18 @@ const TravelForm: FC<ITravelFormProps> = ({
                       );
                     }
                   }}
-                  placeholder="Select timezone shown in your ticket"
+                  placeholder={t("international.timezonePlaceholder")}
                 >
-                  <option value="Asia/Ho_Chi_Minh">Vietnamese Timezone</option>
+                  <option value="Asia/Ho_Chi_Minh">
+                    {t("international.vietnameseTimezoneAnswer")}
+                  </option>
                   <option value="Canada/Eastern">
-                    Eastern Timezone (PDT/PST)
+                    {t("international.easternTimezoneAnswer")}
                   </option>
                 </Select>
                 {formik.values.flight?.arrivalDateTimeTZ && (
                   <Input
-                    placeholder="Select datetime shown in your ticket"
+                    placeholder={t("international.arrivalDateTimePlaceholder")}
                     size="md"
                     type="datetime-local"
                     value={
@@ -277,7 +281,6 @@ const TravelForm: FC<ITravelFormProps> = ({
                     }
                     onChange={(e) => {
                       setOGTime(e.target.value);
-                      console.log(e.target.value);
                       formik.setFieldValue(
                         "flight.arrivalDateTime",
                         convertToTimezone(
@@ -291,7 +294,7 @@ const TravelForm: FC<ITravelFormProps> = ({
                 )}
                 {formik.values.flight?.arrivalDateTime && (
                   <FormHelperText fontSize={22}>
-                    We will see you:{" "}
+                    {t("international.arrivalDateTimeConfirmation")}
                     <Highlight
                       query="spotlight"
                       styles={{ px: "1", py: "1", bg: "orange.100" }}
@@ -313,20 +316,20 @@ const TravelForm: FC<ITravelFormProps> = ({
           <Button
             width="50%"
             onClick={() => {
-              setActiveStep(1);
+              setActiveStep(currentStep - 1);
             }}
             border="2px"
             borderColor="red.500"
             colorScheme="red"
             color="gray.900"
           >
-            Back
+            {tBasic("backBtn")}
           </Button>
 
           <Button
             isDisabled={!enableNextStep}
             onClick={() => {
-              setActiveStep(3);
+              setActiveStep(currentStep + 1);
             }}
             width="50%"
             border="2px"
@@ -334,7 +337,7 @@ const TravelForm: FC<ITravelFormProps> = ({
             colorScheme="red"
             color="gray.900"
           >
-            Next
+            {tBasic("nextBtn")}
           </Button>
         </HStack>
       </VStack>
@@ -342,8 +345,8 @@ const TravelForm: FC<ITravelFormProps> = ({
   };
   return (
     <VStack gap={10} maxW="4xl" minW="full">
-      <Heading as="h3">Awesome 😊, we are so glad that you can make it</Heading>
-      <Text fontSize="2xl">Can you let us know about your travel plan?</Text>
+      <Heading as="h3">{t("title")}</Heading>
+      <Text fontSize="2xl">{t("description")}</Text>
       {travelInfo === "international" && renderInternationalTravel()}
       {travelInfo === "domestic" && renderDomesticTravel()}
     </VStack>

@@ -25,7 +25,7 @@ const GALLERY_IMAGES: GalleryImageType[] = [
   // Left
   {
     src: "/gallery/IMG_0630.JPEG",
-    className: "absolute top-[20%] left-[10%] w-60 h-72",
+    className: "absolute top-[calc(20%-9rem)] left-[calc(10%-5rem)] w-80 h-96",
     alt: "Dan Abramov",
     parallaxOffset: 1,
     parallaxSpeed: 0.7,
@@ -41,21 +41,21 @@ const GALLERY_IMAGES: GalleryImageType[] = [
 
   {
     src: "/gallery/IMG_4214.JPEG",
-    className: "absolute bottom-[0%] left-[35%] w-32 h-40",
+    className: "absolute bottom-[0%] left-[calc(35%-10rem)] w-48 h-40",
     alt: "Dan Abramov",
     parallaxOffset: 1,
     parallaxSpeed: 0.8,
   },
   {
     src: "/gallery/IMG_6288.JPEG",
-    className: "absolute top-[25%] left-[40%] w-60 h-72",
+    className: "absolute top-[25%] left-[calc(40%-10rem)] w-60 h-72",
     alt: "Dan Abramov",
     parallaxOffset: 1,
     parallaxSpeed: 0.5,
   },
   {
     src: "/gallery/IMG_2226.JPEG",
-    className: "absolute bottom-[0%] left-[15%] w-72 h-96",
+    className: "absolute bottom-[0%] left-[calc(15%-15rem)] w-72 h-96",
     alt: "Dan Abramov",
     parallaxOffset: 1,
     parallaxSpeed: 0.5,
@@ -63,14 +63,14 @@ const GALLERY_IMAGES: GalleryImageType[] = [
   // Right
   {
     src: "/gallery/IMG_6548.JPEG",
-    className: "absolute top-[10%] right-[30%] w-72 h-96",
+    className: "absolute top-[10%] right-[calc(30%-10rem)] w-72 h-96",
     alt: "Dan Abramov",
     parallaxOffset: 1,
     parallaxSpeed: 0.6,
   },
   {
     src: "/gallery/IMG_3636.JPEG",
-    className: "absolute bottom-[10%] right-[5%] w-40 h-48",
+    className: "absolute bottom-[10%] right-[calc(5%-7rem)] w-64 h-72",
     alt: "Dan Abramov",
     parallaxOffset: 1,
     parallaxSpeed: 0.7,
@@ -84,7 +84,7 @@ const GALLERY_IMAGES: GalleryImageType[] = [
   },
   {
     src: "/gallery/IMG_6552.JPEG",
-    className: "absolute top-[20%] right-[0%] w-72 h-96",
+    className: "absolute top-[20%] right-[calc(10%-15rem)] w-72 h-96",
     alt: "Dan Abramov",
     parallaxOffset: 1,
     parallaxSpeed: 0.7,

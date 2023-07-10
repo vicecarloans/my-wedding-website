@@ -53,12 +53,15 @@ import MiscForm from "@/components/MiscForm";
 import SummaryForm from "@/components/SummaryForm";
 import { CheckCircleIcon, InfoOutlineIcon } from "@chakra-ui/icons";
 import { useSearchParams } from "next/navigation";
+import { useRouter } from "next-intl/client";
+import { useTranslations } from "next-intl";
 
 export type FormProps = Omit<IUserInviteSubmission, "inviteId">;
 
 export default function RSVP() {
   const searchParams = useSearchParams();
-
+  const t = useTranslations("rsvp");
+  const tDone = useTranslations("doneForm");
   const code = searchParams.get("code");
 
   const [currentUserInvite, setCurrentUserInvite] = useLocalStorage<
@@ -85,41 +88,58 @@ export default function RSVP() {
     () =>
       currentUserInvite?.eligibleForReimburse
         ? [
-            { title: "Invite", description: "Enter your invite code" },
             {
-              title: "Guests Information",
-              description: "Let us know who's coming",
+              title: t("stepper.invite.stepName"),
+              description: t("stepper.invite.stepDescription"),
             },
             {
-              title: "Travel Information",
-              description: "Let us know your travel plans",
+              title: t("stepper.guestInformation.stepName"),
+              description: t("stepper.guestInformation.stepDescription"),
             },
             {
-              title: "Accomodation",
-              description: "Let us know your preference of accomodation",
+              title: t("stepper.travel.stepName"),
+              description: t("stepper.travel.stepDescription"),
             },
             {
-              title: "Miscellaneous",
-              description: "We would love to hear from you",
+              title: t("stepper.accomodation.stepName"),
+              description: t("stepper.accomodation.stepDescription"),
             },
-            { title: "Review", description: "See if you miss anything" },
-            { title: "Done", description: "You're all set!" },
+            {
+              title: t("stepper.miscellaneous.stepName"),
+              description: t("stepper.miscellaneous.stepDescription"),
+            },
+            {
+              title: t("stepper.review.stepName"),
+              description: t("stepper.review.stepDescription"),
+            },
+            {
+              title: t("stepper.done.stepName"),
+              description: t("stepper.done.stepDescription"),
+            },
           ]
         : [
-            { title: "Invite", description: "Enter your invite code" },
             {
-              title: "Guests Information",
-              description: "Let us know who's coming",
+              title: t("stepper.invite.stepName"),
+              description: t("stepper.invite.stepDescription"),
             },
-
             {
-              title: "Miscellaneous",
-              description: "We would love to hear from you",
+              title: t("stepper.guestInformation.stepName"),
+              description: t("stepper.guestInformation.stepDescription"),
             },
-            { title: "Review", description: "See if you miss anything" },
-            { title: "Done", description: "You're all set!" },
+            {
+              title: t("stepper.miscellaneous.stepName"),
+              description: t("stepper.miscellaneous.stepDescription"),
+            },
+            {
+              title: t("stepper.review.stepName"),
+              description: t("stepper.review.stepDescription"),
+            },
+            {
+              title: t("stepper.done.stepName"),
+              description: t("stepper.done.stepDescription"),
+            },
           ],
-    [currentUserInvite?.eligibleForReimburse]
+    [currentUserInvite?.eligibleForReimburse, t]
   );
 
   const { activeStep, setActiveStep } = useSteps({
@@ -184,7 +204,7 @@ export default function RSVP() {
           ...values,
         });
 
-        setActiveStep(6);
+        setActiveStep(STEPS.length - 1);
         // Restart the form
         mutate();
       } catch (err) {
@@ -210,6 +230,7 @@ export default function RSVP() {
           }}
           showEditPinForm={showEditPinForm}
           setActiveStep={setActiveStep}
+          currentStep={0}
         />
       );
     }
@@ -220,35 +241,66 @@ export default function RSVP() {
           currentUserInvite={currentUserInvite}
           formik={formik}
           setActiveStep={setActiveStep}
+          currentStep={1}
+          miscStep={currentUserInvite?.eligibleForReimburse ? 4 : 2}
         />
       );
     }
 
     if (activeStep === 2) {
-      return (
+      return currentUserInvite?.eligibleForReimburse ? (
         <TravelForm
           currentUserSubmission={currentUserSubmission}
           travelInfo={currentUserInvite?.travel}
+          formik={formik}
+          setActiveStep={setActiveStep}
+          currentStep={2}
+        />
+      ) : (
+        <MiscForm
+          formik={formik}
+          setActiveStep={setActiveStep}
+          currentStep={2}
+          guestInfoStep={1}
+        />
+      );
+    }
+
+    if (activeStep === 3) {
+      return currentUserInvite?.eligibleForReimburse ? (
+        <AccomodationForm
+          formik={formik}
+          setActiveStep={setActiveStep}
+          currentStep={3}
+        />
+      ) : (
+        <SummaryForm
+          formik={formik}
+          setActiveStep={setActiveStep}
+          travelInfo={currentUserInvite?.travel}
+          currentStep={3}
+        />
+      );
+    }
+
+    if (activeStep === 4 && currentUserInvite?.eligibleForReimburse) {
+      return (
+        <MiscForm
+          currentStep={4}
+          guestInfoStep={1}
           formik={formik}
           setActiveStep={setActiveStep}
         />
       );
     }
 
-    if (activeStep === 3) {
-      return <AccomodationForm formik={formik} setActiveStep={setActiveStep} />;
-    }
-
-    if (activeStep === 4) {
-      return <MiscForm formik={formik} setActiveStep={setActiveStep} />;
-    }
-
-    if (activeStep === 5) {
+    if (activeStep === 5 && currentUserInvite?.eligibleForReimburse) {
       return (
         <SummaryForm
           formik={formik}
           setActiveStep={setActiveStep}
           travelInfo={currentUserInvite?.travel}
+          currentStep={5}
         />
       );
     }
@@ -259,7 +311,7 @@ export default function RSVP() {
         <Center minH="2xs">
           <Heading size="xl">
             <CheckCircleIcon color="green.400" mr="6" />
-            Thank you for your RSVP!
+            {tDone("title")}
           </Heading>
         </Center>
         <Button
@@ -272,7 +324,7 @@ export default function RSVP() {
           colorScheme="red"
           color="gray.900"
         >
-          Edit Submission
+          {tDone("editButton")}
         </Button>
       </VStack>
     );
@@ -284,6 +336,7 @@ export default function RSVP() {
     setActiveStep,
     currentUserSubmission,
     showEditPinForm,
+    tDone,
   ]);
 
   return (

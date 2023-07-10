@@ -18,14 +18,17 @@ export interface ISummaryFormProps {
   formik: ReturnType<typeof useFormik<Partial<FormProps>>>;
   setActiveStep: Dispatch<SetStateAction<number>>;
   travelInfo?: TravelInfo;
+  currentStep: number;
 }
 
 const SummaryForm: FC<ISummaryFormProps> = ({
   formik,
   setActiveStep,
   travelInfo,
+  currentStep,
 }) => {
   const t = useTranslations("summaryForm");
+  const tRoot = useTranslations();
 
   const renderGoingSummary = () => {
     return (
@@ -35,7 +38,7 @@ const SummaryForm: FC<ISummaryFormProps> = ({
         w={{ base: "xs", lg: "full" }}
       >
         <Text fontSize="xl" as="b">
-          You have confirmed that you are going
+          {t("going.title")}
         </Text>
 
         {(formik.values.additionalGuests?.length ?? 0) > 0 && (
@@ -45,7 +48,7 @@ const SummaryForm: FC<ISummaryFormProps> = ({
             w="full"
           >
             <Text fontSize="xl" as="b">
-              Your plus one name{" "}
+              {t("going.plusOneLabel")}
             </Text>
             <Text fontSize="xl">
               {formik.values.additionalGuests?.[0].name}
@@ -60,7 +63,7 @@ const SummaryForm: FC<ISummaryFormProps> = ({
               w="full"
             >
               <Text fontSize="xl" as="b">
-                Pick up at airport{" "}
+                {t("going.pickUpAtAirportLabel")}
               </Text>
               <Text fontSize="xl">{formik.values.flight?.needsPickup}</Text>
             </Stack>
@@ -71,7 +74,7 @@ const SummaryForm: FC<ISummaryFormProps> = ({
                 w="full"
               >
                 <Text fontSize="xl" as="b">
-                  Flight Number{" "}
+                  {t("going.flightNumberLabel")}
                 </Text>
                 <Text fontSize="xl">{formik.values.flight?.flightNumber}</Text>
               </Stack>
@@ -83,7 +86,7 @@ const SummaryForm: FC<ISummaryFormProps> = ({
                 w="full"
               >
                 <Text fontSize="xl" as="b">
-                  Arrive At{" "}
+                  {t("going.arrivalDateLabel")}
                 </Text>
                 <Text fontSize="xl">
                   {convertToTimezone(
@@ -103,7 +106,7 @@ const SummaryForm: FC<ISummaryFormProps> = ({
               w="full"
             >
               <Text fontSize="xl" as="b">
-                Reimburse Account Number{" "}
+                {t("going.reimburseAccountNumberLabel")}
               </Text>
               <Text fontSize="xl">
                 {formik.values.flight?.reimburseAccountNumber}
@@ -115,7 +118,7 @@ const SummaryForm: FC<ISummaryFormProps> = ({
               w="full"
             >
               <Text fontSize="xl" as="b">
-                Reimburse Account Holder Name{" "}
+                {t("going.reimburseAccountHolderNameLabel")}
               </Text>
               <Text fontSize="xl">
                 {formik.values.flight?.reimburseAccountHolderName}
@@ -127,7 +130,7 @@ const SummaryForm: FC<ISummaryFormProps> = ({
               w="full"
             >
               <Text fontSize="xl" as="b">
-                Reimburse Bank Name{" "}
+                {t("going.reimburseBankNameLabel")}
               </Text>
               <Text fontSize="xl">
                 {formik.values.flight?.reimburseBankName}
@@ -139,7 +142,7 @@ const SummaryForm: FC<ISummaryFormProps> = ({
               w="full"
             >
               <Text fontSize="xl" as="b">
-                Reimburse Amount{" "}
+                {t("going.reimburseAmountLabel")}
               </Text>
               <Text fontSize="xl">
                 {formik.values.flight?.reimburseAmount} VNĐ
@@ -154,7 +157,7 @@ const SummaryForm: FC<ISummaryFormProps> = ({
           w="full"
         >
           <Text fontSize="xl" as="b">
-            Need a ride to venue{" "}
+            {t("going.needsTransportLabel")}
           </Text>
           <Text fontSize="xl">{formik.values.hotel?.needsTransport}</Text>
         </Stack>
@@ -164,7 +167,7 @@ const SummaryForm: FC<ISummaryFormProps> = ({
           w="full"
         >
           <Text fontSize="xl" as="b">
-            Stay From{" "}
+            {t("going.stayFromLabel")}
           </Text>
           <Text fontSize="xl">{formik.values.hotel?.stayFrom}</Text>
         </Stack>
@@ -174,7 +177,7 @@ const SummaryForm: FC<ISummaryFormProps> = ({
           w="full"
         >
           <Text fontSize="xl" as="b">
-            Stay To{" "}
+            {t("going.stayToLabel")}
           </Text>
           <Text fontSize="xl">{formik.values.hotel?.stayTo}</Text>
         </Stack>
@@ -185,7 +188,7 @@ const SummaryForm: FC<ISummaryFormProps> = ({
             w="full"
           >
             <Text fontSize="xl" as="b">
-              We will book your stay until{" "}
+              {t("going.proposedStay")}
             </Text>
             <Text fontSize="xl">{formik.values.hotel?.proposedStayTo}</Text>
           </Stack>
@@ -197,7 +200,7 @@ const SummaryForm: FC<ISummaryFormProps> = ({
           w="full"
         >
           <Text fontSize="xl" as="b" minW="xs">
-            Wishes / Advices for us
+            {t("going.wishesLabel")}
           </Text>
           <Text fontSize="xl">{formik.values.wishes ?? ""}</Text>
         </Stack>
@@ -213,7 +216,7 @@ const SummaryForm: FC<ISummaryFormProps> = ({
         w={{ base: "xs", lg: "full" }}
       >
         <Text fontSize="xl" as="b">
-          You have confirmed that you are not going
+          {t("notGoing.title")}
         </Text>
         <Stack
           direction={{ base: "column", lg: "row" }}
@@ -221,7 +224,7 @@ const SummaryForm: FC<ISummaryFormProps> = ({
           w="full"
         >
           <Text fontSize="xl" as="b" minW="xs">
-            Wishes/Advices for us
+            {t("going.wishesLabel")}
           </Text>
           <Text fontSize="xl">{formik.values.wishes ?? ""}</Text>
         </Stack>
@@ -241,14 +244,14 @@ const SummaryForm: FC<ISummaryFormProps> = ({
         <Button
           width="50%"
           onClick={() => {
-            setActiveStep(4);
+            setActiveStep(currentStep - 1);
           }}
           border="2px"
           borderColor="red.500"
           colorScheme="red"
           color="gray.900"
         >
-          Back
+          {tRoot("backBtn")}
         </Button>
 
         <Button
@@ -261,7 +264,7 @@ const SummaryForm: FC<ISummaryFormProps> = ({
           colorScheme="red"
           color="gray.900"
         >
-          Submit
+          {tRoot("nextBtn")}
         </Button>
       </HStack>
     </VStack>

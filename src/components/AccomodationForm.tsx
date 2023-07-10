@@ -32,13 +32,16 @@ import { DEFAULT_DATE_FORMAT, HUMAN_READABLE_DATE_FORMAT } from "@/utils/time";
 export interface IAccomodationFormProps {
   formik: ReturnType<typeof useFormik<Partial<FormProps>>>;
   setActiveStep: Dispatch<SetStateAction<number>>;
+  currentStep: number;
 }
 
 const AccomodationForm: FC<IAccomodationFormProps> = ({
   formik,
   setActiveStep,
+  currentStep,
 }) => {
   const t = useTranslations("accomodationForm");
+  const tRoot = useTranslations();
   const enableNextStep = useMemo(() => {
     const areAllFieldsFilled = [
       formik.values.hotel?.needsTransport,
@@ -71,10 +74,10 @@ const AccomodationForm: FC<IAccomodationFormProps> = ({
     if (daysStay < 0) return null;
 
     return {
-      daysCovered: Math.min(daysStay, 5),
-      overStay: daysStay > 5,
+      daysCovered: Math.min(daysStay, 3),
+      overStay: daysStay > 3,
       proposedCheckoutDate:
-        daysStay > 5
+        daysStay > 3
           ? addDays(parseISO(formik.values.hotel?.stayFrom), 4)
           : parseISO(formik.values.hotel?.stayTo),
     };
@@ -89,14 +92,10 @@ const AccomodationForm: FC<IAccomodationFormProps> = ({
     }
   }, [verdict?.proposedCheckoutDate]);
 
-  console.log(verdict?.proposedCheckoutDate);
   return (
     <VStack gap={10} maxW="4xl" minW="full">
-      <Heading as="h3">Just a few more to go 🤗</Heading>
-      <Text fontSize="2xl">
-        As you might have known, we intend to travel your cost hotel cost. Let
-        us know how long you would intend to stay
-      </Text>
+      <Heading as="h3">{t("title")}</Heading>
+      <Text fontSize="2xl">{t("description")}</Text>
       <FormControl isInvalid={!isNotEmpty(formik.values.hotel?.needsTransport)}>
         <FormLabel htmlFor="hotel.needsTransport">
           {t("transportLabel")}
@@ -107,11 +106,8 @@ const AccomodationForm: FC<IAccomodationFormProps> = ({
           value={formik.values.hotel?.needsTransport}
         >
           <HStack gap={10}>
-            <Radio value={"Yes"}>Yes</Radio>
-            <Radio value={"No"}>
-              No I have drivers license and I can ride motorbike (Are you sure?
-              🤔)
-            </Radio>
+            <Radio value={"Yes"}>{t("transportYesAnswer")}</Radio>
+            <Radio value={"No"}>{t("transportNoAnswer")}</Radio>
           </HStack>
         </RadioGroup>
       </FormControl>
@@ -184,28 +180,28 @@ const AccomodationForm: FC<IAccomodationFormProps> = ({
         <Button
           width="50%"
           onClick={() => {
-            setActiveStep(2);
+            setActiveStep(currentStep - 1);
           }}
           border="2px"
           borderColor="red.500"
           colorScheme="red"
           color="gray.900"
         >
-          Back
+          {tRoot("backBtn")}
         </Button>
 
         <Button
           width="50%"
           isDisabled={!enableNextStep}
           onClick={() => {
-            setActiveStep(4);
+            setActiveStep(currentStep + 1);
           }}
           border="2px"
           borderColor="red.500"
           colorScheme="red"
           color="gray.900"
         >
-          Next
+          {tRoot("nextBtn")}
         </Button>
       </HStack>
     </VStack>

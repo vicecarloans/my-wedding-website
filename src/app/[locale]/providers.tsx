@@ -14,6 +14,7 @@ import {
   DrawerHeader,
   DrawerOverlay,
   Menu,
+  Select,
   VStack,
   useDisclosure,
 } from "@chakra-ui/react";
@@ -30,6 +31,8 @@ import {
 } from "@chakra-ui/react";
 import NavLink from "../../components/NavLink";
 import { HamburgerIcon } from "@chakra-ui/icons";
+import { useRouter } from "next-intl/client";
+import { usePathname } from "next/navigation";
 
 const Links = [
   {
@@ -42,8 +45,16 @@ const Links = [
   },
 ];
 
-export function Providers({ children }: { children: React.ReactNode }) {
+export function Providers({
+  children,
+  currentLocale,
+}: {
+  children: React.ReactNode;
+  currentLocale: string;
+}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const router = useRouter();
+  const path = usePathname();
   return (
     <CacheProvider>
       <ChakraProvider theme={theme}>
@@ -67,7 +78,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
             <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
               <HStack spacing={8} alignItems={"center"}>
                 <Box>
-                  <NavLink href="/" text="Logo" />
+                  <NavLink href="/" text="Huy & Tien" />
                 </Box>
               </HStack>
               <Flex alignItems={"center"}>
@@ -76,6 +87,19 @@ export function Providers({ children }: { children: React.ReactNode }) {
                   spacing={4}
                   display={{ base: "none", md: "flex" }}
                 >
+                  <Select
+                    value={currentLocale}
+                    onChange={(e) => {
+                      router.replace(
+                        `${e.target.value}${path.replace(/\/(en|vi)/g, "")}`
+                      );
+                    }}
+                    border="2px"
+                    borderColor="red.500"
+                  >
+                    <option value="en">English</option>
+                    <option value="vi">Tiếng Việt</option>
+                  </Select>
                   {Links.map(({ href, text }) => (
                     <NavLink key={href} href={href} text={text} />
                   ))}
@@ -93,6 +117,20 @@ export function Providers({ children }: { children: React.ReactNode }) {
                       <DrawerHeader>Menu</DrawerHeader>
                       <DrawerBody>
                         <VStack spacing={4}>
+                          <Select
+                            value={currentLocale}
+                            onChange={(e) => {
+                              router.replace(
+                                `${e.target.value}${path.replace(
+                                  /\/(en|vi)/g,
+                                  ""
+                                )}`
+                              );
+                            }}
+                          >
+                            <option value="en">English</option>
+                            <option value="vi">Tiếng Việt</option>
+                          </Select>
                           {Links.map(({ href, text }) => (
                             <NavLink
                               key={href}

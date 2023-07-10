@@ -5,10 +5,47 @@
     "rsvp": {
         "stepper": {
             "invite": {
-                "stepName": "Invite",
-                "stepDescription": "Enter your invite code"
+                "stepName": "Số Pin",
+                "stepDescription": "Nhập mã mời để tiếp tục"
+            },
+            "guestInformation": {
+                "stepName": "Thông tin khách",
+                "stepDescription": "Cho chúng mình biết ai sẽ đến dự"
+            },
+            "travel": {
+                "stepName": "Thông tin di chuyển",
+                "stepDescription": "Cho chúng mình biết bạn sẽ tính đi lại ra sao"
+            },
+            "accomodation": {
+                "stepName": "Nơi ở",
+                "stepDescription": "Cho chúng mình biết bạn sẽ tính ở ra sao"
+            },
+            "miscellaneous": {
+                "stepName": "Mục Thêm",
+                "stepDescription": "Tụi mình có một vài câu hỏi muốn hỏi bạn"
+            },
+            "review": {
+                "stepName": "Xem lại",
+                "stepDescription": "Để coi bạn có nhập đúng không nhé"
+            },
+            "done": {
+                "stepName": "Xong",
+                "stepDescription": "Cảm ơn bạn đã đăng kí"
             }
         }
+    },
+    "backBtn": "Quay Lại",
+    "nextBtn": "Tiếp Tục",
+    "guestInfoForm": {
+        "title": "Chào {name} 👋, bắt đầu với một số thông tin cơ bản nào",
+        "description": "Tụi mình hứa sẽ không tốn quá nhiều thời gian của bạn đâu 😉",
+        "isGoingLabel": "Bạn có thể đi ra Huế để dự đám cưới tụi mình không (Nếu bạn đã và đang sinh sống ở Huế thì chọn Có)?",
+        "isGoingYesAnswer": "Có 💯",
+        "isGoingNoAnswer": "Không 😢",
+        "plusOneLabel": "Ngon! Bạn có tính đi chung với ai không? (Nếu bạn đi một mình thì chọn Tiếp tục)",
+        "plusOneAdd": "Thêm khách",
+        "plusOneName": "Tên của khách",
+        "plusOneRemove": "Bỏ"
     },
     "notFound": {
         "description": "Ooops! The page you are looking for does not exist."
@@ -16,10 +53,31 @@
     "locale": {
         "title": "Huy and Tien Wedding"
     },
+    "pinForm": {
+        "title": "Chào bạn 👋, cảm ơn bạn đã bỏ chút thời gian ra để đăng ký",
+        "description": "Vui lòng nhập mã mời để tiếp tục. Đây là 6 chữ số được gửi đến bạn qua email chung với thư mời",
+        "error": "Mã không hợp lệ. Vui lòng thử lại hoặc nhắn qua cho bọn mình",
+        "rsvpDoneTitle": "Có vẻ như bạn đã đăng ký rồi",
+        "rsvpEditButton": "Tôi muốn sửa thông tin trên đơn đăng ký"
+    },
     "travelForm": {
-        "international": {},
+        "title": "Tuyệt 😊, tụi mình rất vui khi bạn có thể tham gia",
+        "description": "Bạn cho tụi mình hỏi thêm vài câu về cách bạn đi ra Huế được không?",
+        "international": {
+            "airportPickupLabel": "Bạn có cần tụi mình đón bạn từ sân bay Huế không?",
+            "airportPickupYesAnswer": "Có, mình cần đón",
+            "airportPickupNoAnswer": " Không, mình tự đi đến khách sạn",
+            "pickupFollowupLabel": "Tuyệt! Cho tụi mình hỏi một vài câu trước khi tụi mình đăng kí xe đón 🚕",
+            "pickupFlightNumberLabel": "Số hiệu máy bay bạn là gì?",
+            "pickupFlightArrivalLabel": "Thời gian chính xác bạn đến sân bay?",
+            "timezonePlaceholder": "Chọn múi giờ trên vé máy bay của bạn",
+            "vietnameseTimezoneAnswer": "Múi giờ Việt",
+            "easternTimezoneAnswer": "Múi giờ Canada",
+            "arrivalDateTimePlaceholder": "Chọn thời gian trên vé máy bay của bạn",
+            "arrivalDateTimeConfirmation": "Tụi mình sẽ gặp bạn lúc: "
+        },
         "domestic": {
-            "disclaimer": "Vé để bay ra Huế thì bạn chịu khó đặt giúp mình rồi mình sẽ chuyênr khoản lại cho 😅",
+            "disclaimer": "Vé để bay ra Huế thì bạn chịu khó đặt giúp mình rồi mình sẽ chuyển khoản lại cho 😅",
             "reimbursementDisclaimer": "Bạn cho mình xin một số thông tin để mình chuyển khoản",
             "reimburseAccountNumber": "Số tài khoản",
             "reimburseAccountHolderName": "Tên tài khoản",
@@ -28,26 +86,52 @@
         }
     },
     "accomodationForm": {
-        "transportLabel": "Do you need transportation from the hotel to wedding venue?",
-        "stayFromLabel": "Your check-in date (Vietnamese time)",
-        "stayFromPlaceholder": "Select a date you want to check into the hotel",
-        "stayToLabel": "Your check-out date (Vietnamese time)",
-        "stayToPlaceholder": "Select a date you want to check out of the hotel",
-        "verdictGood": "Hooray! We can cover all of your stay! 🎉",
-        "verdictOverstay": "We're sorry, but we can only cover your stay for the maximum of 5 days from {stayFrom} to {proposedStayTo}. You'd have to extend your stay at the hotel by yourself. 😢",
-        "needTransportLabel": "Do you need transportation from the hotel to the wedding venue?"
+        "title": "Còn một vài câu hỏi nữa thôi 🤗",
+        "description": "Chắc bạn cũng đã biết, tụi mình tính chi trả cho chi phí khách sạn của bạn nên bạn cho mình hỏi thêm bạn tính ở Huế bao lâu",
+        "transportLabel": "Bạn có cần đi nhờ đến chỗ nhà hàng tiệc cưới không?",
+        "transportYesAnswer": "Có",
+        "transportNoAnswer": " Không, mình có bằng lái và mình có thể tự thuê xe (Bạn chắc không? 🤔)",
+        "stayFromLabel": "Ngày thuê phòng",
+        "stayFromPlaceholder": "Chọn ngày bạn muốn bắt đầu thuê khách sạn",
+        "stayToLabel": "Ngày trả phòng",
+        "stayToPlaceholder": "Chọn ngày bạn muốn trả phòng",
+        "verdictGood": "Tuyệt vời! Tụi mình có thể lo hết! 🎉",
+        "verdictOverstay": "Xin lỗi, nhưng mà tụi mình chỉ có thể lo cao nhất là 3 ngày từ {stayFrom} đến {proposedStayTo}. Những ngày sau thì bạn có thể hỏi lễ tân để đặt thêm 😢",
+        "needTransportLabel": "Bạn có cần đi nhờ đến chỗ nhà hàng tiệc cưới không?"
     },
     "miscForm": {
-        "wishesLabel": "Any wishes/advices for us?",
-        "wishesPlaceholder": "We'd love to hear from you! 😊",
-        "wishesFeedback1": "Ouuu thank you so much! 🥰",
-        "wishesFeedback2": "We love that you're actually putting the time to write this 😍",
-        "wishesFeedback3": "Are you writing an essay? 🤪",
-        "wishesFeedback4": "Is that you ChatGPT? 🤖",
-        "wishesFeedback5": "We'll definitely read this after the wedding 💖"
+        "wishesLabel": "Bạn có lời chúc hay lời nhắn gửi nào muốn gửi đến tụi mình không?",
+        "wishesPlaceholder": "Tụi mình rất mong chờ nghe được từ bạn 😊",
+        "wishesFeedback1": "Uiii cảm ơn rất nhiều! 🥰",
+        "wishesFeedback2": "Cảm ơn bạn đã bỏ công sức ra để viết 😍",
+        "wishesFeedback3": "Bạn tính viết bài luận luôn hả? 🤪",
+        "wishesFeedback4": "Bạn dùng ChatGPT phải hông? 🤖",
+        "wishesFeedback5": "Tụi mình chắc chắn sẽ đọc cái này sau đám cưới 💖"
     },
     "summaryForm": {
-        "title": "Here is a summary of your RSVP",
-        "guestInformationSectionTitle": "Guests Information"
+        "title": "Đây là tổng hợp thông tin đăng kí của bạn",
+        "going": {
+            "title": "Bạn đã xác nhận là sẽ đi Huế",
+            "plusOneLabel": "Bạn đi chung với",
+            "pickUpAtAirportLabel": "Bạn cần đón ở sân bay không?",
+            "flightNumberLabel": "Số hiệu máy bay",
+            "arrivalDateLabel": "Ngày tới",
+            "reimburseAccountNumberLabel": "Số tài khoản để chuyển lại",
+            "reimburseAccountHolderNameLabel": "Tên tài khoản để chuyển lại",
+            "reimburseBankNameLabel": "Tên ngân hàng để chuyển lại",
+            "reimburseAmountLabel": "Số tiền cần chuyển lại",
+            "needsTransportLabel": "Bạn cần đi nhờ đến chỗ nhà hàng tiệc cưới không?",
+            "stayFromLabel": "Bạn ở Huế từ",
+            "stayToLabel": "Bạn ở Huế đến",
+            "proposedStay": "Tụi mình sẽ đặt phòng cho bạn đến",
+            "wishesLabel": "Lời nhắn gửi đến tụi mình"
+        },
+        "notGoing": {
+            "title": "Bạn đã xác nhận là không đi Huế được"
+        }
+    },
+    "doneForm": {
+        "title": "Cảm ơn bạn đã đăng ký",
+        "editButton": "Thay đổi đăng ký"
     }
 }
