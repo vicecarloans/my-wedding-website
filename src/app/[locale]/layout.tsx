@@ -30,6 +30,10 @@ export async function generateMetadata({ params: { locale } }: Props) {
 
   return {
     title: t("locale.title"),
+    metadataBase: new URL("https://huytienmarriage.life"),
+    openGraph: {
+      images: "/opengraph-image.png",
+    },
   };
 }
 
