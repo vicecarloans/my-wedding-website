@@ -1,9 +1,11 @@
 import { Button, Center, HStack, Heading, VStack } from "@chakra-ui/react";
 import { animated, useInView } from "@react-spring/web";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next-intl/client";
 import { FC } from "react";
 
 const RSVPSection: FC = () => {
+  const t = useTranslations("home");
   const router = useRouter();
   const [leftAnimRef, leftAnimSprings] = useInView(() => ({
     from: {
@@ -73,7 +75,7 @@ const RSVPSection: FC = () => {
             as="h3"
             className="text-xl uppercase lg:text-5xl mb-8"
           >
-            Join us in Vietnam
+            {t("rsvpTitle")}
           </Heading>
           <Button
             onClick={() => router.push("/rsvp")}
@@ -90,7 +92,7 @@ const RSVPSection: FC = () => {
               bgColor: "red.500",
             }}
           >
-            RSVP Now
+            {t("rsvpButton")}
           </Button>
         </VStack>
       </Center>

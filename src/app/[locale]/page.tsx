@@ -11,6 +11,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next-intl/client";
 
 type GalleryImageType = {
@@ -173,7 +174,7 @@ const GALLERY_IMAGES: GalleryImageType[] = [
 
 export default function IndexPage() {
   const router = useRouter();
-
+  const t = useTranslations("home");
   return (
     <div className="min-h-[100vh]">
       <Parallax pages={4} className="parallax-landing">
@@ -189,7 +190,7 @@ export default function IndexPage() {
                   as="h3"
                   className="text-2xl lg:text-5xl uppercase mb-8"
                 >
-                  Explore our Gallery
+                  {t("galleryTitle")}
                 </Heading>
                 <Button
                   onClick={() => router.push("/gallery")}
@@ -207,7 +208,7 @@ export default function IndexPage() {
                     bgColor: "red.500",
                   }}
                 >
-                  View Gallery
+                  {t("galleryButton")}
                 </Button>
               </VStack>
             </Center>

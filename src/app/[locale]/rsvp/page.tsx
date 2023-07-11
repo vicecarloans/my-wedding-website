@@ -84,63 +84,69 @@ export default function RSVP() {
       (fetcher as Fetcher<IGetInviteResponse, string>)?.(`${url}/${id}`)
   );
 
-  const STEPS = useMemo(
-    () =>
-      currentUserInvite?.eligibleForReimburse
-        ? [
-            {
-              title: t("stepper.invite.stepName"),
-              description: t("stepper.invite.stepDescription"),
-            },
-            {
-              title: t("stepper.guestInformation.stepName"),
-              description: t("stepper.guestInformation.stepDescription"),
-            },
-            {
-              title: t("stepper.travel.stepName"),
-              description: t("stepper.travel.stepDescription"),
-            },
-            {
-              title: t("stepper.accomodation.stepName"),
-              description: t("stepper.accomodation.stepDescription"),
-            },
-            {
-              title: t("stepper.miscellaneous.stepName"),
-              description: t("stepper.miscellaneous.stepDescription"),
-            },
-            {
-              title: t("stepper.review.stepName"),
-              description: t("stepper.review.stepDescription"),
-            },
-            {
-              title: t("stepper.done.stepName"),
-              description: t("stepper.done.stepDescription"),
-            },
-          ]
-        : [
-            {
-              title: t("stepper.invite.stepName"),
-              description: t("stepper.invite.stepDescription"),
-            },
-            {
-              title: t("stepper.guestInformation.stepName"),
-              description: t("stepper.guestInformation.stepDescription"),
-            },
-            {
-              title: t("stepper.miscellaneous.stepName"),
-              description: t("stepper.miscellaneous.stepDescription"),
-            },
-            {
-              title: t("stepper.review.stepName"),
-              description: t("stepper.review.stepDescription"),
-            },
-            {
-              title: t("stepper.done.stepName"),
-              description: t("stepper.done.stepDescription"),
-            },
-          ],
-    [currentUserInvite?.eligibleForReimburse, t]
-  );
+  const STEPS = useMemo(() => {
+    if (!inviteId || error) {
+      return [
+        {
+          title: t("stepper.invite.stepName"),
+          description: t("stepper.invite.stepDescription"),
+        },
+      ];
+    }
+    return currentUserInvite?.eligibleForReimburse
+      ? [
+          {
+            title: t("stepper.invite.stepName"),
+            description: t("stepper.invite.stepDescription"),
+          },
+          {
+            title: t("stepper.guestInformation.stepName"),
+            description: t("stepper.guestInformation.stepDescription"),
+          },
+          {
+            title: t("stepper.travel.stepName"),
+            description: t("stepper.travel.stepDescription"),
+          },
+          {
+            title: t("stepper.accomodation.stepName"),
+            description: t("stepper.accomodation.stepDescription"),
+          },
+          {
+            title: t("stepper.miscellaneous.stepName"),
+            description: t("stepper.miscellaneous.stepDescription"),
+          },
+          {
+            title: t("stepper.review.stepName"),
+            description: t("stepper.review.stepDescription"),
+          },
+          {
+            title: t("stepper.done.stepName"),
+            description: t("stepper.done.stepDescription"),
+          },
+        ]
+      : [
+          {
+            title: t("stepper.invite.stepName"),
+            description: t("stepper.invite.stepDescription"),
+          },
+          {
+            title: t("stepper.guestInformation.stepName"),
+            description: t("stepper.guestInformation.stepDescription"),
+          },
+          {
+            title: t("stepper.miscellaneous.stepName"),
+            description: t("stepper.miscellaneous.stepDescription"),
+          },
+          {
+            title: t("stepper.review.stepName"),
+            description: t("stepper.review.stepDescription"),
+          },
+          {
+            title: t("stepper.done.stepName"),
+            description: t("stepper.done.stepDescription"),
+          },
+        ];
+  }, [t, currentUserInvite, error]);
 
   const { activeStep, setActiveStep } = useSteps({
     index: 0,

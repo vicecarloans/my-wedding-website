@@ -1,6 +1,16 @@
 {
     "home": {
-        "title": "Home"
+        "title": "Home",
+        "brideName": "Tien",
+        "groomName": "Huy",
+        "date": "December 9th 2023",
+        "galleryTitle": "Explore our gallery",
+        "galleryButton": "View Gallery",
+        "rsvpTitle": "Join us in Hue - Vietnam",
+        "rsvpButton": "RSVP Now"
+    },
+    "gallery": {
+        "title": "Sorry we're still working on this page 😅"
     },
     "rsvp": {
         "stepper": {
@@ -55,7 +65,7 @@
     },
     "pinForm": {
         "title": "Hey 👋, thanks for taking the time to rsvp",
-        "description": "Let's get started with your invitation code. It contains 6 alphanumberic (text + number) values and you can find this in the invitation email",
+        "description": "Let's get started with your invitation code. It contains 6 alphanumberic (text + number) values and you can find this in the invitation letter",
         "error": "Code is invalid. Please try again or reach out to us",
         "rsvpDoneTitle": "It looks like you have already RSVP-ed",
         "rsvpEditButton": "I want to edit my RSVP information"

@@ -1,6 +1,16 @@
 {
     "home": {
-        "title": "Home"
+        "title": "Trang Chủ",
+        "brideName": "Tiên",
+        "groomName": "Huy",
+        "date": "Ngày 9 tháng 12 năm 2023",
+        "galleryTitle": "Xem thư viện ảnh",
+        "galleryButton": "Xem thêm",
+        "rsvpTitle": "Đăng ký tham dự với tụi mình",
+        "rsvpButton": "Đăng ký ngay"
+    },
+    "gallery": {
+        "title": "Xin lỗi tụi mình vẫn chưa có thời gian để hoàn thiện trang này 😅"
     },
     "rsvp": {
         "stepper": {
@@ -39,7 +49,7 @@
     "guestInfoForm": {
         "title": "Chào {name} 👋, bắt đầu với một số thông tin cơ bản nào",
         "description": "Tụi mình hứa sẽ không tốn quá nhiều thời gian của bạn đâu 😉",
-        "isGoingLabel": "Bạn có thể đi ra Huế để dự đám cưới tụi mình không (Nếu bạn đã và đang sinh sống ở Huế thì chọn Có)?",
+        "isGoingLabel": "Bạn có thể đi ra Huế để dự đám cưới tụi mình không (Nếu bạn đang sinh sống ở Huế thì chọn Có nếu bạn tham dự được và Không nếu bạn không thể tham dự được)?",
         "isGoingYesAnswer": "Có 💯",
         "isGoingNoAnswer": "Không 😢",
         "plusOneLabel": "Ngon! Bạn có tính đi chung với ai không? (Nếu bạn đi một mình thì chọn Tiếp tục)",

@@ -13,6 +13,7 @@ import {
   Wrap,
   WrapItem,
 } from "@chakra-ui/react";
+import { useTranslations } from "next-intl";
 import { useRef } from "react";
 import useSWR from "swr";
 
@@ -24,6 +25,7 @@ export default function GalleryPage() {
     defaultIsOpen: true,
   });
   const finalRef = useRef(null);
+  const t = useTranslations("gallery");
 
   return (
     <Container maxW="container.xl" className="min-h-[100vh]" pt="14">
@@ -71,7 +73,7 @@ export default function GalleryPage() {
         ))}
       </Wrap> */}
       <Center px="1rem" className="top-16 relative">
-        This is under construction 🚧 Please come back later for contents
+        {t("title")}
       </Center>
     </Container>
   );

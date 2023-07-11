@@ -8,8 +8,10 @@ import {
   useSpringRef,
   easings,
 } from "@react-spring/web";
+import { useTranslations } from "next-intl";
 
 const Hero: FC = () => {
+  const t = useTranslations("home");
   const rotateAnimationRef = useSpringRef();
   const rotateAnimationProps = useSpring({
     ref: rotateAnimationRef,
@@ -612,7 +614,7 @@ const Hero: FC = () => {
         <animated.div className="h-10 overflow-hidden">
           <animated.div style={dateAnimProps} className="block">
             <Heading fontFamily="'Handlee', sans-serif" as="h5" fontSize="30">
-              December 9th 2023
+              {t("date")}
             </Heading>
           </animated.div>
         </animated.div>
@@ -625,7 +627,7 @@ const Hero: FC = () => {
               fontWeight="medium"
               fontSize="100"
             >
-              Tien
+              {t("brideName")}
             </Heading>
           </animated.div>
         </animated.div>
@@ -638,7 +640,7 @@ const Hero: FC = () => {
               fontWeight="medium"
               fontSize="100"
             >
-              Huy
+              {t("groomName")}
             </Heading>
           </animated.div>
         </animated.div>
