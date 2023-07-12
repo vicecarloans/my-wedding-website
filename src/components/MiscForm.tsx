@@ -43,11 +43,9 @@ const MiscForm: FC<IMiscFormProps> = ({
           resize="vertical"
         />
         <FormHelperText fontSize="lg">
-          {length > 0 && length < 50 && t("wishesFeedback1")}
-          {length >= 50 && length < 100 && t("wishesFeedback2")}
-          {length >= 100 && length < 300 && t("wishesFeedback3")}
-          {length >= 300 && length < 500 && t("wishesFeedback4")}
-          {length >= 500 && t("wishesFeedback5")}
+          {length > 0 && length < 300 && t("wishesFeedback1")}
+          {length >= 300 && length < 500 && t("wishesFeedback2")}
+          {length >= 500 && t("wishesFeedback3")}
         </FormHelperText>
       </FormControl>
       <HStack width="full" justify="space-between">

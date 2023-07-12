@@ -32,12 +32,18 @@ const SummaryForm: FC<ISummaryFormProps> = ({
   const t = useTranslations("summaryForm");
   const tRoot = useTranslations();
 
-  const renderReimnbursement = () => {
+  const renderReimbursement = () => {
     if (!eligibleForReimbursement) {
       return null;
     }
     return (
-      <>
+      <VStack
+        justify="flex-start"
+        align="flex-start"
+        divider={<StackDivider />}
+        w="full"
+        spacing={6}
+      >
         {travelInfo === "international" ? (
           <VStack spacing={6} divider={<StackDivider />} w="full">
             <Stack
@@ -176,7 +182,7 @@ const SummaryForm: FC<ISummaryFormProps> = ({
             <Text fontSize="xl">{formik.values.hotel?.proposedStayTo}</Text>
           </Stack>
         )}
-      </>
+      </VStack>
     );
   };
   const renderGoingSummary = () => {
@@ -204,7 +210,7 @@ const SummaryForm: FC<ISummaryFormProps> = ({
             </Text>
           </Stack>
         )}
-        {renderReimnbursement()}
+        {renderReimbursement()}
         <Stack
           direction={{ base: "column", lg: "row" }}
           justify={{ base: "center", lg: "space-between" }}
@@ -213,7 +219,9 @@ const SummaryForm: FC<ISummaryFormProps> = ({
           <Text fontSize="xl" as="b" minW="xs">
             {t("going.wishesLabel")}
           </Text>
-          <Text fontSize="xl">{formik.values.wishes ?? ""}</Text>
+          <Text fontSize="xl" overflowWrap="break-word" maxW="lg">
+            {formik.values.wishes ?? ""}
+          </Text>
         </Stack>
       </VStack>
     );
@@ -237,7 +245,9 @@ const SummaryForm: FC<ISummaryFormProps> = ({
           <Text fontSize="xl" as="b" minW="xs">
             {t("going.wishesLabel")}
           </Text>
-          <Text fontSize="xl">{formik.values.wishes ?? ""}</Text>
+          <Text fontSize="xl" overflowWrap="break-word" maxW="lg">
+            {formik.values.wishes ?? ""}
+          </Text>
         </Stack>
       </VStack>
     );
