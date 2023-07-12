@@ -192,7 +192,7 @@ const SummaryForm: FC<ISummaryFormProps> = ({
         divider={<StackDivider />}
         w={{ base: "xs", lg: "full" }}
       >
-        <Text fontSize="xl" as="b">
+        <Text fontSize="2xl" as="b">
           {t("going.title")}
         </Text>
 
@@ -234,7 +234,7 @@ const SummaryForm: FC<ISummaryFormProps> = ({
         divider={<StackDivider />}
         w={{ base: "xs", lg: "full" }}
       >
-        <Text fontSize="xl" as="b">
+        <Text fontSize="2xl" as="b">
           {t("notGoing.title")}
         </Text>
         <Stack
