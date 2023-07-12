@@ -42,6 +42,8 @@ import {
   Button,
   Icon,
   Stack,
+  Alert,
+  AlertIcon,
 } from "@chakra-ui/react";
 import { useFormik, FormikProvider } from "formik";
 import axios, { AxiosError } from "axios";
@@ -371,6 +373,9 @@ export default function RSVP() {
           </Center>
         </ModalContent>
       </Modal>
+      <Alert fontSize="lg" w="full" status="error" className="top-8 mb-4">
+        {t("expiredMessage")}
+      </Alert>
       <Stack
         direction={{ base: "column", lg: "row" }}
         align="flex-start"

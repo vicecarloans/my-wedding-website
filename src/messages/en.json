@@ -42,7 +42,8 @@
                 "stepName": "Done",
                 "stepDescription": "Thank you for your RSVP"
             }
-        }
+        },
+        "expiredMessage": "RSVP will be closed on September 15th, 2023 at midnight. If you need to make a change in the RSVP after this date, please reach out to us."
     },
     "backBtn": "Back",
     "nextBtn": "Next",

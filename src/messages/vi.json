@@ -42,7 +42,8 @@
                 "stepName": "Xong",
                 "stepDescription": "Cảm ơn bạn đã đăng kí"
             }
-        }
+        },
+        "expiredMessage": "Mã mời sẽ hết hạn vào ngày 15 tháng 9 năm 2023. Nếu bạn cần sửa đổi thông tin sau ngày này, xin vui lòng nhắn qua cho tụi mình"
     },
     "backBtn": "Quay Lại",
     "nextBtn": "Tiếp Tục",
