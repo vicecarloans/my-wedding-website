@@ -19,6 +19,7 @@ export interface ISummaryFormProps {
   setActiveStep: Dispatch<SetStateAction<number>>;
   travelInfo?: TravelInfo;
   currentStep: number;
+  eligibleForReimbursement?: boolean;
 }
 
 const SummaryForm: FC<ISummaryFormProps> = ({
@@ -26,35 +27,17 @@ const SummaryForm: FC<ISummaryFormProps> = ({
   setActiveStep,
   travelInfo,
   currentStep,
+  eligibleForReimbursement,
 }) => {
   const t = useTranslations("summaryForm");
   const tRoot = useTranslations();
 
-  const renderGoingSummary = () => {
+  const renderReimnbursement = () => {
+    if (!eligibleForReimbursement) {
+      return null;
+    }
     return (
-      <VStack
-        spacing={6}
-        divider={<StackDivider />}
-        w={{ base: "xs", lg: "full" }}
-      >
-        <Text fontSize="xl" as="b">
-          {t("going.title")}
-        </Text>
-
-        {(formik.values.additionalGuests?.length ?? 0) > 0 && (
-          <Stack
-            direction={{ base: "column", xl: "row" }}
-            justify={{ base: "center", lg: "space-between" }}
-            w="full"
-          >
-            <Text fontSize="xl" as="b">
-              {t("going.plusOneLabel")}
-            </Text>
-            <Text fontSize="xl">
-              {formik.values.additionalGuests?.[0].name}
-            </Text>
-          </Stack>
-        )}
+      <>
         {travelInfo === "international" ? (
           <VStack spacing={6} divider={<StackDivider />} w="full">
             <Stack
@@ -193,7 +176,35 @@ const SummaryForm: FC<ISummaryFormProps> = ({
             <Text fontSize="xl">{formik.values.hotel?.proposedStayTo}</Text>
           </Stack>
         )}
+      </>
+    );
+  };
+  const renderGoingSummary = () => {
+    return (
+      <VStack
+        spacing={6}
+        divider={<StackDivider />}
+        w={{ base: "xs", lg: "full" }}
+      >
+        <Text fontSize="xl" as="b">
+          {t("going.title")}
+        </Text>
 
+        {(formik.values.additionalGuests?.length ?? 0) > 0 && (
+          <Stack
+            direction={{ base: "column", xl: "row" }}
+            justify={{ base: "center", lg: "space-between" }}
+            w="full"
+          >
+            <Text fontSize="xl" as="b">
+              {t("going.plusOneLabel")}
+            </Text>
+            <Text fontSize="xl">
+              {formik.values.additionalGuests?.[0].name}
+            </Text>
+          </Stack>
+        )}
+        {renderReimnbursement()}
         <Stack
           direction={{ base: "column", lg: "row" }}
           justify={{ base: "center", lg: "space-between" }}

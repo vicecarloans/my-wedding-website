@@ -285,6 +285,7 @@ export default function RSVP() {
           setActiveStep={setActiveStep}
           travelInfo={currentUserInvite?.travel}
           currentStep={3}
+          eligibleForReimbursement={currentUserInvite?.eligibleForReimburse}
         />
       );
     }
@@ -307,6 +308,7 @@ export default function RSVP() {
           setActiveStep={setActiveStep}
           travelInfo={currentUserInvite?.travel}
           currentStep={5}
+          eligibleForReimbursement={currentUserInvite?.eligibleForReimburse}
         />
       );
     }
