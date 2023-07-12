@@ -107,7 +107,7 @@
         "stayToLabel": "Ngày trả phòng",
         "stayToPlaceholder": "Chọn ngày bạn muốn trả phòng",
         "verdictGood": "Tuyệt vời! Tụi mình có thể lo hết! 🎉",
-        "verdictOverstay": "Xin lỗi, nhưng mà tụi mình chỉ có thể lo cao nhất là 3 ngày từ {stayFrom} đến {proposedStayTo}. Những ngày sau thì bạn có thể hỏi lễ tân để đặt thêm 😢",
+        "verdictOverstay": "Xin lỗi, nhưng mà tụi mình chỉ có thể lo cao nhất là {numDays} ngày từ {stayFrom} đến {proposedStayTo}. Những ngày sau thì bạn có thể hỏi lễ tân để đặt thêm 😢",
         "needTransportLabel": "Bạn có cần đi nhờ đến chỗ nhà hàng tiệc cưới không?"
     },
     "miscForm": {
