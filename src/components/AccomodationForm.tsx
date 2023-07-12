@@ -1,5 +1,5 @@
 import { FormProps } from "@/app/[locale]/rsvp/page";
-import { IUserInviteSubmission } from "@/models/invite";
+import { IUserInviteSubmission, TravelInfo } from "@/models/invite";
 import { useFormik } from "formik";
 import { useTranslations } from "next-intl";
 import { Dispatch, FC, SetStateAction, useEffect, useMemo } from "react";
@@ -33,15 +33,23 @@ export interface IAccomodationFormProps {
   formik: ReturnType<typeof useFormik<Partial<FormProps>>>;
   setActiveStep: Dispatch<SetStateAction<number>>;
   currentStep: number;
+  travel: TravelInfo;
 }
 
 const AccomodationForm: FC<IAccomodationFormProps> = ({
   formik,
   setActiveStep,
   currentStep,
+  travel,
 }) => {
   const t = useTranslations("accomodationForm");
   const tRoot = useTranslations();
+  const maxDaysStay = useMemo(() => {
+    if (travel === "international") {
+      return 5;
+    }
+    return 3;
+  }, [travel]);
   const enableNextStep = useMemo(() => {
     const areAllFieldsFilled = [
       formik.values.hotel?.needsTransport,
@@ -74,14 +82,14 @@ const AccomodationForm: FC<IAccomodationFormProps> = ({
     if (daysStay < 0) return null;
 
     return {
-      daysCovered: Math.min(daysStay, 3),
-      overStay: daysStay > 3,
+      daysCovered: Math.min(daysStay, maxDaysStay),
+      overStay: daysStay > maxDaysStay,
       proposedCheckoutDate:
-        daysStay > 3
-          ? addDays(parseISO(formik.values.hotel?.stayFrom), 4)
+        daysStay > maxDaysStay
+          ? addDays(parseISO(formik.values.hotel?.stayFrom), maxDaysStay - 1)
           : parseISO(formik.values.hotel?.stayTo),
     };
-  }, [formik.values.hotel?.stayFrom, formik.values.hotel?.stayTo]);
+  }, [formik.values.hotel?.stayFrom, formik.values.hotel?.stayTo, maxDaysStay]);
 
   useEffect(() => {
     if (verdict?.proposedCheckoutDate) {
@@ -163,6 +171,7 @@ const AccomodationForm: FC<IAccomodationFormProps> = ({
           <AlertIcon />
           {verdict?.overStay
             ? t("verdictOverstay", {
+                numDays: maxDaysStay,
                 stayFrom: format(
                   parseISO(formik.values.hotel?.stayFrom!),
                   HUMAN_READABLE_DATE_FORMAT

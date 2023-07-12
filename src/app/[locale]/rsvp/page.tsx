@@ -280,6 +280,7 @@ export default function RSVP() {
           formik={formik}
           setActiveStep={setActiveStep}
           currentStep={3}
+          travel={currentUserInvite?.travel}
         />
       ) : (
         <SummaryForm

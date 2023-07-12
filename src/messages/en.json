@@ -107,7 +107,7 @@
         "stayToLabel": "Your check-out date (Vietnamese time)",
         "stayToPlaceholder": "Select a date you want to check out of the hotel",
         "verdictGood": "Hooray! We can cover all of your stay! 🎉",
-        "verdictOverstay": "We're sorry, but we can only cover your stay for the maximum of 3 days from {stayFrom} to {proposedStayTo}. You'd have to extend your stay at the hotel by yourself. 😢",
+        "verdictOverstay": "We're sorry, but we can only cover your stay for the maximum of {numDays} days from {stayFrom} to {proposedStayTo}. You'd have to extend your stay at the hotel by yourself. 😢",
         "needTransportLabel": "Do you need transportation from the hotel to the wedding venue?"
     },
     "miscForm": {
