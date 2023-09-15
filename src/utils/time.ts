@@ -13,10 +13,10 @@ export const CALENDAR_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm";
 
 export const convertToTimezone = (
   date?: string,
-  timezoneB: string,
+  timezoneB?: string,
   syntax?: string
 ): string => {
-  if(!date) {
+  if(!date || !timezoneB) {
     return ""
   }
   const utc = toDate(date);
